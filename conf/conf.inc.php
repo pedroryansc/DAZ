@@ -1,15 +1,15 @@
 <?php
     // Banco de Dados
     define('HOST', 'localhost:3306');  
-    define('DBNAME', 'formas');    
+    define('DBNAME', 'daz');    
     define('USER', 'root');  
-    define('PASSWORD', '*Fada030648');
+    define('PASSWORD', '');
 
     define('DRIVER', 'mysql'); 
     define('CHARSET', 'utf8');
 
     // Geral da Aplicação
-    define('NOME_DO_PROJETO','Prova');
-    define('DESCRICAO_DO_PROJETO','Prova');
+    define('NOME_DO_PROJETO','DAZ');
+    define('DESCRICAO_DO_PROJETO','Plataforma para educação de jovens e adultos (Trabalho de Conclusão de Curso)');
 
 ?>
