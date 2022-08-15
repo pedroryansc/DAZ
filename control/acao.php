@@ -8,7 +8,7 @@
     acao($action, $table);
 
     function acao($acao, $table){
-        include_once ("../classes/autoload.php");
+        include_once ("../class/autoload.php");
 
         if($acao == "insert"){ 
             if($table == "quadrado"){ //insert da tabela QUADRADO
