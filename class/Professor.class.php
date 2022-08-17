@@ -61,8 +61,11 @@
             return parent::executaComando($sql, $par);
         }
 
-        public static function listar($info = ""){
-
+        public static function listar($id = 0){
+            $sql = "SELECT * FROM professor
+                    WHERE idprofessor = :id";
+            $par = array(":id"=>$id);
+            return parent::buscar($sql, $par);
         }
 
         public function editar(){
@@ -73,15 +76,14 @@
             
         }
 
-        public function __toString(){
-            return  "Id: ".$this->getId()."<br>".
-                    "Nome: ".$this->getNome()."<br>".
-                    "Sobrenome: ".$this->getSobrenome()."<br>".
-                    "Área de Atuação: ".$this->getAtuacao()."<br>".
-                    "Email: ".$this->getEmail()."<br>".
-                    "Senha: ".$this->getSenha()."<br>";
-                }
-        
+        public function efetuaLogin($email, $senha){
+            $sql = "SELECT idprofessor FROM professor
+                    WHERE email = :email
+                    AND senha = :senha";
+            $par = array(":email"=>$email, ":senha"=>$senha);
+            $row = parent::buscar($sql, $par);
+            return count($row) == 0;
+        }
     } 
 
 ?>
