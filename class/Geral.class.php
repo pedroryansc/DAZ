@@ -1,4 +1,6 @@
 <?php
+    require_once("../autoload.php");
+    
     abstract class Geral extends Database{
         private $id;
         private $nome;

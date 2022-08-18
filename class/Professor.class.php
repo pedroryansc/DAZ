@@ -82,7 +82,7 @@
                     AND senha = :senha";
             $par = array(":email"=>$email, ":senha"=>$senha);
             $row = parent::buscar($sql, $par);
-            return count($row) == 0;
+            return $row;
         }
     } 
 

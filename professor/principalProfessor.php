@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    require("../../utils.php");
+    require("../utils.php");
 
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
@@ -15,6 +15,6 @@
 </head>
 <body>
     <a href="principalProfessor?id=<?php echo $id; ?>.php">(Home)</a><br>
-    <p>Prof. <?php echo $vetor[0]["nome"]." ".$vetor[0]["sobrenome"]  ?></p>
+    <p>Prof. <?php echo $vetor[0]["nome"]." ".$vetor[0]["sobrenome"];  ?></p>
 </body>
 </html>

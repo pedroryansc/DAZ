@@ -10,6 +10,7 @@
     $senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
 
     if($acao == "salvar"){
+        //* $arquivo = isset($_FILES["arquivo"]) ? $_FILES["arquivo"] : null; */
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $areaAtuacao = isset($_POST["areaAtuacao"]) ? $_POST["areaAtuacao"] : "";
@@ -25,7 +26,7 @@
                         "<br>".
                         $e->getMessage();
                 }
-                header("location:../index/professor/loginProfessor.php");
+                header("location:../professor/loginProfessor.php");
             } else{
                 try{
                     $prof->editar();
@@ -36,13 +37,13 @@
                 }
             }
         } else
-            header("location:../index/professor/cadastroProfessor.php");
+            header("location:../professor/cadastroProfessor.php");
     } else if($acao == "login"){
         $prof = new Professor(1, 1, 1, 1, 1, 1, 1);
         $login = $prof->efetuaLogin($email, $senha);
-        if($login == 0)
-            header("location:../index/professor/principalProfessor.php");
+        if(count($login) == 1)
+            header("location:../professor/principalProfessor.php?id=".$login[0]["idprofessor"]);
         else
-            header("location:../index/professor/loginProfessor.php");
+            header("location:../professor/loginProfessor.php");
     }
 ?>
