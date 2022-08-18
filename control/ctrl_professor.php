@@ -10,7 +10,19 @@
     $senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
 
     if($acao == "salvar"){
-        //* $arquivo = isset($_FILES["arquivo"]) ? $_FILES["arquivo"] : null; */
+        /**
+         * var_dump($_FILES);
+         * die();
+         * $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : null;
+         * 
+         * (Sugestão: Fazer verificação da extensão do arquivo)
+         * 
+         * Mover arquivo:
+         * 
+         * $destino = "../imagens/".$_FILES["arquivo"]["name"];
+         * move_uploaded_file($arquivo["tmp_name"], $destino);
+         */
+        $arquivo = isset($_FILES["arquivo"]) ? $_FILES["arquivo"] : null;
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $areaAtuacao = isset($_POST["areaAtuacao"]) ? $_POST["areaAtuacao"] : "";
