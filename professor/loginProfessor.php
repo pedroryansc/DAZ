@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +11,7 @@
     <title>Login (Professor) - DAZ</title>
 </head>
 <body>
-    <a href="inicial.html">Voltar</a><br>
+    <a href="../inicial.html">Voltar</a><br>
     <br><br>
     <form action="../control/ctrl_professor.php" method="post">
         <input type="text" name="email" placeholder="E-mail"><br>

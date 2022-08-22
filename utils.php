@@ -1,9 +1,9 @@
 <?php
     require_once("autoload.php");
 
-    function listaProfessor($id){
+    function listaProfessor($nome){
         $prof = new Professor(1, 1, 1, 1, 1, 1, 1);
-        $vetor = $prof->listar($id);
+        $vetor = $prof->ListarNomes($nome);
         return $vetor;
     }
 ?>

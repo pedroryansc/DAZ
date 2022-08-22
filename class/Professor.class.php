@@ -68,21 +68,49 @@
             return parent::buscar($sql, $par);
         }
 
-        public function editar(){
+        public static function ListarNomes($nome){
+            $sql = "SELECT * FROM professor WHERE nome = :nome";
+            $par = array(":nome" => $nome);
+            return parent::buscar($sql,$par);
+        }
 
+        public function editar(){
+            $sql = "UPDATE professor
+                    SET nome = :nome, sobrenome = :sobrenome, areaAtuacao = :areaAtuacao,
+                        formacao = :formacao, email = :email, senha = :senha
+                    WHERE idprofessor = :id";
+            $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
+                        ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha(),
+                        ":id"=>$this->getId());
+            return parent::executaComando($sql, $par);
         }
 
         public function excluir(){
-            
+            $sql = "DELETE FROM professor WHERE idprofessor = :id";
+            $par = array("id"=>$this->getId());
+            return parent::executaComando($sql, $par);
         }
 
         public function efetuaLogin($email, $senha){
-            $sql = "SELECT idprofessor FROM professor
+            $sql = "SELECT * FROM professor
                     WHERE email = :email
                     AND senha = :senha";
             $par = array(":email"=>$email, ":senha"=>$senha);
-            $row = parent::buscar($sql, $par);
-            return $row;
+            $row = parent::EfetuaLoginDB($sql, $par);
+            if ($row){
+                if(count($row) > 0){
+                        $_SESSION['usuario'] = $row['nome'];
+                    return true;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+
+        public static function FinalizarLogin(){
+            session_destroy();
+            return true;
         }
     } 
 

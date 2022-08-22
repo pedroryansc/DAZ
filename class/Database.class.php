@@ -1,7 +1,7 @@
 <?php
     class Database{
         public static function iniciaConexao(){
-            require_once("../conf/Conexao.php");
+            require_once("Conexao.class.php");
             return Conexao::getInstance();
         }
 
@@ -30,5 +30,15 @@
             $comando->execute();
             return $comando->fetchAll();
         }
+
+        public static function EfetuaLoginDB($sql, $param = array()){
+            $pdo = Conexao::getInstance();
+                $stmt = $pdo->prepare($sql);
+                $stmt = self::vinculaParametros($stmt, $param);
+                $stmt->execute();
+                $dado = $stmt->fetch();
+
+            return $dado;
+        }    
     }
 ?>
