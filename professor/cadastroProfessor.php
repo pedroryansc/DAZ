@@ -259,6 +259,7 @@
                 <br>
                 <button type="submit" name="acao" value="salvar">Salvar</button>
             </form>
+            <div></div>
         </div>
         <img src="../img/Frame3.svg" class="img1">
         <img src="../img/PLATAFORMA PARA ALFABETIZAÇÃO DE JOVENS E ADULTOS.svg" alt="" srcset="" class="img2">
