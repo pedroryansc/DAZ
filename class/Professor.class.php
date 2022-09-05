@@ -68,10 +68,12 @@
             return parent::buscar($sql, $par);
         }
 
-        public static function ListarNomes($nome){
+        // Ideia = Juntar o método "listar" e o método "listarNomes", identificando através de algo como "$tipo"
+        
+        public static function listarNomes($nome){
             $sql = "SELECT * FROM professor WHERE nome = :nome";
             $par = array(":nome" => $nome);
-            return parent::buscar($sql,$par);
+            return parent::buscar($sql, $par);
         }
 
         public function editar(){
@@ -96,19 +98,17 @@
                     WHERE email = :email
                     AND senha = :senha";
             $par = array(":email"=>$email, ":senha"=>$senha);
-            $row = parent::EfetuaLoginDB($sql, $par);
-            if ($row){
+            $row = parent::efetuaLoginDB($sql, $par);
+            if($row){
                 if(count($row) > 0){
-                        $_SESSION['usuario'] = $row['nome'];
+                    $_SESSION['usuario'] = $row['nome'];
                     return true;
                 }
-            }
-            else{
+            } else
                 return false;
-            }
         }
 
-        public static function FinalizarLogin(){
+        public static function finalizarLogin(){
             session_destroy();
             return true;
         }

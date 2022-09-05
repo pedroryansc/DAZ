@@ -3,7 +3,7 @@
 
     function listaProfessor($nome){
         $prof = new Professor(1, 1, 1, 1, 1, 1, 1);
-        $vetor = $prof->ListarNomes($nome);
+        $vetor = $prof->listarNomes($nome);
         return $vetor;
     }
 ?>

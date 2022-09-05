@@ -1,0 +1,20 @@
+.bgcor{
+    position: absolute;
+    width: 1024px;
+    height: 928px;
+    left: 0px;
+    top: 1024px;
+
+    background: linear-gradient(270deg, #BDBE6E -0.29%, #F3BD1D 50.49%, #BAD9C9 94.5%);
+    transform: rotate(-90deg);
+}
+div{
+    position: absolute;
+    width: 1024px;
+    height: 928px;
+    left: 0px;
+    top: 1024px;
+
+    background: linear-gradient(270deg, #BDBE6E -0.29%, #F3BD1D 50.49%, #BAD9C9 94.5%);
+    transform: rotate(-90deg);
+}

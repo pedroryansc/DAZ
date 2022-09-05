@@ -31,14 +31,12 @@
             return $comando->fetchAll();
         }
 
-        public static function EfetuaLoginDB($sql, $param = array()){
-            $pdo = Conexao::getInstance();
-                $stmt = $pdo->prepare($sql);
-                $stmt = self::vinculaParametros($stmt, $param);
-                $stmt->execute();
-                $dado = $stmt->fetch();
-
-            return $dado;
+        public static function efetuaLoginDB($sql, $parametros = array()){
+            $conexao = self::iniciaConexao();
+            $comando = $conexao->prepare($sql);
+            $comando = self::vinculaParametros($comando, $parametros);
+            $comando->execute();
+            return $comando->fetch();
         }    
     }
 ?>

@@ -1,15 +1,10 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 <?php
     require("../utils.php");
 
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
-    
-
+    session_start();
     if (!empty($_SESSION['usuario'])) {
         echo "Logado como: ". $_SESSION['usuario'];
         
@@ -30,7 +25,7 @@
     <title>Página principal (Professor) -  DAZ</title>
 </head>
 <body>
-    <a href="principalProfessor.php?id=<?php echo $id; ?>">(Home)</a><br>
+    <a href="principalProfessor.php">(Home)</a><br>
     <h2><?php echo $vetor[0]["nome"]." ".$vetor[0]["sobrenome"];  ?></h2>
     <p><b>Área de atuação</b></p>
     <p><?php echo $vetor[0]["areaAtuacao"]; ?></p>
@@ -40,12 +35,14 @@
     <p><?php echo $vetor[0]["email"]; ?></p>
     <p>
         <b>
-            <a href="cadastroProfessor.php?acao=editar&id=<?php echo $id; ?>">Editar</a> 
-            <a href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
+            <a href="cadastroProfessor.php?acao=editar&id=<?php echo $vetor[0]["idprofessor"]; ?>">Editar</a> 
+            <a href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $vetor[0]["idprofessor"]; ?>')">
+                Excluir
+            </a>
         </b>
     </p>
     <br><br>
-    <p><b><a href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar&id=<?php echo $id; ?>')">Sair</a></b></p>
+    <p><b><a href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar')">Sair</a></b></p>
 </body>
 </html>
 <script>

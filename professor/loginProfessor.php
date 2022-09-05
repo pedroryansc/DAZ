@@ -1,7 +1,3 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,101 +7,106 @@
     <title>Login (Professor) - DAZ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
-      body{
-       
-width: 1028px;
-height: 1472px;
-left: 850x;
-top: 1028px;
+        
+        body{
+            width: 98%;
+            height: 110%;
+            background: linear-gradient(180deg, #BDBE6E 6.17%, #F3BD1D 48.36%, #BAD9C9 87.94%);
+        } 
+        fieldset{
+            padding-left: 35%;
+            padding-right:35%;
+            background-color: transparent;
+            border-color: transparent;
+        }
+        .input1{
+            font-weight: bold;
+            width: 100%;
+            height: 4%;
+            margin-bottom: 2%;
+            background: #EFF0F3;
+            border-radius: 10px;
+            border-color: transparent;
+            padding-left: 3%;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 125%;
+        }
+        .input2{
+            font-weight: bold;
+            width: 100%;
+            height: 4%;
+            background: #EFF0F3;
+            border-radius: 10px;
+            border-color: transparent;
+            padding-left: 3%;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 125%;
+        } 
+        button{
+            margin-top: 1%;
+            width: 50%;
+            height: 50PX;
+            margin-bottom: 20.7%;
 
-background: linear-gradient(270deg, #BDBE6E 6.17%, #F3BD1D 48.36%, #BAD9C9 87.94%);
+            background: white;
+            border-radius: 10px;
+            border-color: transparent;
+        }
+        img.daz{
+            margin-top: 13%;
+            width: 90%;
+            margin-left: 6%;
+            margin-bottom: 25%;
+        }
+        a{
+            color: black;
+        }
+        p{
+            margin-top: 5%;   
 
-      } 
-      .input1{
-        position: absolute;
-width: 578px;
-height: 34px;
-left: 850px;
-top: 610px;
+            font-weight: bold;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 125%;
 
-background: #EFF0F3;
-border-radius: 10px;
-border-color: #EFF0F3;
-
-font-family: 'Nunito';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 27px;
-      }
-      .input2{
-        position: absolute;
-width: 578px;
-height: 39px;
-left: 850px;
-top: 680px;
-
-background: #EFF0F3;
-border-radius: 10px;
-border-color: #EFF0F3;
-
-font-family: 'Nunito';
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 27px;
-      } 
-      button{
-        position: absolute;
-width: 280px;
-height: 50px;
-left: 850px;
-top: 809px;
-
-background: linear-gradient(89.94deg, #EDBF2B 0.05%, #BDBE6E 97.46%);
-border-radius: 10px;
-border-color: #EFF0F3;
-      }
-      img{
-        position: absolute;
-width: 516.87px;
-height: 253.45px;
-left: 850px;
-top: 190px;
-      }
-      p{
-        position: absolute;
-width: 303px;
-height: 20px;
-left: 850px;
-top: 748px;
-
-font-family: 'Nunito';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 27px;
-
-color: #272343;
-      }
-      a{
-        color: black;
-      }
+            color: #272343;
+        }
+        img.icon{
+            margin-top: 1.5%;
+            height: 80%;
+            width: 15%;
+        }
+        img.icon1{
+            height: 4%;
+            width: 4%;
+            margin-left: 3%;
+            margin-top:2%;
+        }
     </style>
-
 </head>
 <body>
-    <a href="../inicial.html">Voltar</a><br>
-    <br><br>
-    <center>
-    <img src="../img/fulllogo.png">
-    <form action="../control/ctrl_professor.php" method="post">
-        <input type="text" name="email" placeholder="E-mail" class="input1"><br>
-        <br>
-        <input type="password" name="senha" placeholder="Senha" class="input2"><br>
-        <p>Não tem uma conta? <a href="cadastroProfessor.php">Clique aqui</a></p>
-        <button type="submit" name="acao" value="login">Entrar</button>
-    </form>
-    </center>
+    <a href="../inicial.html"><img class="icon1" src="../img/img2.png"></img></a><br>
+    <!-- <br><br> -->
+    <fieldset>
+        <img class="daz" src="../img/fulllogo.png">
+        <form action="../control/ctrl_professor.php" method="post">
+            <input type="text" class="input1" name="email" placeholder="E-mail"><br>
+            <br>
+            <input type="password" class="input2" name="senha" placeholder="Senha"><br>
+            <center>
+                <p>Não tem uma conta? <a href="cadastroProfessor.php">Clique aqui</a></p>
+            </center>
+            <center>
+                <button type="submit" name="acao" value="login">
+                    <a><img class="icon" src="../img/img1.png"></img></a>
+                </button>
+            </center>
+        </form>
+    </fieldset>
 </body>
 </html>

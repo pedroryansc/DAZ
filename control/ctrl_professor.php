@@ -1,29 +1,13 @@
 <?php
-session_start();
+    session_start();
 
     require_once("../autoload.php");
 
-    $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
+    $acao = isset($_POST["acao"]) ? $_GET["acao"] : "";
+    if(empty($acao))
+        $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
+    
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
-
-    if($acao == "excluir"){
-        try{
-            $prof = new Professor($id, 1, 1, 1, 1, 1, 1);
-            $prof->excluir();
-            header("location:../inicial.html");
-        } catch(Exception $e){
-            echo "Erro ao excluir cadastro <br>".
-                "<br>".
-                $e->getMessage();
-        }
-    }
-    if ($acao == "deslogar"){
-        $prof = Professor::FinalizarLogin();
-
-        header("location:../inicial.html");
-    }
-
-    $acao = isset($_POST["acao"]) ? $_POST["acao"] : "";
 
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
@@ -52,35 +36,51 @@ session_start();
             if($id == 0){
                 try{
                     $prof->insere();
+                    header("location:../professor/loginProfessor.php");
                 } catch(Exception $e){
                     echo "Erro ao cadastrar professor <br>".
                         "<br>".
                         $e->getMessage();
                 }
-                header("location:../professor/loginProfessor.php");
             } else{
                 try{
                     $prof->editar();
+                    $prof->efetuaLogin($email, $senha);
+                    header("location:../professor/principalProfessor.php");
                 } catch(Exception $e){
                     echo "Erro ao editar dados do professor <br>".
                         "<br>".
                         $e->getMessage();
                 }
-                header("location:../professor/principalProfessor.php?id=".$id);
             }
         } else
             if($id == 0)
                 header("location:../professor/cadastroProfessor.php");
             else
-                header("location:../professor/cadastroProfessor.php?acao=editar&id=".$id);
+                header("location:../professor/cadastroProfessor.php?acao=editar");
+    } else if($acao == "excluir"){
+        try{
+            $prof = new Professor($id, 1, 1, 1, 1, 1, 1);
+            $prof->excluir();
+            $prof->finalizarLogin();
+            // session_destroy();
+            header("location:../inicial.html");
+        } catch(Exception $e){
+            echo "Erro ao excluir cadastro <br>".
+                "<br>".
+                $e->getMessage();
+        }
     } else if($acao == "login"){
         $prof = new Professor(1, 1, 1, 1, 1, 1, 1);
         $login = $prof->efetuaLogin($email, $senha);
         //var_dump($_SESSION["usuario"]);
         if($login)
-            header("location:../professor/principalProfessor.php?id=".$login[0]["idprofessor"]);
+            header("location:../professor/principalProfessor.php");
         else
             header("location:../professor/loginProfessor.php");
-    } 
-    
+    } else if ($acao == "deslogar"){
+        $prof = Professor::finalizarLogin();
+        // session_destroy();
+        header("location:../inicial.html");
+    }
 ?>
