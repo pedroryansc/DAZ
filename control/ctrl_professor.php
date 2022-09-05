@@ -3,7 +3,7 @@
 
     require_once("../autoload.php");
 
-    $acao = isset($_POST["acao"]) ? $_GET["acao"] : "";
+    $acao = isset($_POST["acao"]) ? $_POST["acao"] : "";
     if(empty($acao))
         $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
     
