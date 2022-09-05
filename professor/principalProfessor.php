@@ -7,15 +7,19 @@
     session_start();
     if (!empty($_SESSION['usuario'])) {
         echo "Logado como: ". $_SESSION['usuario'];
+        $var = true;
         
         //var_dump($_SESSION['usuario']);
 
         $vetor = listaProfessor($_SESSION['usuario']);
     }
     else{
+        $var = false;
         echo "Erro";
+        // header("location:../inicial.html");
     }
 
+    if($var){
 ?>
 <html lang="pt-br">
 <head>
@@ -56,3 +60,6 @@
             location.href = url;
     }
 </script>
+<?php
+    }
+?>

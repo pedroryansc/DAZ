@@ -12,6 +12,7 @@
             width: 98%;
             height: 110%;
             background: linear-gradient(180deg, #BDBE6E 6.17%, #F3BD1D 48.36%, #BAD9C9 87.94%);
+            overflow-y: hidden;
         } 
         fieldset{
             padding-left: 35%;
