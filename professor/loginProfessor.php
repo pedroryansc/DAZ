@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login (Professor) - DAZ</title>
+    <title>Login (Professor) | DAZ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
         
-        body{
+        body{  
             width: 98%;
             height: 110%;
             background: linear-gradient(180deg, #BDBE6E 6.17%, #F3BD1D 48.36%, #BAD9C9 87.94%);
-            overflow-y: hidden;
         } 
         fieldset{
             padding-left: 35%;
@@ -20,6 +19,7 @@
             background-color: transparent;
             border-color: transparent;
         }
+
         .input1{
             font-weight: bold;
             width: 100%;
@@ -46,23 +46,26 @@
             font-style: normal;
             font-weight: 800;
             font-size: 125%;
-        } 
+        }
+
         button{
             margin-top: 1%;
             width: 50%;
             height: 50PX;
-            margin-bottom: 20.7%;
+            margin-bottom: 12.5%;
 
             background: white;
             border-radius: 10px;
             border-color: transparent;
         }
+
         img.daz{
-            margin-top: 13%;
+            margin-top: 3%;
             width: 90%;
             margin-left: 6%;
-            margin-bottom: 25%;
+            margin-bottom: 18%;
         }
+
         a{
             color: black;
         }
@@ -77,11 +80,13 @@
 
             color: #272343;
         }
+
         img.icon{
             margin-top: 1.5%;
             height: 80%;
             width: 15%;
         }
+
         img.icon1{
             height: 4%;
             width: 4%;
@@ -92,7 +97,6 @@
 </head>
 <body>
     <a href="../inicial.html"><img class="icon1" src="../img/img2.png"></img></a><br>
-    <!-- <br><br> -->
     <fieldset>
         <img class="daz" src="../img/fulllogo.png">
         <form action="../control/ctrl_professor.php" method="post">

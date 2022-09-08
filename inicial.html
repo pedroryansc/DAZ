@@ -4,51 +4,114 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página inicial - DAZ</title>
-    <link rel="stylesheet" href="css/inicial.css">
+    <title>Página inicial | DAZ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@100&display=swap');
-    
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+        
         body{
-            background: linear-gradient(270deg, #BDBE6E -0.29%, #F3BD1D 50.49%, #BAD9C9 94.5%);
+            width: 98%;
+            height: 110%;
+            background: linear-gradient(180deg, #BDBE6E 6.1%, #F3BD1D 48.36%, #BAD9C9 87.94%);
         }
-        h2{
-            position: fixed;
-            height: 155px;
-            left: 308px;
-            top: 57px;
 
-            font-family: 'Inter', sans-serif;
-            font-style: normal;
-            font-weight: 533;
-            font-size: 128px;
-            line-height: 155px;
-            /* identical to box height */
-
-            color: #FFFFFF;
-            font-variation-settings: 'slnt' 0;
+        div.bem{
+            margin-top: 2%;
+            margin-left: 15%;
+            margin-right: 52%;
+            color: white;
+            font-family: Nunito;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0em;
         }
-        p{
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-weight: 226;
-            font-size: 24px;
-            line-height: 28px;
-            text-transform: capitalize;
 
-            color: #FFFFFF;
-            font-stretch: 100;
+        p.bem{
+            margin: 0px;
+            font-size: 180%;
+        }
+
+        p.sele{
+            margin-top: -10px;
+            letter-spacing: 1px;
+            font-size: 90%;
+        }
+
+        img.img1{
+            position: absolute;
+            width: 17%;
+            margin-top: -17.3%;
+            margin-left: 21.3%;
+            z-index:5;
+        }
+
+        img.img2{
+            position: absolute;
+            width: 17%;
+            margin-left: 21.3%;
+            z-index:5;
+        }
+
+        div.img{
+            background-color: white;
+            opacity: 0.4;
+            color: transparent;
+            width: 20%;
+            height: 250px;
+            margin-left: 20.5%;
+            border-radius: 10px;
+            z-index:4;
+        }
+
+        div.img1{
+            margin-top: -1.5%;
+            background-color: white;
+            opacity: 0.4;
+            color: transparent;
+            width: 20%;
+            height: 250px;
+            margin-left: 20.5%;
+            border-radius: 10px;
+            z-index:4;
+            margin-bottom: 2.5%;
+        }
+
+        .img3{           
+            position: absolute;
+            width: 49.2%;
+            margin-top: -37%;
+            margin-left: 62.3%;
+            transform: rotate(90deg);
+        }
+
+        .branco{
+            position: absolute;
+            color: transparent;
+            background-color: white;
+            margin-top: -49.1%;
+            margin-left: 74.6%;
+            width: 20%;
+            height: 102%;
         }
     </style>
 </head>
 <body>
-    <h2>Bem-Vindo!</h2>
+    <div class="bem">
+        <center>
+            <p class="bem">Bem-Vindo!</p>
+            <p class="sele">Selecione abaixo sua categoria...</p>
+        </center>
+    </div>
+    <div class="img"></div>   
+    <a href="professor/loginProfessor.php">
+        <img class="img1" src="img/prof.png">
+    </a>
     <br>
-    <p>Selecione abaixo sua categoria...</p>
+    <a href="aluno/loginAluno.php"> 
+        <img class="img2" src="img/estudante.png">
+    </a>
     <br>
-    <img src="" alt="" srcset="">
-    <a href="professor/loginProfessor.php">Professor</a><br>
-    <br>
-    <a href="aluno/loginAluno.php">Aluno</a>
+    <div class="img1"></div>
+    <div class="branco"></div>
+    <img src="img/Union.png" class="img3">
 </body>
 </html>
