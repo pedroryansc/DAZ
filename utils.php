@@ -6,4 +6,10 @@
         $vetor = $prof->listarNomes($nome);
         return $vetor;
     }
+
+    function listaTurma($id){
+        $turma = new Turma(1, 1, 1, 1, 1);
+        $vetor = $turma->listar($id);
+        return $vetor;
+    }
 ?>

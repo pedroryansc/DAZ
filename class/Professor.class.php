@@ -110,7 +110,6 @@
 
         public static function finalizarLogin(){
             session_destroy();
-            return true;
         }
     } 
 
