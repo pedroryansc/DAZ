@@ -9,10 +9,9 @@
         //var_dump($_SESSION["usuario"]);
 
         $vetor = listaProfessor($_SESSION["usuario"]);
+        $vetorTurmas = listaTurma(1, $vetor[0]["idprofessor"]);
     } else
         header("location:../inicial.html");
-
-    $vetorTurmas = listaTurma(5);
 ?>
 <html lang="pt-br">
 <head>
@@ -146,7 +145,7 @@
             <?php
                 if($vetorTurmas){
                     foreach($vetorTurmas as $turma){
-                        echo "<a href='turma.php?id=".$vetorTurmas[0]["idturma"]."'>Turma ".$vetorTurmas[0]["nome"]."</a><br><br>";
+                        echo "<a href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["nome"]."</a><br><br>";
                     }
                 } else
                     echo "Clique no botão para criar uma turma <br><br>";
@@ -176,7 +175,7 @@
     </p>
     <br><br><br>
     <hr>
-    <center><p><b><a class="sair" href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar&id=<?php echo $id; ?>')"><p class="nome">Sair</p></a></b></p></center>
+    <center><p><b><a class="sair" href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar')"><p class="nome">Sair</p></a></b></p></center>
     </div>
 </body>
 </html>

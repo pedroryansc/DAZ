@@ -61,7 +61,7 @@
             return parent::executaComando($sql, $par);
         }
 
-        public static function listar($id = 0){
+        public static function listar($tipo, $id){
             $sql = "SELECT * FROM professor
                     WHERE idprofessor = :id";
             $par = array(":id"=>$id);

@@ -7,9 +7,9 @@
         return $vetor;
     }
 
-    function listaTurma($id){
+    function listaTurma($tipo, $id){
         $turma = new Turma(1, 1, 1, 1, 1);
-        $vetor = $turma->listar($id);
+        $vetor = $turma->listar($tipo, $id);
         return $vetor;
     }
 ?>

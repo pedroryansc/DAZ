@@ -9,7 +9,7 @@
         header("location:../inicial.html");
     }
 
-    $vetorTurmas = listaTurma($id);
+    $vetorTurmas = listaTurma(2, $id);
 ?>
 <html lang="pt-br">
 <head>
@@ -21,12 +21,14 @@
 <body>
     <a href="principalProfessor.php">(Home)</a><br>
     <h2>Turma <?php echo $vetorTurmas[0]["nome"]; ?></h2>
+    <p><?php echo $vetorTurmas[0]["instituicao"] ?></p>
     <p>
         <b>
             <a href="cadastroTurma.php?acao=editar&id=<?php echo $vetorTurmas[0]["idturma"]; ?>">Editar</a>
             <a href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $vetorTurmas[0]["idturma"]; ?>')">Excluir</a>
         </b>
     </p>
+    <p>Média geral da turma: <?php echo $vetorTurmas[0]["mediaGeral"] ?></p>
 </body>
 </html>
 <script>

@@ -39,30 +39,21 @@
             return parent::executaComando($sql, $par);
         }
 
-        public static function listar($id){
+        public static function listar($tipo, $id){
             $sql = "SELECT * FROM turma";
-            $par = array();
+            switch($tipo){
+                case(1): $sql .= " WHERE professor_idprofessor = :id"; break;
+                case(2): $sql .= " WHERE idturma = :id"; break;
+            }
+            $par = array(":id"=>$id);
             return parent::buscar($sql, $par);
         }
-
-        /*
-
-        Verificar a seguinte versão do método "listar" para que apareçam as respectivas turmas de cada professor
-
-        public static function listar($id = 0){
-            $sql = "SELECT * FROM turma
-                    WHERE professor_idprofessor = :idProfessor";
-            $par = array(":idProfessor"=>$id);
-            return parent::buscar($sql, $par);
-        }
-        */
 
         public function editar(){
             $sql = "UPDATE turma
-                    SET nome = :nome, instituicao = :instituicao, mediaGeral = :mediaGeral, professor_idprofessor = :idProfessor
+                    SET nome = :nome, instituicao = :instituicao
                     WHERE idturma = :id";
-            $par = array(":nome"=>$this->getNome(), ":instituicao"=>$this->getInstituicao(), ":mediaGeral"=>$this->getMediaGeral(),
-                        ":idProfessor"=>$this->getIdProfessor(), ":id"=>$this->getId());
+            $par = array(":nome"=>$this->getNome(), ":instituicao"=>$this->getInstituicao(), ":id"=>$this->getId());
             return parent::executaComando($sql, $par);
         }
 

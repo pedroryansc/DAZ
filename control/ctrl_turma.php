@@ -28,7 +28,7 @@
         } else{
             try{
                 $turma->editar();
-                header("location:../professor/principalProfessor.php");
+                header("location:../professor/turma.php?id=".$id);
             } catch(Exception $e){
                 echo "Erro ao editar dados da turma <br>".
                     "<br>".
@@ -39,7 +39,7 @@
         try{
             $turma = new Turma($id, 1, 1, 1, 1);
             $turma->excluir();
-            header("location:../principalProfessor.php");
+            header("location:../professor/principalProfessor.php");
         } catch(Exception $e){
             echo "Erro ao excluir turma <br>".
                 "<br>".
