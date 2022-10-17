@@ -82,7 +82,7 @@
             header("location:../professor/principalProfessor.php");
         else
             header("location:../professor/loginProfessor.php");
-    } else if ($acao == "deslogar"){
+    } else if($acao == "deslogar"){
         $prof = Professor::finalizarLogin();
         // session_destroy();
         header("location:../inicial.html");

@@ -16,7 +16,7 @@
             if($nome <> "")
                 $this->nome = $nome;
             else
-                throw new Exception("Nome inválido.");
+                throw new Exception("Por favor, insira o nome.");
         }
 
         public function getId(){ return $this->id; }

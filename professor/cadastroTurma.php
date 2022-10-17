@@ -6,9 +6,8 @@
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
     session_start();
-    if(empty($_SESSION["usuario"])){
+    if(empty($_SESSION["usuario"]))
         header("location:../inicial.html");
-    }
     
     if($acao == "editar")
         $vetor = listaTurma(2, $id);

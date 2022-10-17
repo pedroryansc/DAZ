@@ -37,7 +37,7 @@ CREATE TABLE aluno(
     idaluno INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome varchar(45),
     sobrenome varchar(45),
-    escolaridade varchar(45),
+    etapa varchar(45),
     numQuestResp INT,
     numAcertos INT,
     media decimal(6,1),

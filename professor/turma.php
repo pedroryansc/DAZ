@@ -5,11 +5,11 @@
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
     session_start();
-    if(empty($_SESSION["usuario"])){
+    if(empty($_SESSION["usuario"]))
         header("location:../inicial.html");
-    }
 
     $vetorTurmas = listaTurma(2, $id);
+    $vetorAlunos = listaAluno(1, $id);
 ?>
 <html lang="pt-br">
 <head>
@@ -24,22 +24,47 @@
     <p><?php echo $vetorTurmas[0]["instituicao"] ?></p>
     <p>
         <b>
-            <a href="cadastroTurma.php?acao=editar&id=<?php echo $vetorTurmas[0]["idturma"]; ?>">Editar</a>
-            <a href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $vetorTurmas[0]["idturma"]; ?>')">Excluir</a>
+            <a href="cadastroTurma.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
+            <a href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
         </b>
     </p>
+    <br>
     <p>Média geral da turma: <?php echo $vetorTurmas[0]["mediaGeral"] ?></p>
+    <br>
+    <p><a href="cadastroAluno.php?idTurma=<?php echo $id; ?>">(Botão para cadastrar aluno)</a></p>
     <table>
         <tr>
-            <td>ID</td>
-            <td>Nome</td>
-            <td>NA/QQ*</td>
-            <td>Média</td>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>NA/QQ*</th>
+            <th>Média</th>
         </tr>
+        <?php
+            foreach($vetorAlunos as $aluno){
+        ?>
         <tr>
+            <th><?php echo $aluno["idaluno"]; ?></th>
+            <td>
+                <a href="aluno.php?id=<?php echo $aluno["idaluno"]; ?>">
+                    <?php echo $aluno["nome"]." ".$aluno["sobrenome"]; ?>
+                </a>
+            </td>
+            <th><?php echo $aluno["numAcertos"]."/".$aluno["numQuestResp"]; ?></th>
+            <th>
+                <?php
+                    if($aluno["media"] == NULL)
+                        echo "-";
+                    else
+                        echo $aluno["media"];
+                ?>
+            </th>
         </tr>
+        <?php
+            }
+        ?>
     </table>
-    <p>NA = Número de Acertos; QQ = Quantidade de Questões</p>
+    <p>*NA = Número de Acertos; QQ = Quantidade de Questões</p>
+    <!-- Sugestão: ao invés de QQ, colocar "NQ = Número de Questões" para ficar com a mesma letra inicial de NA -->
 </body>
 </html>
 <script>

@@ -12,36 +12,40 @@
     
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
+    $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
+
     if($acao == "salvar"){
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
-        $instituicao = isset($_POST["instituicao"]) ? $_POST["instituicao"] : "";
-        $turma = new Turma($id, $nome, $instituicao, 0.0, $vetor[0]["idprofessor"]);
+        $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
+        $genero = isset($_POST["genero"]) ? $_POST["genero"] : "";
+        $etapa = isset($_POST["etapa"]) ? $_POST["etapa"] : "";
+        $aluno = new Aluno($id, $nome, $sobrenome, $genero, $etapa, 0, 0, 0.0, $vetor[0]["idprofessor"], $idTurma);
         if($id == 0){
             try{
-                $turma->insere();
-                header("location:../professor/principalProfessor.php");
+                $aluno->insere();
+                header("location:../professor/turma.php?id=".$idTurma);
             } catch(Exception $e){
-                echo "Erro ao cadastrar turma <br>".
+                echo "Erro ao cadastrar aluno <br>".
                     "<br>".
                     $e->getMessage();
             }
         } else{
             try{
-                $turma->editar();
-                header("location:../professor/turma.php?id=".$id);
+                $aluno->editar();
+                header("location:../professor/aluno.php");
             } catch(Exception $e){
-                echo "Erro ao editar dados da turma <br>".
+                echo "Erro ao editar os dados do aluno <br>".
                     "<br>".
                     $e->getMessage();
             }
         }
     } else if($acao == "excluir"){
         try{
-            $turma = new Turma($id, 1, 1, 1, 1);
-            $turma->excluir();
-            header("location:../professor/principalProfessor.php");
+            $aluno = new Aluno($id, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+            $aluno->excluir();
+            header("location:../professor/turma.php?id=".$idTurma);
         } catch(Exception $e){
-            echo "Erro ao excluir turma <br>".
+            echo "Erro ao excluir aluno <br>".
                 "<br>".
                 $e->getMessage();
         }
