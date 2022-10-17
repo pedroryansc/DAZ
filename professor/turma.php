@@ -29,6 +29,17 @@
         </b>
     </p>
     <p>Média geral da turma: <?php echo $vetorTurmas[0]["mediaGeral"] ?></p>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>NA/QQ*</td>
+            <td>Média</td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    <p>NA = Número de Acertos; QQ = Quantidade de Questões</p>
 </body>
 </html>
 <script>
