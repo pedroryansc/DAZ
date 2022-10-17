@@ -30,9 +30,13 @@
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $areaAtuacao = isset($_POST["areaAtuacao"]) ? $_POST["areaAtuacao"] : "";
         $formacao = isset($_POST["formacao"]) ? $_POST["formacao"] : "";
+        /*
+        $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : null;
+        echo $fotoPerfil;
+        */
         $confirmarSenha = isset($_POST["confirmarSenha"]) ? $_POST["confirmarSenha"] : "";
         if($senha == $confirmarSenha){
-            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha);
+            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha /*, $fotoPerfil */);
             if($id == 0){
                 try{
                     $prof->insere();

@@ -210,7 +210,7 @@
             <form action="../control/ctrl_professor.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
                 <!--
                     (Pesquisar pela função de criar uma pasta automaticamente. A pasta serviria para armazenar as imagens do usuário)
-
+                    
                     Foto de perfil
                     <input type="file" name="imagem"><br>
                     <br>
