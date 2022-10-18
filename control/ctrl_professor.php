@@ -36,7 +36,7 @@
         */
         $confirmarSenha = isset($_POST["confirmarSenha"]) ? $_POST["confirmarSenha"] : "";
         if($senha == $confirmarSenha){
-            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha /*, $fotoPerfil */);
+            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha/*, $fotoPerfil */);
             if($id == 0){
                 try{
                     $prof->insere();
@@ -75,9 +75,7 @@
                 $e->getMessage();
         }
     } else if($acao == "login"){
-        $prof = new Professor(1, 1, 1, 1, 1, 1, 1);
-        $login = $prof->efetuaLogin($email, $senha);
-        //var_dump($_SESSION["usuario"]);
+        $login = Professor::efetuaLogin($email, $senha);
         if($login)
             header("location:../professor/principalProfessor.php");
         else

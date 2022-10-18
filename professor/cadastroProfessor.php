@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <?php
-    require("../utils.php");
-    
     $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
     if($acao == "editar"){
         session_start();
-        $vetor = listaProfessor($_SESSION['usuario']);
     }
 ?>
 <html lang="pt-br">
@@ -216,22 +213,22 @@
                     <br>
                 -->
                 <input type="text" class="input1" name="nome" placeholder="Nome"
-                value="<?php if($acao == "editar") echo $vetor[0]["nome"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["nome"]; ?>">
 
                 <input type="text" class="input2" name="sobrenome" placeholder="Sobrenome"
-                value="<?php if($acao == "editar") echo $vetor[0]["sobrenome"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["sobrenome"]; ?>">
 
                 <input type="text" class="input3" name="areaAtuacao" placeholder="Área de atuação"
-                value="<?php if($acao == "editar") echo $vetor[0]["areaAtuacao"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["areaAtuacao"]; ?>">
 
                 <input type="text" class="input4" name="formacao" placeholder="Formação"
-                value="<?php if($acao == "editar") echo $vetor[0]["formacao"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["formacao"]; ?>">
 
                 <input type="text" class="input5" name="email" placeholder="E-mail"
-                value="<?php if($acao == "editar") echo $vetor[0]["email"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["email"]; ?>">
 
                 <input type="password" class="input6" name="senha" placeholder="Senha"
-                value="<?php if($acao == "editar") echo $vetor[0]["senha"]; ?>">
+                value="<?php if($acao == "editar") echo $_SESSION["senha"]; ?>">
 
                 <input type="password" class="input7" name="confirmarSenha" placeholder="Confirme sua senha">
 

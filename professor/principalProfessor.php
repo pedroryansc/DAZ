@@ -5,11 +5,8 @@
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
     session_start();
-    if(!empty($_SESSION["usuario"])){
-        //var_dump($_SESSION["usuario"]);
-
-        $vetor = listaProfessor($_SESSION["usuario"]);
-        $vetorTurmas = listaTurma(1, $vetor[0]["idprofessor"]);
+    if(!empty($_SESSION["idprofessor"])){
+        $vetorTurmas = listaTurma(1, $_SESSION["idprofessor"]);
     } else
         header("location:../inicial.html");
 ?>
@@ -160,17 +157,17 @@
      
 
 
-          <center><p class="nome"><?php echo $vetor[0]["nome"]." ".$vetor[0]["sobrenome"];  ?></p></center>
+          <center><p class="nome"><?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"];  ?></p></center>
     <p class="negr"><b>Área de atuação</b></p>
-    <p class="branc"><?php echo $vetor[0]["areaAtuacao"]; ?></p>
+    <p class="branc"><?php echo $_SESSION["areaAtuacao"]; ?></p>
     <p  class="negr"><b>Formação</b></p>
-    <p class="branc"><?php echo $vetor[0]["formacao"]; ?></p>
+    <p class="branc"><?php echo $_SESSION["formacao"]; ?></p>
     <p  class="negr"><b>E-mail</b></p>
-    <p class="branc"><?php echo $vetor[0]["email"]; ?></p>
+    <p class="branc"><?php echo $_SESSION["email"]; ?></p>
     <p>
         <b>
-            <a class="editar" href="cadastroProfessor.php?acao=editar&id=<?php echo $vetor[0]["idprofessor"]; ?>">Editar</a> 
-            <a class="excluir" href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $vetor[0]["idprofessor"]; ?>')">Excluir</a>
+            <a class="editar" href="cadastroProfessor.php?acao=editar&id=<?php echo $_SESSION["idprofessor"]; ?>">Editar</a> 
+            <a class="excluir" href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $_SESSION["idprofessor"]; ?>')">Excluir</a>
         </b>
     </p>
     <br><br><br>

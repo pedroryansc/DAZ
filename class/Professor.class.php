@@ -105,17 +105,22 @@
             return parent::executaComando($sql, $par);
         }
 
-        public function efetuaLogin($email, $senha){
+        public static function efetuaLogin($email, $senha){
             $sql = "SELECT * FROM professor
                     WHERE email = :email
                     AND senha = :senha";
             $par = array(":email"=>$email, ":senha"=>$senha);
             $row = parent::efetuaLoginDB($sql, $par);
             if($row){
-                if(count($row) > 0){
-                    $_SESSION['usuario'] = $row['nome'];
-                    return true;
-                }
+                $_SESSION["idprofessor"] = $row["idprofessor"];
+                $_SESSION["nome"] = $row["nome"];
+                $_SESSION["sobrenome"] = $row["sobrenome"];
+                $_SESSION["areaAtuacao"] = $row["areaAtuacao"];
+                $_SESSION["formacao"] = $row["formacao"];
+                $_SESSION["email"] = $row["email"];
+                $_SESSION["senha"] = $row["senha"];
+                $_SESSION["fotoPerfil"] = $row["fotoPerfil"];
+                return true;
             } else
                 return false;
         }

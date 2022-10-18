@@ -8,7 +8,7 @@
     $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
 
     session_start();
-    if(empty($_SESSION["usuario"]))
+    if(empty($_SESSION["idprofessor"]))
         header("location:../inicial.html");
     
     if($acao == "editar")

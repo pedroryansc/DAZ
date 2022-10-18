@@ -105,5 +105,31 @@
             $par = array(":id"=>$this->getId());
             return parent::executaComando($sql, $par);
         }
+
+        public static function efetuaLogin($id){
+            $sql = "SELECT * FROM aluno
+                    WHERE idaluno = :id";
+            $par = array(":id"=>$id);
+            $row = parent::efetuaLoginDB($sql, $par);
+            if($row){
+                $_SESSION["idaluno"] = $row["idaluno"];
+                $_SESSION["nome"] = $row["nome"];
+                $_SESSION["sobrenome"] = $row["sobrenome"];
+                $_SESSION["genero"] = $row["genero"];
+                $_SESSION["etapa"] = $row["etapa"];
+                $_SESSION["numQuestResp"] = $row["numQuestResp"];
+                $_SESSION["numAcertos"] = $row["numAcertos"];
+                $_SESSION["media"] = $row["media"];
+                $_SESSION["fotoPerfil"] = $row["fotoPerfil"];
+                $_SESSION["professor_idprofessor"] = $row["professor_idprofessor"];
+                $_SESSION["turma_idturma"] = $row["turma_idturma"];
+                return true;
+            } else
+                return false;
+        }
+
+        public static function finalizarLogin(){
+            session_destroy();
+        }
     }
 ?>
