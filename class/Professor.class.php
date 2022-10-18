@@ -65,7 +65,7 @@
         // public function getFotoPerfil(){ return $this->fotoPerfil; }
 
         public function insere(){
-            $sql = "INSERT INTO professor (nome, sobrenome, areaAtuacao, formacao, email, senha, fotoPerfil)
+            $sql = "INSERT INTO professor (nome, sobrenome, areaAtuacao, formacao, email, senha/*, fotoPerfil */)
                     VALUES(:nome, :sobrenome, :areaAtuacao, :formacao, :email, :senha/*, :fotoPerfil */)";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
                         ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha()/*,

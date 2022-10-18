@@ -61,7 +61,7 @@
             if($id == 0)
                 header("location:../professor/cadastroProfessor.php");
             else
-                header("location:../professor/cadastroProfessor.php?acao=editar");
+                header("location:../professor/cadastroProfessor.php?acao=editar&id=".$id);
     } else if($acao == "excluir"){
         try{
             $prof = new Professor($id, 1, 1, 1, 1, 1, 1);
