@@ -6,7 +6,8 @@
 
     session_start();
     if(!empty($_SESSION["idprofessor"])){
-        $vetorTurmas = listaTurma(1, $_SESSION["idprofessor"]);
+        $vetorTurmas = lista("Turma", 1, $_SESSION["idprofessor"]);
+        $vetorConjuntos = lista("Conjunto", 1, $_SESSION["idprofessor"]);
     } else
         header("location:../inicial.html");
 ?>
@@ -84,6 +85,16 @@
             padding: 2%;
             width: 22%;
         }
+        div.brancoCenter{
+            float: left;
+            color: black;
+            font-family: nunito;
+            height: 83%;
+            margin-top: -0%;
+            margin-right: -1.8%;
+            padding: 2%;
+            width: 22%;
+        }
 
         p.negrito{
             font-family: Nunito;
@@ -148,6 +159,24 @@
                     echo "Clique no botão para criar uma turma <br><br>";
             ?>
             <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p>
+        </div>
+    </aside>
+    <aside>
+        <div class="brancoCenter">
+            <center>
+                <h3>Conjuntos de Questões</h3>
+                <?php
+                    if($vetorConjuntos){
+                        foreach($vetorConjuntos as $conjunto){
+                            echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".
+                                    $conjunto["nome"].
+                                "</a> ";
+                        }
+                    } else
+                        echo "Clique no botão para criar um conjunto de questões <br><br>";
+                ?>
+                <p><a href="cadastroConjunto.php">(Botão para criar conjunto)</a></p>
+            </center>
         </div>
     </aside>
 
