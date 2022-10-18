@@ -32,7 +32,7 @@
         } else{
             try{
                 $aluno->editar();
-                header("location:../professor/aluno.php");
+                header("location:../professor/aluno.php?id=".$id);
             } catch(Exception $e){
                 echo "Erro ao editar os dados do aluno <br>".
                     "<br>".

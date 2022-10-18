@@ -63,9 +63,17 @@
     <br>
     <p>
         <b>
-            <a href="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
-            <a href="javascript:excluirRegistro('../control/ctrl_aluno.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
+            <a href="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>
+            <a href="javascript:excluirRegistro('../control/ctrl_aluno.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>')">
+                Excluir
+            </a>
         </b>
     </p>
 </body>
 </html>
+<script>
+    function excluirRegistro(url){
+        if(confirm("Excluir aluno: Esta ação não pode ser desfeita. Tem certeza?"))
+            location.href = url;
+    }
+</script>
