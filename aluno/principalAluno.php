@@ -4,7 +4,7 @@
 
     session_start();
     if(!empty($_SESSION["idaluno"])){
-        $vetorTurma = listaTurma(2, $_SESSION["turma_idturma"]);
+        $vetorTurma = lista("Turma", 2, $_SESSION["turma_idturma"]);
     } else
         header("location:../inicial.html");
 ?>

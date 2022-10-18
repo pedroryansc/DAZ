@@ -10,7 +10,7 @@
         header("location:../inicial.html");
     
     if($acao == "editar")
-        $vetor = listaTurma(2, $id);
+        $vetorTurma = lista("Turma", 2, $id);
 ?>
 <html lang="pt-br">
 <head>
@@ -24,10 +24,10 @@
     <center>
         <form action="../control/ctrl_turma.php?id=<?php echo $id; ?>" method="post">
             Nome da Turma <br>
-            <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetor[0]["nome"]; ?>"><br>
+            <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["nome"]; ?>"><br>
             <br>
             Nome da Instituição <br>
-            <input type="text" name="instituicao" size="40" value="<?php if($acao == "editar") echo $vetor[0]["instituicao"]; ?>"><br>
+            <input type="text" name="instituicao" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["instituicao"]; ?>"><br>
             <br>
             <button type="submit" name="acao" value="salvar">
                 <?php

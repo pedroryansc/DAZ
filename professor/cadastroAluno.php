@@ -12,7 +12,7 @@
         header("location:../inicial.html");
     
     if($acao == "editar")
-        $vetorAluno = listaAluno(2, $id);
+        $vetorAluno = lista("Aluno", 2, $id);
 ?>
 <html lang="pt-br">
 <head>

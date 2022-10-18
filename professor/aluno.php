@@ -8,8 +8,8 @@
     if(empty($_SESSION["idprofessor"]))
         header("location:../inicial.html");
 
-    $vetorAluno = listaAluno(2, $id);
-    $vetorTurma = listaTurma(2, $vetorAluno[0]["turma_idturma"]);
+    $vetorAluno = lista("Aluno", 2, $id);
+    $vetorTurma = lista("Turma", 2, $vetorAluno[0]["turma_idturma"]);
 ?>
 <html lang="pt-br">
 <head>
