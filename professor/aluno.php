@@ -22,6 +22,7 @@
                     case(1): echo "a"; break;
                     case(2): echo "o"; break;
                     case(3): echo "e"; break;
+                    case(4): echo "(x)"; break;
                 }
             ?>
         <?php echo $vetorAluno[0]["nome"]; ?> | DAZ
@@ -37,6 +38,7 @@
                     case(1): echo "a"; break;
                     case(2): echo "o"; break;
                     case(3): echo "e"; break;
+                    case(4): echo "(x)"; break;
                 }
             ?>
         <?php echo $vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"]; ?> - Turma <?php echo $vetorTurma[0]["nome"]; ?>
