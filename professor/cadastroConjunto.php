@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+    require("../utils.php");
+    
     $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
