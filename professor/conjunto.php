@@ -4,6 +4,8 @@
 
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
+    $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
+
     session_start();
     if(empty($_SESSION["idprofessor"]))
         header("location:../inicial.html");
@@ -20,7 +22,14 @@
 <body>
     <a href="principalProfessor.php">(Home)</a><br>
     <br>
-    <a href="principalProfessor.php">(Voltar)</a>
+    <a href="
+        <?php
+            if($idTurma == 0)
+                echo "principalProfessor.php";
+            else
+                echo "turma.php?id=".$idTurma;
+        ?>
+    ">(Voltar)</a>
     <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
     <p><a href="">(Botão para cadastrar questão)</a></p>
     <table>
@@ -48,8 +57,8 @@
     <br>
     <p>
         <b>
-            <a href="cadastroConjunto.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
-            <a href="javascript:excluirRegistro('../control/ctrl_conjunto.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
+            <a href="cadastroConjunto.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">Editar</a>
+            <a href="javascript:excluirRegistro('../control/ctrl_conjunto.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>')">Excluir</a>
         </b>
     </p>
 </body>

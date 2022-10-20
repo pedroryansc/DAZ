@@ -168,9 +168,7 @@
                 <?php
                     if($vetorConjuntos){
                         foreach($vetorConjuntos as $conjunto){
-                            echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".
-                                    $conjunto["nome"].
-                                "</a> ";
+                            echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".$conjunto["nome"]."</a> ";
                         }
                     } else
                         echo "Clique no botão para criar um conjunto de questões <br><br>";

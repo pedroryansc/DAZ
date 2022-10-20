@@ -61,8 +61,15 @@
     <p><b>Número de Acertos/Quantidade de Questões (NA/QQ)</b></p>
     <p><?php echo $vetorAluno[0]["numAcertos"]."/".$vetorAluno[0]["numQuestResp"]; ?></p>
     <p><b>Média</b></p>
-    <h2><?php echo $vetorAluno[0]["media"]; ?></h2><br>
-    <br>
+    <h2>
+        <?php 
+            if($vetorAluno[0]["media"] == NULL)
+                echo "-";
+            else
+                echo $vetorAluno[0]["media"];
+        ?>
+    </h2>
+    
     <p>
         <b>
             <a href="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>

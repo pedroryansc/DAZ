@@ -9,6 +9,8 @@
     
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
+    $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
+
     if($acao == "salvar"){
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
         $tags = isset($_POST["tags"]) ? $_POST["tags"] : "";
@@ -25,6 +27,8 @@
         } else{
             try{
                 $conjunto->editar();
+                if($idTurma <> 0)
+                   $id .= "&idTurma=".$idTurma;
                 header("location:../professor/conjunto.php?id=".$id);
             } catch(Exception $e){
                 echo "Erro ao editar os dados do conjunto de questões <br>".
@@ -34,9 +38,13 @@
         }
     } else if($acao == "excluir"){
         try{
+            ConjuntoTurma::excluir(1, $id);
             $conjunto = new Conjunto($id, 1, 1, 1);
             $conjunto->excluir();
-            header("location:../professor/principalProfessor.php");
+            if($idTurma == 0)
+                header("location:../professor/principalProfessor.php");
+            else
+                header("location:../professor/turma.php?id=".$idTurma);
         } catch(Exception $e){
             echo "Erro ao excluir conjunto de questões <br>".
                 "<br>".

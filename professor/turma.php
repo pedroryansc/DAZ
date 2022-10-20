@@ -10,6 +10,12 @@
 
     $vetorTurmas = lista("Turma", 2, $id);
     $vetorAlunos = lista("Aluno", 1, $id);
+    $vetorConjuntosTurma = lista("ConjuntoTurma", 1, $id);
+    $vetorConjuntos = array();
+    
+    foreach($vetorConjuntosTurma as $conjTurma){
+        $vetorConjuntos[] = lista("Conjunto", 2, $conjTurma["conjuntoQuestoes_idconjuntoQuestoes"]);
+    }
 ?>
 <html lang="pt-br">
 <head>
@@ -29,7 +35,12 @@
         </b>
     </p>
     <br>
-    <p>Média geral da turma: <?php echo $vetorTurmas[0]["mediaGeral"] ?></p>
+    <p><b>Média geral da turma: <?php
+                                    if($vetorTurmas[0]["mediaGeral"] == NULL)
+                                        echo "-";
+                                    else
+                                        echo $vetorTurmas[0]["mediaGeral"];
+                                ?></b></p>
     <br>
     <p><a href="cadastroAluno.php?idTurma=<?php echo $id; ?>">(Botão para cadastrar aluno)</a></p>
     <table>
@@ -65,6 +76,17 @@
     </table>
     <p>*NA = Número de Acertos; QQ = Quantidade de Questões</p>
     <!-- Sugestão: ao invés de QQ, colocar "NQ = Número de Questões" para ficar com a mesma letra inicial de NA -->
+    <br>
+    <p><b>Conjunto de Questões</b></p>
+    <?php
+        if($vetorConjuntos){
+            foreach($vetorConjuntos as $conjunto){
+                echo "<a href='conjunto.php?id=".$conjunto[0]["idconjuntoQuestoes"]."&idTurma=".$id."'>".$conjunto[0]["nome"]."</a> ";
+            }
+            echo "<br>";
+        }
+        echo "<br><a href='adicionaConjunto.php?idTurma=".$id."'>Adicionar conjunto à turma</a>";
+    ?>
 </body>
 </html>
 <script>

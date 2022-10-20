@@ -5,6 +5,8 @@
     $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
+    $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
+
     session_start();
     if(empty($_SESSION["idprofessor"]))
         header("location:../inicial.html");
@@ -22,7 +24,7 @@
 <body>
     <br>
     <center>
-        <form action="../control/ctrl_conjunto.php?id=<?php echo $id; ?>" method="post">
+        <form action="../control/ctrl_conjunto.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post">
             Nome do Conjunto <br>
             <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorConjunto[0]["nome"]; ?>"><br>
             <br>

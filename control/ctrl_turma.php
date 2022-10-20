@@ -34,6 +34,7 @@
         }
     } else if($acao == "excluir"){
         try{
+            ConjuntoTurma::excluir(2, $id);
             $turma = new Turma($id, 1, 1, 1, 1);
             $turma->excluir();
             header("location:../professor/principalProfessor.php");
