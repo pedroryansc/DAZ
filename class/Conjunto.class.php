@@ -31,7 +31,7 @@
             $sql = "INSERT INTO conjuntoQuestoes (nome, tags, professor_idprofessor)
                     VALUES(:nome, :tags, :idProfessor)";
             $par = array(":nome"=>$this->getNome(), ":tags"=>$this->getTags(), ":idProfessor"=>$this->getIdProfessor());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function listar($tipo, $id){
@@ -41,7 +41,7 @@
                 case(2): $sql .= " WHERE idconjuntoQuestoes = :id"; break;
             }
             $par = array(":id"=>$id);
-            return parent::buscar($sql, $par);
+            return Database::buscar($sql, $par);
         }
 
         public function editar(){
@@ -49,13 +49,13 @@
                     SET nome = :nome, tags = :tags
                     WHERE idconjuntoQuestoes = :id";
             $par = array(":nome"=>$this->getNome(), ":tags"=>$this->getTags(), ":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public function excluir(){
             $sql = "DELETE FROM conjuntoQuestoes WHERE idconjuntoQuestoes = :id";
             $par = array(":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
     }
 ?>

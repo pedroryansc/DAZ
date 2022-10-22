@@ -78,7 +78,7 @@
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":genero"=>$this->getGenero(),
                         ":etapa"=>$this->getEtapa(), ":numQuestResp"=>$this->getNumQuestResp(), ":numAcertos"=>$this->getNumAcertos(),
                         ":idProfessor"=>$this->getIdProfessor(), ":idTurma"=>$this->getIdTurma());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function listar($tipo, $id){
@@ -88,7 +88,7 @@
                 case(2): $sql .= " WHERE idaluno = :id"; break;
             }
             $par = array(":id"=>$id);
-            return parent::buscar($sql, $par);
+            return Database::buscar($sql, $par);
         }
 
         public function editar(){
@@ -97,20 +97,20 @@
                     WHERE idaluno = :id";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(),
                         ":genero"=>$this->getGenero(), ":etapa"=>$this->getEtapa(), ":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public function excluir(){
             $sql = "DELETE FROM aluno WHERE idaluno = :id";
             $par = array(":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function efetuaLogin($id){
             $sql = "SELECT * FROM aluno
                     WHERE idaluno = :id";
             $par = array(":id"=>$id);
-            $row = parent::efetuaLoginDB($sql, $par);
+            $row = Database::efetuaLoginDB($sql, $par);
             if($row){
                 $_SESSION["idaluno"] = $row["idaluno"];
                 $_SESSION["nome"] = $row["nome"];

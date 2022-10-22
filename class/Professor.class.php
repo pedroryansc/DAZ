@@ -70,22 +70,7 @@
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
                         ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha()/*,
                         ":fotoPerfil"=>$this->getFotoPerfil()*/);
-            return parent::executaComando($sql, $par);
-        }
-
-        public static function listar($tipo, $id){
-            $sql = "SELECT * FROM professor
-                    WHERE idprofessor = :id";
-            $par = array(":id"=>$id);
-            return parent::buscar($sql, $par);
-        }
-
-        // Ideia = Juntar o método "listar" e o método "listarNomes", identificando através de algo como "$tipo"
-        
-        public static function listarNomes($nome){
-            $sql = "SELECT * FROM professor WHERE nome = :nome";
-            $par = array(":nome" => $nome);
-            return parent::buscar($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public function editar(){
@@ -96,13 +81,13 @@
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
                         ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha(),
                         ":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public function excluir(){
             $sql = "DELETE FROM professor WHERE idprofessor = :id";
             $par = array("id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function efetuaLogin($email, $senha){
@@ -110,7 +95,7 @@
                     WHERE email = :email
                     AND senha = :senha";
             $par = array(":email"=>$email, ":senha"=>$senha);
-            $row = parent::efetuaLoginDB($sql, $par);
+            $row = Database::efetuaLoginDB($sql, $par);
             if($row){
                 $_SESSION["idprofessor"] = $row["idprofessor"];
                 $_SESSION["nome"] = $row["nome"];

@@ -1,7 +1,7 @@
 <?php
     require_once("../autoload.php");
 
-    class ConjuntoTurma extends Database{
+    class ConjuntoTurma{
         private $idConjunto;
         private $idTurma;
         public function __construct($idConjunto, $idTurma){
@@ -23,7 +23,7 @@
             $sql = "INSERT INTO conjuntoQuestoes_has_turma (conjuntoQuestoes_idconjuntoQuestoes, turma_idturma)
                     VALUES(:idConjunto, :idTurma)";
             $par = array(":idConjunto"=>$this->getIdConjunto(), ":idTurma"=>$this->getIdTurma());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function listar($tipo, $id){
@@ -33,7 +33,7 @@
                 case(2): $sql .= " WHERE conjuntoQuestoes_idconjuntoQuestoes = :id"; break;
             }
             $par = array(":id"=>$id);
-            return parent::buscar($sql, $par);
+            return Database::buscar($sql, $par);
         }
 
         public static function excluir($tipo, $id){
@@ -43,7 +43,7 @@
                 case(2): $sql .= " WHERE turma_idturma = :id"; break;
             }
             $par = array(":id"=>$id);
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
     }
 ?>

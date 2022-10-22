@@ -36,7 +36,7 @@
             $sql = "INSERT INTO turma (nome, instituicao, professor_idprofessor)
                     VALUES(:nome, :instituicao, :idProfessor)";
             $par = array(":nome"=>$this->getNome(), ":instituicao"=>$this->getInstituicao(), ":idProfessor"=>$this->getIdProfessor());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public static function listar($tipo, $id){
@@ -46,7 +46,7 @@
                 case(2): $sql .= " WHERE idturma = :id"; break;
             }
             $par = array(":id"=>$id);
-            return parent::buscar($sql, $par);
+            return Database::buscar($sql, $par);
         }
 
         public function editar(){
@@ -54,13 +54,13 @@
                     SET nome = :nome, instituicao = :instituicao
                     WHERE idturma = :id";
             $par = array(":nome"=>$this->getNome(), ":instituicao"=>$this->getInstituicao(), ":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
 
         public function excluir(){
             $sql = "DELETE FROM turma WHERE idturma = :id";
             $par = array(":id"=>$this->getId());
-            return parent::executaComando($sql, $par);
+            return Database::executaComando($sql, $par);
         }
     }
 ?>
