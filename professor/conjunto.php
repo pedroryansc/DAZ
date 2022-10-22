@@ -11,6 +11,7 @@
         header("location:../inicial.html");
     
     $vetorConjunto = lista("Conjunto", 2, $id);
+    $vetorQuestoes = lista("Questao", 1, $id);
 ?>
 <html lang="pt-br">
 <head>
@@ -31,18 +32,29 @@
         ?>
     ">(Voltar)</a>
     <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
-    <p><a href="">(Botão para cadastrar questão)</a></p>
+    <p><a href="cadastroObjetiva.php?idConjunto=<?php echo $id; ?>">(Botão para cadastrar questão objetiva)</a></p>
+    <p><a href="cadastroDissertativa.php?idConjunto=<?php echo $id; ?>">(Botão para cadastrar questão dissertativa)</a></p>
     <table>
         <tr>
             <th>Nº</th>
             <th>Título da Questão</th>
         </tr>
+        <?php
+            foreach($vetorQuestoes as $questao){
+        ?>
         <tr>
-            <td></td>
-            <td></td>
-            <td><a href="">Editar</a></td>
-            <td><a href="">Excluir</a></td>
+            <th><?php echo $questao["idquestao"]; ?></th>
+            <th><?php echo $questao["titulo"]; ?></th>
+            <th><a href="cadastroQuestao.php?acao=editar&id=<?php echo $questao["idquestao"]; ?>">Editar</a></th>
+            <th>
+                <a href="javascript:excluirRegistro('../control/ctrl_questao.php?acao=excluir&id=<?php echo $questao["idquestao"]; ?>')">
+                    Excluir
+                </a>
+            </th>
         </tr>
+        <?php
+            }
+        ?>
     </table>
     <br>
     <p><b>Nome do Conjunto</b></p>

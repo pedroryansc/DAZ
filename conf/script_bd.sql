@@ -50,6 +50,7 @@ CREATE TABLE aluno(
 
 CREATE TABLE questao(
     idquestao INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    titulo varchar(45),
     tipo INT,
     enunciado varchar(250),
     midia blob,
@@ -58,6 +59,19 @@ CREATE TABLE questao(
     conjuntoQuestoes_idconjuntoQuestoes INT NOT NULL,
     FOREIGN KEY (professor_idprofessor) references professor (idprofessor),
     FOREIGN KEY (conjuntoQuestoes_idconjuntoQuestoes) references conjuntoQuestoes (idconjuntoQuestoes));
+
+CREATE TABLE alternativas(
+    alternativa1 varchar(250),
+    explicacao1 varchar(250),
+    alternativa2 varchar(250),
+    explicacao2 varchar(250),
+    alternativa3 varchar(250),
+    explicacao3 varchar(250),
+    alternativa4 varchar(250),
+    explicacao4 varchar(250),
+    alternativaCorreta varchar(45),
+    questao_idquestao INT NOT NULL,
+    FOREIGN KEY(questao_idquestao) references questao (idquestao));
 
 CREATE TABLE questao_has_aluno(
     questao_idquestao INT NOT NULL,
