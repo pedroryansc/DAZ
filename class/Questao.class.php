@@ -4,14 +4,16 @@
     class Questao extends Geral{
         private $tipo;
         private $enunciado;
+        private $minimoCaracteres;
         // private $midia;
         private $tags;
         private $idProfessor;
         private $idConjunto;
-        public function __construct($id, $titulo, $tipo, $enunciado, $tags, $idProfessor, $idConjunto){
+        public function __construct($id, $titulo, $tipo, $enunciado, $minimoCaracteres, $tags, $idProfessor, $idConjunto){
             parent::__construct($id, $titulo);
             $this->setTipo($tipo);
             $this->setEnunciado($enunciado);
+            $this->setMinChar($minimoCaracteres);
             $this->setTags($tags);
             $this->setIdProfessor($idProfessor);
             $this->setIdConjunto($idConjunto);
@@ -29,11 +31,11 @@
             else
                 throw new Exception("Por favor, insira o enunciado.");
         }
+        public function setMinChar($minimoCaracteres){
+            $this->minimoCaracteres = $minimoCaracteres;
+        }
         public function setTags($tags){
-            if($tags <> "")
-                $this->tags = $tags;
-            else
-                throw new Exception("Por favor, insira a(s) tag(s).");
+            $this->tags = $tags;
         }
         public function setIdProfessor($idProfessor){
             if($idProfessor <> 0)
@@ -50,40 +52,42 @@
 
         public function getTipo(){ return $this->tipo; }
         public function getEnunciado(){ return $this->enunciado; }
+        public function getMinChar(){ return $this->minimoCaracteres; }
         public function getTags(){ return $this->tags; }
         public function getIdProfessor(){ return $this->idProfessor; }
         public function getIdConjunto(){ return $this->idConjunto; }
 
         public function insere(){
-            $sql = "INSERT INTO questao (titulo, tipo, enunciado, tags, professor_idprofessor, conjuntoQuestoes_idconjuntoQuestoes)
-                    VALUES(:titulo, :tipo, :enunciado, :tags, :idProfessor, :idConjunto)";
-            $par = array(":titulo"=>$this->getNome(), ":tipo"=>$this->getTipo(), ":enunciado"=>$this->getEnunciado(), ":tags"=>$this->getTags(),
-                        ":idProfessor"=>$this->getIdProfessor(), ":idConjunto"=>$this->getIdConjunto());
+            $sql = "INSERT INTO questao (titulo, tipo, enunciado, minimoCaracteres, tags, professor_idprofessor, conjuntoQuestoes_idconjuntoQuestoes)
+                    VALUES(:titulo, :tipo, :enunciado, :minChar, :tags, :idProfessor, :idConjunto)";
+            $par = array(":titulo"=>$this->getNome(), ":tipo"=>$this->getTipo(), ":enunciado"=>$this->getEnunciado(), ":minChar"=>$this->getMinChar(),
+                        ":tags"=>$this->getTags(), ":idProfessor"=>$this->getIdProfessor(), ":idConjunto"=>$this->getIdConjunto());
             return Database::executaComando($sql, $par);
         }
 
-        public static function listar($tipo, $id){
+        public static function listar($tipo, $info){
             $sql = "SELECT * FROM questao";
             switch($tipo){
-                case(1): $sql .= " WHERE conjuntoQuestoes_idconjuntoQuestoes = :id"; break;
-                case(2): $sql .= " WHERE idquestao = :id"; break;
+                case(1): $sql .= " WHERE conjuntoQuestoes_idconjuntoQuestoes = :info"; break;
+                case(2): $sql .= " WHERE idquestao = :info"; break;
+                case(3): $sql .= " WHERE enunciado = :info"; break;
             }
-            $par = array(":id"=>$id);
+            $par = array(":info"=>$info);
             return Database::buscar($sql, $par);
         }
 
         public function editar(){
             $sql = "UPDATE questao
-                    SET titulo = :titulo, tipo = :tipo, enunciado = :enunciado, tags = :tags
-                    WHERE id = :id";
+                    SET titulo = :titulo, tipo = :tipo, enunciado = :enunciado, minimoCaracteres = :minChar, tags = :tags
+                    WHERE idquestao = :id";
             $par = array(":titulo" => $this->getNome(), ":tipo" => $this->getTipo(), ":enunciado" => $this->getEnunciado(),
-                        ":tags" => $this->getTags(), ":id" => $this->getId());
+                        ":minChar"=>$this->getMinChar(), ":tags" => $this->getTags(), ":id" => $this->getId());
             return Database::executaComando($sql, $par);
         }
 
-        public function excluir(){
+        public static function excluir($id){
             $sql = "DELETE FROM questao WHERE idquestao = :id";
-            $par = array(":id"=>$this->getId());
+            $par = array(":id"=>$id);
             return Database::executaComando($sql, $par);
         }
     }

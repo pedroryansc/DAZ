@@ -12,10 +12,7 @@
         }
 
         public function setTags($tags){
-            if($tags <> "")
-                $this->tags = $tags;
-            else
-                throw new Exception("Por favor, insira a(s) tag(s).");
+            $this->tags = $tags;
         }
         public function setIdProfessor($idProfessor){
             if($idProfessor <> 0)
@@ -52,9 +49,9 @@
             return Database::executaComando($sql, $par);
         }
 
-        public function excluir(){
+        public static function excluir($id){
             $sql = "DELETE FROM conjuntoQuestoes WHERE idconjuntoQuestoes = :id";
-            $par = array(":id"=>$this->getId());
+            $par = array(":id"=>$id);
             return Database::executaComando($sql, $par);
         }
     }

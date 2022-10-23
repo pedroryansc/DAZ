@@ -53,6 +53,7 @@ CREATE TABLE questao(
     titulo varchar(45),
     tipo INT,
     enunciado varchar(250),
+    minimoCaracteres INT,
     midia blob,
     tags varchar(250),
     professor_idprofessor INT NOT NULL,
@@ -69,7 +70,7 @@ CREATE TABLE alternativas(
     explicacao3 varchar(250),
     alternativa4 varchar(250),
     explicacao4 varchar(250),
-    alternativaCorreta varchar(45),
+    alternativaCorreta INT,
     questao_idquestao INT NOT NULL,
     FOREIGN KEY(questao_idquestao) references questao (idquestao));
 

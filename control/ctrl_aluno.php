@@ -40,8 +40,7 @@
         }
     } else if($acao == "excluir"){
         try{
-            $aluno = new Aluno($id, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-            $aluno->excluir();
+            Aluno::excluir($id);
             header("location:../professor/turma.php?id=".$idTurma);
         } catch(Exception $e){
             echo "Erro ao excluir aluno <br>".

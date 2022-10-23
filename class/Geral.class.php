@@ -23,8 +23,7 @@
         public function getNome(){ return $this->nome; }
 
         public abstract function insere();
-        public abstract static function listar($tipo, $info);
         public abstract function editar();
-        public abstract function excluir(); 
+        public abstract static function excluir($id);
     }    
 ?>

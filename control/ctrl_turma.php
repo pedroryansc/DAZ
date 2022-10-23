@@ -35,8 +35,7 @@
     } else if($acao == "excluir"){
         try{
             ConjuntoTurma::excluir(2, $id);
-            $turma = new Turma($id, 1, 1, 1, 1);
-            $turma->excluir();
+            Turma::excluir($id);
             header("location:../professor/principalProfessor.php");
         } catch(Exception $e){
             echo "Erro ao excluir turma <br>".

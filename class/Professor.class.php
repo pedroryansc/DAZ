@@ -84,9 +84,9 @@
             return Database::executaComando($sql, $par);
         }
 
-        public function excluir(){
+        public static function excluir($id){
             $sql = "DELETE FROM professor WHERE idprofessor = :id";
-            $par = array("id"=>$this->getId());
+            $par = array("id"=>$id);
             return Database::executaComando($sql, $par);
         }
 

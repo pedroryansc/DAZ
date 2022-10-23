@@ -64,9 +64,8 @@
                 header("location:../professor/cadastroProfessor.php?acao=editar&id=".$id);
     } else if($acao == "excluir"){
         try{
-            $prof = new Professor($id, 1, 1, 1, 1, 1, 1);
-            $prof->excluir();
-            $prof->finalizarLogin();
+            Professor::excluir($id);
+            Professor::finalizarLogin();
             // session_destroy();
             header("location:../inicial.html");
         } catch(Exception $e){
@@ -75,8 +74,8 @@
                 $e->getMessage();
         }
     } else if($acao == "login"){
-        $login = Professor::efetuaLogin($email, $senha);
-        if($login)
+        $prof = Professor::efetuaLogin($email, $senha);
+        if($prof)
             header("location:../professor/principalProfessor.php");
         else
             header("location:../professor/loginProfessor.php");
