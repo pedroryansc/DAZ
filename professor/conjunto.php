@@ -32,22 +32,29 @@
         ?>
     ">(Voltar)</a>
     <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
-    <p><a href="cadastroObjetiva.php?idConjunto=<?php echo $id; ?>">(Botão para cadastrar questão objetiva)</a></p>
-    <p><a href="cadastroDissertativa.php?idConjunto=<?php echo $id; ?>">(Botão para cadastrar questão dissertativa)</a></p>
+    <p><a href="cadastroObjetiva.php?idConjunto=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">(Botão para cadastrar questão)</a></p>
     <table>
         <tr>
-            <th>Nº</th>
             <th>Título da Questão</th>
+            <th>Tipo</th>
         </tr>
         <?php
             foreach($vetorQuestoes as $questao){
+                if($questao["tipo"] == 1)
+                    $tipo = "Objetiva";
+                else
+                    $tipo = "Dissertativa";
         ?>
         <tr>
-            <th><?php echo $questao["idquestao"]; ?></th>
             <th><?php echo $questao["titulo"]; ?></th>
-            <th><a href="cadastroQuestao.php?acao=editar&id=<?php echo $questao["idquestao"]; ?>">Editar</a></th>
+            <th><?php echo $tipo; ?></th>
             <th>
-                <a href="javascript:excluirRegistro('../control/ctrl_questao.php?acao=excluir&id=<?php echo $questao["idquestao"]; ?>')">
+                <a href="cadastro<?php echo $tipo; ?>.php?acao=editar&id=<?php echo $questao["idquestao"]; ?>&idConjunto=<?php echo $questao["conjuntoQuestoes_idconjuntoQuestoes"]; ?>&idTurma=<?php echo $idTurma; ?>">
+                    Editar
+                </a>
+            </th>
+            <th>
+                <a href="javascript:excluirRegistro('questão', '../control/ctrl_questao.php?acao=excluir&id=<?php echo $questao["idquestao"]; ?>&idConjunto=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>')">
                     Excluir
                 </a>
             </th>
@@ -70,14 +77,15 @@
     <p>
         <b>
             <a href="cadastroConjunto.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">Editar</a>
-            <a href="javascript:excluirRegistro('../control/ctrl_conjunto.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>')">Excluir</a>
+            <a href="javascript:excluirRegistro('conjunto', '../control/ctrl_conjunto.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>')">Excluir</a>
         </b>
     </p>
 </body>
 </html>
 <script>
-    function excluirRegistro(url){
-        if(confirm("Excluir conjunto: Esta ação não pode ser desfeita. Tem certeza?"))
+    function excluirRegistro(tipo, url){
+        if(confirm(`Excluir ${tipo}: Esta ação não pode ser desfeita. Tem certeza?`))
             location.href = url;
     }
+    
 </script>
