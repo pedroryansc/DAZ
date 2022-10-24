@@ -42,6 +42,7 @@ CREATE TABLE aluno(
     numQuestResp INT,
     numAcertos INT,
     media decimal(6,1),
+    ultimaQuestao INT,
     fotoPerfil blob,
     professor_idprofessor INT NOT NULL,
     turma_idturma INT NOT NULL,
@@ -78,6 +79,7 @@ CREATE TABLE questao_has_aluno(
     questao_idquestao INT NOT NULL,
     aluno_idaluno INT NOT NULL,
     resposta varchar(250),
+    tentativas INT,
     PRIMARY KEY (questao_idquestao, aluno_idaluno),
     FOREIGN KEY (questao_idquestao) references questao (idquestao),
     FOREIGN KEY (aluno_idaluno) references aluno (idaluno));

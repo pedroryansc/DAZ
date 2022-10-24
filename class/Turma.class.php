@@ -62,5 +62,14 @@
             $par = array(":id"=>$id);
             return Database::executaComando($sql, $par);
         }
+
+        public static function atualizaMediaGeral($id, $soma, $qntAlunos){
+            $mediaGeral = $soma / $qntAlunos;
+            $sql = "UPDATE turma
+                    SET mediaGeral = :mediaGeral
+                    WHERE idturma = :id";
+            $par = array(":mediaGeral"=>$mediaGeral, ":id"=>$id);
+            return Database::executaComando($sql, $par);
+        }
     }
 ?>

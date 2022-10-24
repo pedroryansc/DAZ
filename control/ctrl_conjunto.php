@@ -18,7 +18,10 @@
         if($id == 0){
             try{
                 $conjunto->insere();
-                header("location:../professor/principalProfessor.php");
+                if($idTurma == 0)
+                    header("location:../professor/principalProfessor.php");
+                else
+                    header("location:../professor/turma.php?id=".$idTurma);
             } catch(Exception $e){
                 echo "Erro ao cadastrar o conjunto de questões <br>".
                     "<br>".
@@ -38,6 +41,11 @@
         }
     } else if($acao == "excluir"){
         try{
+            $vetorQuestoes = Questao::listar(1, $id);
+            foreach($vetorQuestoes as $questao){
+                Alternativas::excluir($questao["idquestao"]);
+                Questao::excluir($questao["idquestao"]);
+            }
             ConjuntoTurma::excluir(1, $id);
             Conjunto::excluir($id);
             if($idTurma == 0)

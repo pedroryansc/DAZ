@@ -18,8 +18,8 @@
         $tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : 0;
         $enunciado = isset($_POST["enunciado"]) ? $_POST["enunciado"] : "";
         $tags = isset($_POST["tags"]) ? $_POST["tags"] : NULL;
-        $minimoCaracteres = isset($_POST["minimoCaracteres"]) ? $_POST["minimoCaracteres"] : NULL;
-        if($minimoCaracteres == NULL){
+        $minimoCaracteres = NULL;
+        if($tipo == 1){
             $cont = 0;
             for($i = 0; $i < 4; $i ++){
                 $alt[$i] = isset($_POST["alt".$i + 1]) ? $_POST["alt".$i + 1] : NULL;
@@ -38,7 +38,8 @@
                 echo "Por favor, especifique a alternativa correta.";
                 die();
             }
-        }
+        } else
+            $minimoCaracteres = isset($_POST["minimoCaracteres"]) ? $_POST["minimoCaracteres"] : -1;
 
         $questao = new Questao($id, $titulo, $tipo, $enunciado, $minimoCaracteres, $tags, $_SESSION["idprofessor"], $idConjunto);
 
@@ -48,7 +49,7 @@
         if($id == 0){
             try{
                 $questao->insere();
-                if($minimoCaracteres == NULL){
+                if($tipo == 1){
                     $vetorQuestao = Questao::listar(3, $enunciado);
                     $alternativas = new Alternativas($alt[0], $exp[0], $alt[1], $exp[1], $alt[2], $exp[2], $alt[3], $exp[3], $altCorreta, $vetorQuestao[0]["idquestao"]);
                     $alternativas->insere();
@@ -62,7 +63,7 @@
         } else{
             try{
                 $questao->editar();
-                if($minimoCaracteres == NULL){
+                if($tipo == 1){
                     $alternativas = new Alternativas($alt[0], $exp[0], $alt[1], $exp[1], $alt[2], $exp[2], $alt[3], $exp[3], $altCorreta, $id);
                     if(Alternativas::listar(0, $id))
                         $alternativas->editar();
@@ -78,7 +79,7 @@
         }
     } else if($acao == "excluir"){
         try{
-            if($minimoCaracteres == NULL)
+            if($tipo == 1)
                 Alternativas::excluir($id);
             Questao::excluir($id);
             if($idTurma <> 0)
@@ -89,5 +90,75 @@
                 "<br>".
                 $e->getMessage();
         }
+    } else if($acao == "responder"){
+        $proxima = isset($_GET["proxima"]) ? $_GET["proxima"] : 0;
+        $resposta = isset($_POST["resposta"]) ? $_POST["resposta"] : "";
+
+        $vetorAluno = Aluno::listar(2, $_SESSION["idaluno"]);
+        $numQuestResp = $vetorAluno[0]["numQuestResp"];
+        $numAcertos = $vetorAluno[0]["numAcertos"];
+        $vetorQuestao = Questao::listar(2, $id);
+
+        $vetorQuestaoAluno = QuestaoAluno::listar($id, $_SESSION["idaluno"]);
+
+        if($vetorQuestaoAluno){
+            try{
+                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, $vetorQuestaoAluno[0]["tentativas"] + 1);
+                $questaoAluno->editar();
+            } catch(Exception $e){
+                echo "Erro ao editar a resposta <br>".
+                    "<br>".
+                    $e->getMessage();
+                die();
+            }
+        } else{
+            try{
+                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, 1);
+                $questaoAluno->insere();
+                if($vetorQuestao[0]["tipo"] == 1)
+                    $numQuestResp = $vetorAluno[0]["numQuestResp"] + 1;
+            } catch(Exception $e){
+                echo "Erro ao cadastrar resposta <br>".
+                    "<br>".
+                    $e->getMessage();
+                die();
+            }
+        }
+
+        if($vetorQuestao[0]["tipo"] == 1){
+            $vetorAlternativas = Alternativas::listar(0, $id);
+            if($resposta == $vetorAlternativas[0]["alternativaCorreta"]){
+                if($resposta != $vetorQuestaoAluno[0]["resposta"] || !$vetorQuestaoAluno)
+                    $numAcertos = $vetorAluno[0]["numAcertos"] + 1;
+            }
+
+            Aluno::atualizaMedia($_SESSION["idaluno"], $numAcertos, $numQuestResp);
+            
+            $vetorAlunos = Aluno::listar(1, $_SESSION["turma_idturma"]);
+            $somaMedias = 0;
+            foreach($vetorAlunos as $aluno){
+                echo $aluno["media"].", ";
+                $somaMedias = $somaMedias + $aluno["media"];
+            }
+
+            Turma::atualizaMediaGeral($_SESSION["turma_idturma"], $somaMedias, count($vetorAlunos));
+        }
+
+        $vetorQuestoes = Questao::listar(1, $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]);
+        for($i = 0; $i < count($vetorQuestoes); $i ++){
+            if($vetorQuestoes[$i]["idquestao"] == $vetorQuestao[0]["idquestao"]){
+                if(!empty($vetorQuestoes[$i + 1])){
+                    $ultimaQuestao = $vetorQuestoes[$i + 1]["idquestao"];
+                    break;
+                } else
+                    $ultimaQuestao = NULL;
+            }
+        }
+        Aluno::atualizaUltQuestao($_SESSION["idaluno"], $ultimaQuestao);
+
+        if($proxima <> 0)
+            header("location:../aluno/questao.php?id=".$proxima);
+        else
+            header("location:../aluno/fimConjunto.php?id=".$idConjunto);
     }
 ?>

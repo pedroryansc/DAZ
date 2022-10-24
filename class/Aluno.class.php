@@ -8,10 +8,11 @@
         private $numQuestResp;
         private $numAcertos;
         private $media;
+        private $ultimaQuestao;
         // private $fotoPerfil;
         private $idProfessor;
         private $idTurma;
-        public function __construct($id, $nome, $sobrenome, $genero, $etapa, $numQuestResp, $numAcertos, $media, $idProfessor, $idTurma){
+        public function __construct($id, $nome, $sobrenome, $genero, $etapa, $numQuestResp, $numAcertos, $media, $ultimaQuestao, $idProfessor, $idTurma){
             parent::__construct($id, $nome);
             $this->setSobrenome($sobrenome);
             $this->setGenero($genero);
@@ -19,6 +20,7 @@
             $this->setNumQuestResp($numQuestResp);
             $this->setNumAcertos($numAcertos);
             $this->setMedia($media);
+            $this->setUltQuestao($ultimaQuestao);
             $this->setIdProfessor($idProfessor);
             $this->setIdTurma($idTurma);
         }
@@ -50,6 +52,9 @@
         public function setMedia($media){
             $this->media = $media;
         }
+        public function setUltQuestao($ultimaQuestao){
+            $this->ultimaQuestao = $ultimaQuestao;
+        }
         public function setIdProfessor($idProfessor){
             if($idProfessor <> 0)
                 $this->idProfessor = $idProfessor;
@@ -69,15 +74,16 @@
         public function getNumQuestResp(){ return $this->numQuestResp; }
         public function getNumAcertos(){ return $this->numAcertos; }
         public function getMedia(){ return $this->media; }
+        public function getUltQuestao(){ return $this->ultimaQuestao; }
         public function getIdProfessor(){ return $this->idProfessor; }
         public function getIdTurma(){ return $this->idTurma; }
 
         public function insere(){
-            $sql = "INSERT INTO aluno (nome, sobrenome, genero, etapa, numQuestResp, numAcertos, professor_idprofessor, turma_idturma)
-                    VALUES(:nome, :sobrenome, :genero, :etapa, :numQuestResp, :numAcertos, :idProfessor, :idTurma)";
+            $sql = "INSERT INTO aluno (nome, sobrenome, genero, etapa, numQuestResp, numAcertos, media, professor_idprofessor, turma_idturma)
+                    VALUES(:nome, :sobrenome, :genero, :etapa, :numQuestResp, :numAcertos, :media, :idProfessor, :idTurma)";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":genero"=>$this->getGenero(),
                         ":etapa"=>$this->getEtapa(), ":numQuestResp"=>$this->getNumQuestResp(), ":numAcertos"=>$this->getNumAcertos(),
-                        ":idProfessor"=>$this->getIdProfessor(), ":idTurma"=>$this->getIdTurma());
+                        ":media"=>$this->getMedia(), ":idProfessor"=>$this->getIdProfessor(), ":idTurma"=>$this->getIdTurma());
             return Database::executaComando($sql, $par);
         }
 
@@ -120,6 +126,7 @@
                 $_SESSION["numQuestResp"] = $row["numQuestResp"];
                 $_SESSION["numAcertos"] = $row["numAcertos"];
                 $_SESSION["media"] = $row["media"];
+                $_SESSION["ultimaQuestao"] = $row["ultimaQuestao"];
                 $_SESSION["fotoPerfil"] = $row["fotoPerfil"];
                 $_SESSION["professor_idprofessor"] = $row["professor_idprofessor"];
                 $_SESSION["turma_idturma"] = $row["turma_idturma"];
@@ -130,6 +137,23 @@
 
         public static function finalizarLogin(){
             session_destroy();
+        }
+
+        public static function atualizaMedia($id, $numAcertos, $numQuestResp){
+            $media = ($numAcertos / $numQuestResp) * 10;
+            $sql = "UPDATE aluno
+                    SET numQuestResp = :numQuestResp, numAcertos = :numAcertos, media = :media
+                    WHERE idaluno = :id";
+            $par = array(":numQuestResp"=>$numQuestResp, ":numAcertos"=>$numAcertos, ":media"=>$media, ":id"=>$id);
+            return Database::executaComando($sql, $par);
+        }
+
+        public static function atualizaUltQuestao($id, $ultimaQuestao){
+            $sql = "UPDATE aluno
+                    SET ultimaQuestao = :ultimaQuestao
+                    WHERE idaluno = :id";
+            $par = array(":ultimaQuestao"=>$ultimaQuestao, ":id"=>$id);
+            return Database::executaComando($sql, $par);
         }
     }
 ?>

@@ -13,10 +13,12 @@
 
     $string = "";
     $cont = 0;
-    foreach($vetorConjuntos as $conjunto){
-        $string .= "<input type='checkbox' name='idConjunto".$cont."' value='".$conjunto['idconjuntoQuestoes']."'><br>".
-                    $conjunto["nome"]."<br><br>";
-        $cont ++;
+    if($vetorConjuntos){
+        foreach($vetorConjuntos as $conjunto){
+            $string .= "<input type='checkbox' name='idConjunto".$cont."' value='".$conjunto['idconjuntoQuestoes']."'><br>".
+                        $conjunto["nome"]."<br><br>";
+            $cont ++;
+        }
     }
 ?>
 <html lang="pt-br">
@@ -29,6 +31,9 @@
 <body>
     <br>
     <center>
+        <?php
+            if($vetorConjuntos){
+        ?>
         <form action="../control/ctrl_conjuntoTurma.php?idTurma=<?php echo $idTurma; ?>&cont=<?php echo $cont; ?>" method="post">
             <p>Selecione os conjuntos que deseja adicionar:</p>
             <?php
@@ -36,6 +41,14 @@
             ?>
             <button type="submit" name="acao" value="salvar">Adicionar</button>
         </form>
+        <?php
+            } else{
+        ?>
+        <p>Clique no botão abaixo para cadastrar um conjunto de questões:</p>
+        <a href="cadastroConjunto.php?idTurma=<?php echo $idTurma; ?>">(Botão para criar conjunto)</a>
+        <?php
+            }
+        ?>
     </center>
 </body>
 </html>

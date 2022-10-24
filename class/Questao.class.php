@@ -29,10 +29,13 @@
             if($enunciado <> "")
                 $this->enunciado = $enunciado;
             else
-                throw new Exception("Por favor, insira o enunciado.");
+                throw new Exception("Por favor, insira um enunciado.");
         }
         public function setMinChar($minimoCaracteres){
-            $this->minimoCaracteres = $minimoCaracteres;
+            if($minimoCaracteres <> -1)
+                $this->minimoCaracteres = $minimoCaracteres;
+            else
+                throw new Exception("Por favor, defina uma quantidade mínima de caracteres para a resposta.");
         }
         public function setTags($tags){
             $this->tags = $tags;

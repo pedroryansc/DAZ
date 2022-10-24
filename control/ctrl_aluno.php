@@ -18,7 +18,7 @@
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $genero = isset($_POST["genero"]) ? $_POST["genero"] : "";
         $etapa = isset($_POST["etapa"]) ? $_POST["etapa"] : "";
-        $aluno = new Aluno($id, $nome, $sobrenome, $genero, $etapa, 0, 0, 0.0, $_SESSION["idprofessor"], $idTurma);
+        $aluno = new Aluno($id, $nome, $sobrenome, $genero, $etapa, 0, 0, 0.0, NULL, $_SESSION["idprofessor"], $idTurma);
         if($id == 0){
             try{
                 $aluno->insere();

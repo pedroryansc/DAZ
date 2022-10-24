@@ -2,32 +2,22 @@
 <?php
     require("../utils.php");
 
+    $id = isset($_GET["id"]) ? $_GET["id"] : 0;
+
     session_start();
     if(empty($_SESSION["idaluno"]))
         header("location:../inicial.html");
     
     $vetorTurma = lista("Turma", 2, $_SESSION["turma_idturma"]);
+    $vetorConjunto = lista("Conjunto", 2, $id);
     $vetorAluno = lista("Aluno", 2, $_SESSION["idaluno"]);
-
-    $idQuestao = 0;
-
-    if($vetorAluno[0]["ultimaQuestao"] <> NULL)
-        $idQuestao = $vetorAluno[0]["ultimaQuestao"];
-    else{
-        $vetorConjuntosTurma = lista("ConjuntoTurma", 1, $_SESSION["turma_idturma"]);
-        if($vetorConjuntosTurma){
-            $vetorQuestoes = lista("Questao", 1, $vetorConjuntosTurma[0]["conjuntoQuestoes_idconjuntoQuestoes"]);
-            if($vetorQuestoes)
-                $idQuestao = $vetorQuestoes[0]["idquestao"];
-        }
-    }
 ?>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página principal (Aluno) | DAZ</title>
+    <title>Fim do Conjunto <?php echo $vetorConjunto[0]["nome"]; ?> | DAZ</title>
 </head>
 <body>
     <p>
@@ -43,22 +33,15 @@
     </p>
     <p><a href="javascript:sairSistema('../control/ctrl_aluno.php?acao=deslogar')">(Botão para encerrar a sessão)</a></p>
     <br>
-    <h2>
-        Bem-vindo ao DAZ! <br>
-    <?php
-        if($idQuestao == 0){
-    ?>
-        Peça ao seu professor(a) para que ele/ela adicione conjuntos de questões à turma </h2>
-    <?php
-        } else{
-    ?>
-        Sua aula já vai começar
-        <!-- Ideia: Ao invés do texto acima, poderíamos colocar "Clique no botão abaixo para começar a responder" -->
-    </h2>
-    <p><a href="questao.php?id=<?php echo $idQuestao; ?>">(Botão para iniciar)</a></p>
-    <?php
-        }
-    ?>
+    <h3>
+        Parabéns! <br>
+        Você finalizou o Conjunto <?php echo $vetorConjunto[0]["nome"]; ?>! <br>
+        <br>
+        Seu desempenho:
+    </h3>
+    <h1><?php echo $vetorAluno[0]["numAcertos"]."/".$vetorAluno[0]["numQuestResp"]; ?></h1>
+    <br>
+    <a href="principalAluno.php">(Prosseguir)</a>
 </body>
 </html>
 <script>
