@@ -4,6 +4,8 @@
 
     $id = isset($_GET["id"]) ? $_GET["id"] : 0;
 
+    $idQuestao = isset($_GET["idQuestao"]) ? $_GET["idQuestao"] : NULL;
+
     session_start();
     if(empty($_SESSION["idaluno"]))
         header("location:../inicial.html");
@@ -41,7 +43,14 @@
     </h3>
     <h1><?php echo $vetorAluno[0]["numAcertos"]."/".$vetorAluno[0]["numQuestResp"]; ?></h1>
     <br>
-    <a href="principalAluno.php">(Prosseguir)</a>
+    <a href="
+        <?php
+            if($idQuestao == NULL)
+                echo "principalAluno.php";
+            else
+                echo "questao.php?id=".$idQuestao;
+        ?>
+    ">(Prosseguir)</a>
 </body>
 </html>
 <script>

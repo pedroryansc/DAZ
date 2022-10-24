@@ -49,15 +49,16 @@
     <?php
         if($anterior <> 0){
     ?>
-        <a href="questao.php?id=<?php echo $anterior; ?>">(Anterior)</a>
+        <a href="questao.php?id=<?php echo $anterior; ?>">(Anterior)</a> | 
     <?php
-        }
-        if($anterior <> 0 && $proxima <> 0){
-            echo " | ";
         }
         if($proxima <> 0){
     ?>
         <a href="questao.php?id=<?php echo $proxima; ?>">(Próxima)</a>
+    <?php
+        } else{
+    ?>
+        <a href="../control/ctrl_questao.php?acao=prosseguir&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>">(Próxima)</a>
     <?php
         }
     ?>
@@ -87,6 +88,7 @@
         }
     ?>
         <button type="submit" name="acao" value="responder">(Enviar)</button>
+        <h5>Está com dúvida? Converse com seu professor(a)</h5>
     </form>
 </body>
 </html>

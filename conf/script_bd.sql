@@ -79,6 +79,7 @@ CREATE TABLE questao_has_aluno(
     questao_idquestao INT NOT NULL,
     aluno_idaluno INT NOT NULL,
     resposta varchar(250),
+    resultado varchar(45),
     tentativas INT,
     PRIMARY KEY (questao_idquestao, aluno_idaluno),
     FOREIGN KEY (questao_idquestao) references questao (idquestao),

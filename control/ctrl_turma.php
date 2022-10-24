@@ -34,6 +34,11 @@
         }
     } else if($acao == "excluir"){
         try{
+            $vetorAlunos = Aluno::listar(1, $id);
+            foreach($vetorAlunos as $aluno){
+                QuestaoAluno::excluir(2, $aluno["idaluno"]);
+                Aluno::excluir($aluno["idaluno"]);
+            }
             ConjuntoTurma::excluir(2, $id);
             Turma::excluir($id);
             header("location:../professor/principalProfessor.php");

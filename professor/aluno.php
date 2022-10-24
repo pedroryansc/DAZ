@@ -10,6 +10,7 @@
 
     $vetorAluno = lista("Aluno", 2, $id);
     $vetorTurma = lista("Turma", 2, $vetorAluno[0]["turma_idturma"]);
+    $vetorQuestoesAluno = lista("QuestaoAluno", 0, $vetorAluno[0]["idaluno"]);
 ?>
 <html lang="pt-br">
 <head>
@@ -48,9 +49,31 @@
             <th>Nome do Conjunto</th>
             <th>Título da Questão</th>
             <th>Resultado*</th>
+            <th>Tentativas</th>
         </tr>
+        <?php
+            if($vetorQuestoesAluno){
+                foreach($vetorQuestoesAluno as $questaoAluno){
+                    $vetorQuestao = lista("Questao", 2, $questaoAluno["questao_idquestao"]);
+                    $vetorConjunto = lista("Conjunto", 2, $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]);
+        ?>
         <tr>
+            <th><?php echo $vetorConjunto[0]["nome"]; ?></th>
+            <th><?php echo $vetorQuestao[0]["titulo"]; ?></th>
+            <th>
+                <?php
+                    if($questaoAluno["resultado"] <> NULL)
+                        echo $questaoAluno["resultado"];
+                    else
+                        echo "-";
+                ?>
+            </th>
+            <th><?php echo $questaoAluno["tentativas"]; ?></th>
         </tr>
+        <?php
+                }
+            }
+        ?>
     </table>
     <p>*O = Certo; X = Errado</p>
     <br>

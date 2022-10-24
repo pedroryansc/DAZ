@@ -79,7 +79,9 @@
         }
     } else if($acao == "excluir"){
         try{
-            if($tipo == 1)
+            QuestaoAluno::excluir(1, $id);
+            $vetorQuestao = Questao::listar(2, $id);
+            if($vetorQuestao[0]["tipo"] == 1)
                 Alternativas::excluir($id);
             Questao::excluir($id);
             if($idTurma <> 0)
@@ -98,12 +100,26 @@
         $numQuestResp = $vetorAluno[0]["numQuestResp"];
         $numAcertos = $vetorAluno[0]["numAcertos"];
         $vetorQuestao = Questao::listar(2, $id);
+        $vetorAlternativas = Alternativas::listar(0, $id);
+
+        if($vetorQuestao[0]["tipo"] == 1){
+            if($resposta == $vetorAlternativas[0]["alternativaCorreta"])
+                $resultado = "O";
+            else
+                $resultado = "X";
+        } else{
+            $resultado = NULL;
+            if(strlen($resposta) < $vetorQuestao[0]["minimoCaracteres"]){
+                echo "Por favor, insira uma resposta com o mínimo de caracteres pedido.";
+                die();
+            }
+        }
 
         $vetorQuestaoAluno = QuestaoAluno::listar($id, $_SESSION["idaluno"]);
 
         if($vetorQuestaoAluno){
             try{
-                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, $vetorQuestaoAluno[0]["tentativas"] + 1);
+                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, $resultado, $vetorQuestaoAluno[0]["tentativas"] + 1);
                 $questaoAluno->editar();
             } catch(Exception $e){
                 echo "Erro ao editar a resposta <br>".
@@ -113,7 +129,7 @@
             }
         } else{
             try{
-                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, 1);
+                $questaoAluno = new QuestaoAluno($id, $_SESSION["idaluno"], $resposta, $resultado, 1);
                 $questaoAluno->insere();
                 if($vetorQuestao[0]["tipo"] == 1)
                     $numQuestResp = $vetorAluno[0]["numQuestResp"] + 1;
@@ -126,8 +142,7 @@
         }
 
         if($vetorQuestao[0]["tipo"] == 1){
-            $vetorAlternativas = Alternativas::listar(0, $id);
-            if($resposta == $vetorAlternativas[0]["alternativaCorreta"]){
+            if($resultado == "O"){
                 if($resposta != $vetorQuestaoAluno[0]["resposta"] || !$vetorQuestaoAluno)
                     $numAcertos = $vetorAluno[0]["numAcertos"] + 1;
             }
@@ -160,5 +175,19 @@
             header("location:../aluno/questao.php?id=".$proxima);
         else
             header("location:../aluno/fimConjunto.php?id=".$idConjunto);
+    } else if($acao == "prosseguir"){
+        $vetorConjuntosTurma = ConjuntoTurma::listar(1, $_SESSION["turma_idturma"]);
+        for($i = 0; $i < count($vetorConjuntosTurma); $i ++){
+            if($vetorConjuntosTurma[$i]["conjuntoQuestoes_idconjuntoQuestoes"] == $idConjunto){
+                if(!empty($vetorConjuntosTurma[$i + 1])){
+                    $vetorQuestoes = Questao::listar(1, $vetorConjuntosTurma[$i + 1]["conjuntoQuestoes_idconjuntoQuestoes"]);
+                    $ultimaQuestao = $vetorQuestoes[0]["idquestao"];
+                } else
+                    $ultimaQuestao = NULL;
+            }
+        }
+        Aluno::atualizaUltQuestao($_SESSION["idaluno"], $ultimaQuestao);
+
+        header("location:../aluno/fimConjunto.php?id=".$idConjunto."&idQuestao=".$ultimaQuestao);
     }
 ?>

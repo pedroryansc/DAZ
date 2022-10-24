@@ -43,6 +43,7 @@
         try{
             $vetorQuestoes = Questao::listar(1, $id);
             foreach($vetorQuestoes as $questao){
+                QuestaoAluno::excluir(1, $questao["idquestao"]);
                 Alternativas::excluir($questao["idquestao"]);
                 Questao::excluir($questao["idquestao"]);
             }

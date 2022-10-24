@@ -8,7 +8,8 @@
     if(empty($_SESSION["idprofessor"]))
         header("location:../inicial.html");
 
-    $vetorTurmas = lista("Turma", 2, $id);
+    $vetorTurmas = lista("Turma", 1, $_SESSION["idprofessor"]);
+    $vetorTurma = lista("Turma", 2, $id);
     $vetorAlunos = lista("Aluno", 1, $id);
     $vetorConjuntosTurma = lista("ConjuntoTurma", 1, $id);
     $vetorConjuntos = array();
@@ -22,12 +23,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turma <?php echo $vetorTurmas[0]["nome"]; ?> | DAZ</title>
+    <title>Turma <?php echo $vetorTurma[0]["nome"]; ?> | DAZ</title>
 </head>
 <body>
     <a href="principalProfessor.php">(Home)</a><br>
-    <h2>Turma <?php echo $vetorTurmas[0]["nome"]; ?></h2>
-    <p><?php echo $vetorTurmas[0]["instituicao"] ?></p>
+    <br><br>
+    <?php
+        foreach($vetorTurmas as $turma){
+            echo "<a href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["nome"]."</a><br><br>";
+        }
+    ?>
+    <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p>
+    <br>
+    <h2>Turma <?php echo $vetorTurma[0]["nome"]; ?></h2>
+    <p><?php echo $vetorTurma[0]["instituicao"] ?></p>
     <p>
         <b>
             <a href="cadastroTurma.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
@@ -36,10 +45,10 @@
     </p>
     <br>
     <p><b>Média geral da turma: <?php
-                                    if($vetorTurmas[0]["mediaGeral"] == NULL)
+                                    if($vetorTurma[0]["mediaGeral"] == NULL)
                                         echo "-";
                                     else
-                                        echo $vetorTurmas[0]["mediaGeral"];
+                                        echo $vetorTurma[0]["mediaGeral"];
                                 ?></b></p>
     <br>
     <p><a href="cadastroAluno.php?idTurma=<?php echo $id; ?>">(Botão para cadastrar aluno)</a></p>

@@ -174,6 +174,13 @@
                         echo "Clique no botão para criar um conjunto de questões <br><br>";
                 ?>
                 <p><a href="cadastroConjunto.php">(Botão para criar conjunto)</a></p>
+                <br>
+                <br>
+                <h3>Materiais de apoio</h3>
+                <a href="https://portal.uniasselvi.com.br/noticias/educacao/uniasselvi-lanca-projeto-analfabetismo-zero-para-jovens-e-adultos" target="_blank">
+                    <img src="https://i.ytimg.com/vi/3EmTmGF3ZqY/maxresdefault.jpg" width="250">
+                </a>
+                <h5><a href="">Saiba mais...</a></h5>
             </center>
         </div>
     </aside>
