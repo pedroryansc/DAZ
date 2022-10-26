@@ -142,10 +142,8 @@
         }
 
         if($vetorQuestao[0]["tipo"] == 1){
-            if($resultado == "O"){
-                if($resposta != $vetorQuestaoAluno[0]["resposta"] || !$vetorQuestaoAluno)
-                    $numAcertos = $vetorAluno[0]["numAcertos"] + 1;
-            }
+            if($resultado == "O")
+                $numAcertos = $vetorAluno[0]["numAcertos"] + 1;
 
             Aluno::atualizaMedia($_SESSION["idaluno"], $numAcertos, $numQuestResp);
             

@@ -24,6 +24,8 @@
             break;
         }
     }
+
+    $vetorQuestaoAluno = lista("QuestaoAluno", $id, $_SESSION["idaluno"]);
 ?>
 <html lang="pt-br">
 <head>
@@ -49,7 +51,7 @@
     <?php
         if($anterior <> 0){
     ?>
-        <a href="questao.php?id=<?php echo $anterior; ?>">(Anterior)</a> | 
+        <a href="questao.php?id=<?php echo $anterior; ?>">(Anterior)</a>
     <?php
         }
         if($proxima <> 0){
@@ -57,9 +59,13 @@
         <a href="questao.php?id=<?php echo $proxima; ?>">(Próxima)</a>
     <?php
         } else{
+            if($vetorQuestaoAluno){
+                if($vetorQuestaoAluno[0]["resultado"] == "O"){
     ?>
         <a href="../control/ctrl_questao.php?acao=prosseguir&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>">(Próxima)</a>
     <?php
+                }
+            }
         }
     ?>
     <br><br>
@@ -75,7 +81,16 @@
             for($i = 1; $i <= 4; $i ++){
                 if($vetorAlternativas[0]["alternativa".$i] <> NULL){
     ?>
-            <input type="radio" name="resposta" value="<?php echo $i; ?>"> <?php echo $vetorAlternativas[0]["alternativa".$i]; ?><br>
+            <input type="radio" name="resposta" value="<?php echo $i; ?>" <?php
+                                                                            if($vetorQuestaoAluno){
+                                                                                if($vetorQuestaoAluno[0]["resultado"] == "O"){
+                                                                                    if($vetorQuestaoAluno[0]["resposta"] == $i)
+                                                                                        echo "checked";
+                                                                                    else
+                                                                                        echo "disabled";
+                                                                                }
+                                                                            }
+                                                                        ?>> <?php echo $vetorAlternativas[0]["alternativa".$i]; ?><br>
             <br>
     <?php
                 }
@@ -86,9 +101,14 @@
         <br>
     <?php
         }
+        
+        if(!$vetorQuestaoAluno || $vetorQuestaoAluno[0]["resultado"] == "X"){
     ?>
         <button type="submit" name="acao" value="responder">(Enviar)</button>
         <h5>Está com dúvida? Converse com seu professor(a)</h5>
+    <?php
+        }
+    ?>
     </form>
 </body>
 </html>
