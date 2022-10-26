@@ -79,6 +79,18 @@
         }
     } else if($acao == "excluir"){
         try{
+            $vetorQuestaoAlunos = QuestaoAluno::listar($id, 0);
+            if($vetorQuestaoAlunos){
+                foreach($vetorQuestaoAlunos as $questaoAluno){
+                    $vetorAluno = Aluno::listar(2, $questaoAluno["aluno_idaluno"]);
+                    $numQuestResp = $vetorAluno[0]["numQuestResp"] - 1;
+                    if($questaoAluno["resultado"] == "O")
+                        $numAcertos = $vetorAluno[0]["numAcertos"] - 1;
+                    else
+                        $numAcertos = $vetorAluno[0]["numAcertos"];
+                    Aluno::atualizaMedia($vetorAluno[0]["idaluno"], $numAcertos, $numQuestResp);
+                }
+            }
             QuestaoAluno::excluir(1, $id);
             $vetorQuestao = Questao::listar(2, $id);
             if($vetorQuestao[0]["tipo"] == 1)

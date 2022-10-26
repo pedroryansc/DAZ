@@ -140,6 +140,7 @@
         }
 
         public static function atualizaMedia($id, $numAcertos, $numQuestResp){
+            // Adicionar verificação para quando ocorrer divisão por zero
             $media = ($numAcertos / $numQuestResp) * 10;
             $sql = "UPDATE aluno
                     SET numQuestResp = :numQuestResp, numAcertos = :numAcertos, media = :media
