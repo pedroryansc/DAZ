@@ -64,6 +64,26 @@
                 header("location:../professor/cadastroProfessor.php?acao=editar&id=".$id);
     } else if($acao == "excluir"){
         try{
+            $vetorTurmas = Turma::listar(1, $id);
+            foreach($vetorTurmas as $turma){
+                $vetorAlunos = Aluno::listar(1, $turma["idturma"]);
+                foreach($vetorAlunos as $aluno){
+                    QuestaoAluno::excluir(2, $aluno["idaluno"]);
+                    Aluno::excluir($aluno["idaluno"]);
+                }
+                ConjuntoTurma::excluir(2, $turma["idturma"]);
+                Turma::excluir($turma["idturma"]);
+            }
+            $vetorConjuntos = Conjunto::listar(1, $id);
+            foreach($vetorConjuntos as $conjunto){
+                $vetorQuestoes = Questao::listar(1, $conjunto["idconjuntoQuestoes"]);
+                foreach($vetorQuestoes as $questao){
+                    if($questao["tipo"] == 1)
+                        Alternativas::excluir($questao["idquestao"]);
+                    Questao::excluir($questao["idquestao"]);
+                }
+                Conjunto::excluir($conjunto["idconjuntoQuestoes"]);
+            }
             Professor::excluir($id);
             Professor::finalizarLogin();
             // session_destroy();

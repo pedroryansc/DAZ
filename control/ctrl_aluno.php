@@ -22,6 +22,14 @@
         if($id == 0){
             try{
                 $aluno->insere();
+
+                $vetorAlunos = Aluno::listar(1, $idTurma);
+                $somaMedias = 0;
+                foreach($vetorAlunos as $aluno){
+                    $somaMedias = $somaMedias + $aluno["media"];
+                }
+                Turma::atualizaMediaGeral($idTurma, $somaMedias, count($vetorAlunos));
+
                 header("location:../professor/turma.php?id=".$idTurma);
             } catch(Exception $e){
                 echo "Erro ao cadastrar aluno <br>".
@@ -40,7 +48,16 @@
         }
     } else if($acao == "excluir"){
         try{
+            QuestaoAluno::excluir(2, $id);
             Aluno::excluir($id);
+
+            $vetorAlunos = Aluno::listar(1, $idTurma);
+            $somaMedias = 0;
+            foreach($vetorAlunos as $aluno){
+                $somaMedias = $somaMedias + $aluno["media"];
+            }
+            Turma::atualizaMediaGeral($idTurma, $somaMedias, count($vetorAlunos));
+
             header("location:../professor/turma.php?id=".$idTurma);
         } catch(Exception $e){
             echo "Erro ao excluir aluno <br>".

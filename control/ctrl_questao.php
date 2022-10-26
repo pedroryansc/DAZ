@@ -150,7 +150,6 @@
             $vetorAlunos = Aluno::listar(1, $_SESSION["turma_idturma"]);
             $somaMedias = 0;
             foreach($vetorAlunos as $aluno){
-                echo $aluno["media"].", ";
                 $somaMedias = $somaMedias + $aluno["media"];
             }
 
