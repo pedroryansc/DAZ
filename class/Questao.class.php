@@ -4,16 +4,16 @@
     class Questao extends Geral{
         private $tipo;
         private $enunciado;
-        private $minimoCaracteres;
+        private $maximoCaracteres;
         // private $midia;
         private $tags;
         private $idProfessor;
         private $idConjunto;
-        public function __construct($id, $titulo, $tipo, $enunciado, $minimoCaracteres, $tags, $idProfessor, $idConjunto){
+        public function __construct($id, $titulo, $tipo, $enunciado, $maximoCaracteres, $tags, $idProfessor, $idConjunto){
             parent::__construct($id, $titulo);
             $this->setTipo($tipo);
             $this->setEnunciado($enunciado);
-            $this->setMinChar($minimoCaracteres);
+            $this->setMaxChar($maximoCaracteres);
             $this->setTags($tags);
             $this->setIdProfessor($idProfessor);
             $this->setIdConjunto($idConjunto);
@@ -31,9 +31,9 @@
             else
                 throw new Exception("Por favor, insira um enunciado.");
         }
-        public function setMinChar($minimoCaracteres){
-            if($minimoCaracteres <> -1)
-                $this->minimoCaracteres = $minimoCaracteres;
+        public function setMaxChar($maximoCaracteres){
+            if($maximoCaracteres <> -1)
+                $this->maximoCaracteres = $maximoCaracteres;
             else
                 throw new Exception("Por favor, defina uma quantidade mínima de caracteres para a resposta.");
         }
@@ -55,15 +55,15 @@
 
         public function getTipo(){ return $this->tipo; }
         public function getEnunciado(){ return $this->enunciado; }
-        public function getMinChar(){ return $this->minimoCaracteres; }
+        public function getMaxChar(){ return $this->maximoCaracteres; }
         public function getTags(){ return $this->tags; }
         public function getIdProfessor(){ return $this->idProfessor; }
         public function getIdConjunto(){ return $this->idConjunto; }
 
         public function insere(){
-            $sql = "INSERT INTO questao (titulo, tipo, enunciado, minimoCaracteres, tags, professor_idprofessor, conjuntoQuestoes_idconjuntoQuestoes)
-                    VALUES(:titulo, :tipo, :enunciado, :minChar, :tags, :idProfessor, :idConjunto)";
-            $par = array(":titulo"=>$this->getNome(), ":tipo"=>$this->getTipo(), ":enunciado"=>$this->getEnunciado(), ":minChar"=>$this->getMinChar(),
+            $sql = "INSERT INTO questao (titulo, tipo, enunciado, maximoCaracteres, tags, professor_idprofessor, conjuntoQuestoes_idconjuntoQuestoes)
+                    VALUES(:titulo, :tipo, :enunciado, :maxChar, :tags, :idProfessor, :idConjunto)";
+            $par = array(":titulo"=>$this->getNome(), ":tipo"=>$this->getTipo(), ":enunciado"=>$this->getEnunciado(), ":maxChar"=>$this->getMaxChar(),
                         ":tags"=>$this->getTags(), ":idProfessor"=>$this->getIdProfessor(), ":idConjunto"=>$this->getIdConjunto());
             return Database::executaComando($sql, $par);
         }
@@ -81,10 +81,10 @@
 
         public function editar(){
             $sql = "UPDATE questao
-                    SET titulo = :titulo, tipo = :tipo, enunciado = :enunciado, minimoCaracteres = :minChar, tags = :tags
+                    SET titulo = :titulo, tipo = :tipo, enunciado = :enunciado, maximoCaracteres = :maxChar, tags = :tags
                     WHERE idquestao = :id";
             $par = array(":titulo" => $this->getNome(), ":tipo" => $this->getTipo(), ":enunciado" => $this->getEnunciado(),
-                        ":minChar"=>$this->getMinChar(), ":tags" => $this->getTags(), ":id" => $this->getId());
+                        ":maxChar"=>$this->getMaxChar(), ":tags" => $this->getTags(), ":id" => $this->getId());
             return Database::executaComando($sql, $par);
         }
 

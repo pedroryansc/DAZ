@@ -18,7 +18,7 @@
         $tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : 0;
         $enunciado = isset($_POST["enunciado"]) ? $_POST["enunciado"] : "";
         $tags = isset($_POST["tags"]) ? $_POST["tags"] : NULL;
-        $minimoCaracteres = NULL;
+        $maximoCaracteres = NULL;
         if($tipo == 1){
             $cont = 0;
             for($i = 0; $i < 4; $i ++){
@@ -39,9 +39,9 @@
                 die();
             }
         } else
-            $minimoCaracteres = isset($_POST["minimoCaracteres"]) ? $_POST["minimoCaracteres"] : -1;
+            $maximoCaracteres = isset($_POST["maximoCaracteres"]) ? $_POST["maximoCaracteres"] : -1;
 
-        $questao = new Questao($id, $titulo, $tipo, $enunciado, $minimoCaracteres, $tags, $_SESSION["idprofessor"], $idConjunto);
+        $questao = new Questao($id, $titulo, $tipo, $enunciado, $maximoCaracteres, $tags, $_SESSION["idprofessor"], $idConjunto);
 
         if($idTurma <> 0)
             $idConjunto .= "&idTurma=".$idTurma;
@@ -121,8 +121,8 @@
                 $resultado = "X";
         } else{
             $resultado = NULL;
-            if(strlen($resposta) < $vetorQuestao[0]["minimoCaracteres"]){
-                echo "Por favor, insira uma resposta com o mínimo de caracteres pedido.";
+            if(strlen($resposta) > $vetorQuestao[0]["maximoCaracteres"]){
+                echo "Sua resposta ultrapassa o máximo de caracteres definido.";
                 die();
             }
         }

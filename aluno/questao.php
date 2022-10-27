@@ -60,7 +60,7 @@
     <?php
         } else{
             if($vetorQuestaoAluno){
-                if($vetorQuestaoAluno[0]["resultado"] == "O"){
+                if($vetorQuestaoAluno[0]["resultado"] == "O" || $vetorQuestao[0]["maximoCaracteres"] <> NULL){
     ?>
         <a href="../control/ctrl_questao.php?acao=prosseguir&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>">(Próxima)</a>
     <?php
@@ -97,12 +97,15 @@
             }
         } else{
     ?>
-        <textarea name="resposta" rows="7" cols="50" placeholder="Sua resposta..."></textarea><br>
+        <textarea id="resposta" name="resposta" rows="7" cols="50" placeholder="Sua resposta..."><?php
+                                                                                    if($vetorQuestaoAluno)
+                                                                                        echo $vetorQuestaoAluno[0]["resposta"];
+                                                                                ?></textarea><br>
         <br>
     <?php
         }
         
-        if(!$vetorQuestaoAluno || $vetorQuestaoAluno[0]["resultado"] == "X"){
+        if(!$vetorQuestaoAluno || $vetorQuestaoAluno[0]["resultado"] == "X" || $vetorQuestao[0]["maximoCaracteres"] <> NULL){
     ?>
         <button type="submit" name="acao" value="responder">(Enviar)</button>
         <h5>Está com dúvida? Converse com seu professor(a)</h5>

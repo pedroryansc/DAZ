@@ -54,7 +54,7 @@ CREATE TABLE questao(
     titulo varchar(45),
     tipo INT,
     enunciado varchar(250),
-    minimoCaracteres INT,
+    maximoCaracteres INT,
     midia blob,
     tags varchar(250),
     professor_idprofessor INT NOT NULL,

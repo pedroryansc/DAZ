@@ -41,8 +41,8 @@
         <br>
         <input type="text" name="enunciado" size="40" value='<?php if($acao == "editar") echo $vetorQuestao[0]["enunciado"]; ?>' placeholder="Digite o enunciado"><br>
         <br>
-        Número mínimo de caracteres:
-        <input type="number" min="1" name="minimoCaracteres" size="40" value="<?php if($acao == "editar") echo $vetorQuestao[0]["minimoCaracteres"]; ?>"><br>
+        Número máximo de caracteres:
+        <input type="number" min="1" max="250" name="maximoCaracteres" size="40" value="<?php if($acao == "editar") echo $vetorQuestao[0]["maximoCaracteres"]; ?>"><br>
         <br>
         <p>Tags:</p>
         <input type="text" name="tags" value='<?php if($acao == "editar") echo $vetorQuestao[0]["tags"]; ?>'>
