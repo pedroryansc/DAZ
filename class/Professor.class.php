@@ -7,80 +7,85 @@
         private $formacao;
         private $email;
         private $senha;
-        // private $fotoPerfil;
-        public function __construct($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha /*, $fotoPerfil */){
+        private $fotoPerfil;
+        public function __construct($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha, $fotoPerfil){
             parent::__construct($id, $nome);
             $this->setSobrenome($sobrenome);
             $this->setAreaAtuacao($areaAtuacao);
             $this->setFormacao($formacao);
             $this->setEmail($email); 
             $this->setSenha($senha);
-            // $this->setFotoPerfil($fotoPerfil);
+            $this->setFotoPerfil($fotoPerfil);
         }
 
         public function setSobrenome($sobrenome){
             if($sobrenome <> "")
                 $this->sobrenome = $sobrenome;
             else
-                throw new Exception("Sobrenome inválido.");
+                throw new Exception("Por favor, insira o sobrenome.");
         }
         public function setAreaAtuacao($areaAtuacao){
             if($areaAtuacao <> "")
                 $this->atuacao = $areaAtuacao;
             else
-                throw new Exception("Área de atuação inválida.");
+                throw new Exception("Por favor, insira a área de atuação.");
         }
         public function setFormacao($formacao){
             if($formacao <> "")
                 $this->formacao = $formacao;
             else
-                throw new Exception("Formação inválida.");
+                throw new Exception("Por favor, insira a formação.");
         }
         public function setEmail($email){
             if($email <> "")
                 $this->email = $email;
             else
-                throw new Exception("E-mail inválido.");
+                throw new Exception("Por favor, insira o e-mail.");
         }
         public function setSenha($senha){
             if($senha <> "")
                 $this->senha = $senha;
             else
-                throw new Exception("Senha inválida.");
+                throw new Exception("Por favor, insira a senha.");
         }
-        /*
         public function setFotoPerfil($fotoPerfil){
-            if($fotoPerfil <> NULL)
+            if($fotoPerfil <> "")
                 $this->fotoPerfil = $fotoPerfil;
             else
                 throw new Exception("Por favor, insira uma foto de perfil.");
         }
-        */
 
         public function getSobrenome(){ return $this->sobrenome; }
         public function getAreaAtuacao(){ return $this->atuacao; }
         public function getFormacao(){ return $this->formacao; }
         public function getEmail(){ return $this->email; }
         public function getSenha(){ return $this->senha; }
-        // public function getFotoPerfil(){ return $this->fotoPerfil; }
+        public function getFotoPerfil(){ return $this->fotoPerfil; }
 
         public function insere(){
-            $sql = "INSERT INTO professor (nome, sobrenome, areaAtuacao, formacao, email, senha/*, fotoPerfil */)
-                    VALUES(:nome, :sobrenome, :areaAtuacao, :formacao, :email, :senha/*, :fotoPerfil */)";
+            $sql = "INSERT INTO professor (nome, sobrenome, areaAtuacao, formacao, email, senha, fotoPerfil)
+                    VALUES(:nome, :sobrenome, :areaAtuacao, :formacao, :email, :senha, :fotoPerfil)";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
-                        ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha()/*,
-                        ":fotoPerfil"=>$this->getFotoPerfil()*/);
+                        ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha(),
+                        ":fotoPerfil"=>$this->getFotoPerfil());
             return Database::executaComando($sql, $par);
+        }
+
+        public static function listar($email){
+            $sql = "SELECT * FROM professor
+                    WHERE email = :email";
+            $par = array(":email"=>$email);
+            return Database::buscar($sql, $par);
         }
 
         public function editar(){
             $sql = "UPDATE professor
                     SET nome = :nome, sobrenome = :sobrenome, areaAtuacao = :areaAtuacao,
-                        formacao = :formacao, email = :email, senha = :senha
+                        formacao = :formacao, email = :email, senha = :senha, fotoPerfil = :fotoPerfil
                     WHERE idprofessor = :id";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":areaAtuacao"=>$this->getAreaAtuacao(),
                         ":formacao"=>$this->getFormacao(), ":email"=>$this->getEmail(), ":senha"=>$this->getSenha(),
-                        ":id"=>$this->getId());
+                        ":fotoPerfil"=>$this->getFotoPerfil(), ":id"=>$this->getId());
             return Database::executaComando($sql, $par);
         }
 

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php
     $acao = isset($_GET["acao"]) ? $_GET["acao"] : "";
-    $id = isset($_GET["id"]) ? $_GET["id"] : 0;
-
     if($acao == "editar"){
         session_start();
     }
@@ -194,9 +192,9 @@
 <body>
     <div class="branco">
 
-     <a href="loginProfessor.php"><img class="icon1" src="../img/img3.png"></img></a><br>
+    <a href="<?php if($acao == "editar") echo "principalProfessor.php"; else echo "loginProfessor.php"; ?>"><img class="icon1" src="../img/img3.png"></img></a><br>
     <div class="volta"></div>
-    <a href="<?php if($acao == "editar") echo "principalProfessor.php"; else echo "loginProfessor.php"; ?>" class="voltar"><img src="img\flecha.svg" alt="" srcset=""></a>
+    <a href="" class="voltar"><img src="img\flecha.svg" alt="" srcset=""></a>
         <center>
             <img src="../img/perfil.jpeg" class="perfil">
         </center>
@@ -204,14 +202,14 @@
             <div class="perfil"></div>
         </center>
         <center>
-            <form action="../control/ctrl_professor.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
+            <form action="../control/ctrl_professor.php<?php if($acao == "editar") echo "?id=".$_SESSION["idprofessor"]; ?>" method="post" enctype="multipart/form-data">
                 <!--
                     (Pesquisar pela função de criar uma pasta automaticamente. A pasta serviria para armazenar as imagens do usuário)
                     
                     Foto de perfil
-                    <input type="file" name="imagem"><br>
-                    <br>
                 -->
+                <input type="file" name="fotoPerfil"><br>
+                <br>
                 <input type="text" class="input1" name="nome" placeholder="Nome"
                 value="<?php if($acao == "editar") echo $_SESSION["nome"]; ?>">
 

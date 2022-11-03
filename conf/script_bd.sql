@@ -8,7 +8,7 @@ CREATE TABLE professor(
     formacao varchar(45),
     email varchar(45),
     senha varchar(45),
-    fotoPerfil blob);
+    fotoPerfil varchar(45));
 
 CREATE TABLE turma(
     idturma INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -22,7 +22,7 @@ CREATE TABLE conjuntoQuestoes(
     idconjuntoQuestoes INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nome varchar(45),
     tags varchar(250),
-    imagem blob,
+    imagem varchar(45),
     professor_idprofessor INT NOT NULL,
     FOREIGN KEY (professor_idprofessor) references professor (idprofessor));
 
@@ -43,7 +43,7 @@ CREATE TABLE aluno(
     numAcertos INT,
     media decimal(6,1),
     ultimaQuestao INT,
-    fotoPerfil blob,
+    fotoPerfil varchar(45),
     professor_idprofessor INT NOT NULL,
     turma_idturma INT NOT NULL,
     FOREIGN KEY (professor_idprofessor) references professor (idprofessor),
@@ -55,7 +55,7 @@ CREATE TABLE questao(
     tipo INT,
     enunciado varchar(250),
     maximoCaracteres INT,
-    midia blob,
+    midia varchar(45),
     tags varchar(250),
     professor_idprofessor INT NOT NULL,
     conjuntoQuestoes_idconjuntoQuestoes INT NOT NULL,

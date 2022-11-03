@@ -144,7 +144,7 @@
 
     <a href="principalProfessor.php"><img  class="casa" src="../img/casa.png"></a>
    <img class="casa1" src="../img/logo.png">
-   <img class="casa2" src="../img/perfil.jpeg">
+   <img class="casa2" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
 
    <!-- Se o <aside> for retirado, a página desconfigura (penso que seja melhor encontrar outro metodo de organizar) --> 
    
@@ -187,7 +187,7 @@
 
     <div class="branco">
 
-      <center><img src="../img/perfil.jpeg" class="perfil"></center>
+      <center><img src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>" class="perfil"></center>
      
 
 
@@ -200,7 +200,7 @@
     <p class="branc"><?php echo $_SESSION["email"]; ?></p>
     <p>
         <b>
-            <a class="editar" href="cadastroProfessor.php?acao=editar&id=<?php echo $_SESSION["idprofessor"]; ?>">Editar</a> 
+            <a class="editar" href="cadastroProfessor.php?acao=editar">Editar</a> 
             <a class="excluir" href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $_SESSION["idprofessor"]; ?>')">Excluir</a>
         </b>
     </p>

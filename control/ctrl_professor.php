@@ -13,34 +13,42 @@
     $senha = isset($_POST["senha"]) ? $_POST["senha"] : "";
 
     if($acao == "salvar"){
-        var_dump($_FILES);
-        die();
-        /* $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : null;
-        
-        (Sugestão: Fazer verificação da extensão do arquivo)
-        
-        Mover arquivo:
-        
-        $destino = "../imagens/".$_FILES["arquivo"]["name"];
-        move_uploaded_file($arquivo["tmp_name"], $destino);
-        
-        */
-        $arquivo = isset($_FILES["arquivo"]) ? $_FILES["arquivo"] : null;
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $areaAtuacao = isset($_POST["areaAtuacao"]) ? $_POST["areaAtuacao"] : "";
         $formacao = isset($_POST["formacao"]) ? $_POST["formacao"] : "";
-        /*
         $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : null;
-        echo $fotoPerfil;
-        */
         $confirmarSenha = isset($_POST["confirmarSenha"]) ? $_POST["confirmarSenha"] : "";
+
         if($senha == $confirmarSenha){
-            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha/*, $fotoPerfil */);
+            if($fotoPerfil["name"] <> "")
+                $nomeFotoPerfil = $fotoPerfil["name"];
+            else{
+                if($id == 0)
+                    $nomeFotoPerfil = "";
+                else
+                    $nomeFotoPerfil = $_SESSION["fotoPerfil"];
+            }
+
+            $prof = new Professor($id, $nome, $sobrenome, $areaAtuacao, $formacao, $email, $senha, $nomeFotoPerfil);
+
             if($id == 0){
                 try{
-                    $prof->insere();
-                    header("location:../professor/loginProfessor.php");
+                    $vetorEmail = Professor::listar($email);
+                    if(!$vetorEmail){
+                        $prof->insere();
+
+                        $vetorIdProfessor = Professor::listar($email);
+
+                        // Armazenamento da foto de perfil do usuário
+                        $tmpName = $fotoPerfil["tmp_name"]; // Recebe o arquivo (com nome temporário)
+                        mkdir("../img/".$vetorIdProfessor[0]["idprofessor"]); // Cria a pasta/diretório do usuário
+                        $destino = "../img/".$vetorIdProfessor[0]["idprofessor"]."/".$fotoPerfil["name"]; // Define o destino do arquivo (com nome a ser utilizado)
+                        move_uploaded_file($tmpName, $destino);
+
+                        header("location:../professor/loginProfessor.php");
+                    } else
+                        header("location:../professor/cadastroProfessor.php");
                 } catch(Exception $e){
                     echo "Erro ao cadastrar professor <br>".
                         "<br>".
@@ -49,6 +57,13 @@
             } else{
                 try{
                     $prof->editar();
+                    
+                    $vetorIdProfessor = Professor::listar($email);
+
+                    $tmpName = $fotoPerfil["tmp_name"]; // Recebe o arquivo (com nome temporário)
+                    $destino = "../img/".$vetorIdProfessor[0]["idprofessor"]."/".$fotoPerfil["name"]; // Define o destino do arquivo (com o nome a ser utilizado)
+                    move_uploaded_file($tmpName, $destino);
+
                     $prof->efetuaLogin($email, $senha);
                     header("location:../professor/principalProfessor.php");
                 } catch(Exception $e){
@@ -85,6 +100,14 @@
                 Conjunto::excluir($conjunto["idconjuntoQuestoes"]);
             }
             Professor::excluir($id);
+
+            /*
+            unlink("../img/".$vetorIdProfessor[0]["idprofessor"]); // Exclui a foto de perfil anterior
+            array_map("unlink", glob("*.png"));
+
+            Continua...
+            */
+            
             Professor::finalizarLogin();
             // session_destroy();
             header("location:../inicial.html");
