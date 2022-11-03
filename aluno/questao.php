@@ -32,6 +32,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="script" href="">
     <title>Questão '<?php echo $vetorQuestao[0]["titulo"]; ?>' | DAZ</title>
 </head>
 <body>
@@ -46,34 +48,39 @@
             ?>
             <?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"]; ?> - Turma <?php echo $vetorTurma[0]["nome"]; ?>
     </p>
-    <p><a href="javascript:sairSistema('../control/ctrl_aluno.php?acao=deslogar')">(Botão para encerrar a sessão)</a></p>
+    <p><a href="javascript:sairSistema('../control/ctrl_aluno.php?acao=deslogar')"class="sair">x</a></p>
     <br>
+    <d class="controle">
+        <center>
     <?php
         if($anterior <> 0){
     ?>
-        <a href="questao.php?id=<?php echo $anterior; ?>">(Anterior)</a>
+        <a href="questao.php?id=<?php echo $anterior; ?>"class="ant"> ◀</a>
     <?php
         }
         if($proxima <> 0){
     ?>
-        <a href="questao.php?id=<?php echo $proxima; ?>">(Próxima)</a>
+        <a href="questao.php?id=<?php echo $proxima; ?>"class="prox"> ▶</a>
     <?php
         } else{
             if($vetorQuestaoAluno){
                 if($vetorQuestaoAluno[0]["resultado"] == "O" || $vetorQuestao[0]["maximoCaracteres"] <> NULL){
     ?>
-        <a href="../control/ctrl_questao.php?acao=prosseguir&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>">(Próxima)</a>
+        <a href="../control/ctrl_questao.php?acao=prosseguir&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>"class="prox">▶</a>
     <?php
                 }
             }
         }
-    ?>
+    ?></div>
     <br><br>
     <p>(Mídia)</p>
     <br>
+    <div class="disbra">
+    <div class="enum">
     <?php
         echo $vetorQuestao[0]["enunciado"]."<br><br>";
     ?>
+    </div>
     <form action="../control/ctrl_questao.php?id=<?php echo $id; ?>&proxima=<?php echo $proxima; ?>&idConjunto=<?php echo $vetorQuestao[0]["conjuntoQuestoes_idconjuntoQuestoes"]; ?>" method="post">
     <?php
         if($vetorQuestao[0]["tipo"] == 1){
@@ -107,12 +114,12 @@
         
         if(!$vetorQuestaoAluno || $vetorQuestaoAluno[0]["resultado"] == "X" || $vetorQuestao[0]["maximoCaracteres"] <> NULL){
     ?>
-        <button type="submit" name="acao" value="responder">(Enviar)</button>
+        <button type="submit" name="acao" value="responder">▶</button>
         <h5>Está com dúvida? Converse com seu professor(a)</h5>
     <?php
         }
     ?>
-    </form>
+    </form></center></div>
 </body>
 </html>
 <script>

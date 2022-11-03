@@ -27,7 +27,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página principal (Aluno) | DAZ</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Página principal | DAZ</title>
 </head>
 <body>
     <p>
@@ -41,8 +42,10 @@
             ?>
         <?php echo $vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"]; ?> - Turma <?php echo $vetorTurma[0]["nome"]; ?>
     </p>
-    <p><a href="javascript:sairSistema('../control/ctrl_aluno.php?acao=deslogar')">(Botão para encerrar a sessão)</a></p>
+    <p ><a href="javascript:sairSistema('../control/ctrl_aluno.php?acao=deslogar')"class="sair">x</a></p>
     <br>
+    <div class="blablur">
+        <img src="../img/espalu.svg" class="esp">
     <h2>
         Bem-vindo ao DAZ! <br>
     <?php
@@ -55,10 +58,12 @@
         Sua aula já vai começar
         <!-- Ideia: Ao invés do texto acima, poderíamos colocar "Clique no botão abaixo para começar a responder" -->
     </h2>
-    <p><a href="questao.php?id=<?php echo $idQuestao; ?>">(Botão para iniciar)</a></p>
+    <p class="come">
+        <br><a href="questao.php?id=<?php echo $idQuestao; ?>"class="play">▶</a></p>
     <?php
         }
     ?>
+    </div>
 </body>
 </html>
 <script>
