@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+ 
+body{
+    background: linear-gradient(270deg, #BDBE6E 0.44%, #F3BD1D 51.22%, #BAD9C9 95.23%);
+}
+.losub{
+    width: 517px;
+    height: 274px;
+    margin-left: 680px;
+    margin-top: 70px;
+}
+.email{
+    position: absolute;
+    width: 578px;
+    height: 34px;
+    margin-left: 640px;
+    margin-top: 50px;
+    
+    background: #EFF0F3;
+    border-radius: 10px;
+    border-color: #395f4c00;
+}
+.senha{
+    position: absolute;
+    width: 578px;
+    height: 34px;
+    margin-left: 640px;
+    margin-top: 70px;
+    
+    background: #EFF0F3;
+    border-radius: 10px;
+    border-color: #395f4c00;
+}
+button{
+    position: absolute;
+    width: 280px;
+    height: 50px;
+    left: 810px;
+    top: 693px;
+    border-color: #bad9c900;
+    background: #BDBE6E;
+    border-radius: 10px;
+    color: white;
+    font-size: x-large;
+}
+p{
+    position: absolute;
+    width: 303px;
+    height: 20px;
+    left: 805px;
+    top: 630px;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    
+    color: #272343;
+
+}
+a{
+    color: #272343;
+    text-decoration: none;
+}

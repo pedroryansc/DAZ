@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+body{
+    width: 1620px;
+    height: 1080px;
+
+    background: #FFFFFF;
+}
+.degra{
+    width: 1080px;
+    height: 1081px;
+    left: 0px;
+    top: 0px;
+
+    background: linear-gradient(270deg, #BDBE6E 0%, #F3BD1D 50.78%, #BAD9C9 94.79%);
+}
+.img{
+    width: 540.43px;
+    height: 1080px;
+    left: 1080px;
+    top: 0px;
+    rotate: -90°;
+}
+.titulo{
+    width: 233px;
+    height: 58px;
+    left: 478px;
+    top: 114px;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 55px;
+    
+    color: #FFFFFF;
+    
+}
+.subt{
+    width: 322px;
+    height: 29px;
+    left: 431px;
+    top: 157px;
+    
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    
+    color: #FFFFFE;
+    
+
+}
+.div1{position: absolute;
+    width: 414.25px;
+    height: 349.05px;
+    left: 384.28px;
+    top: 227.78px;
+    
+
+}
+.div2{
+    width: 414.25px;
+    height: 367.28px;
+    left: 384.28px;
+    top: 632.43px;
+    
+
+}
+.imga{
+    width: 348.7px;
+    height: 349.05px;
+    left: 417.05px;
+    top: 227.78px;
+}
+.imgp{
+    width: 366.91px;
+    height: 367.28px;
+    left: 407.95px;
+    top: 632.43px;
+}

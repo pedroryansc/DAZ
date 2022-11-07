@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+ 
+body{
+    background: linear-gradient(270deg, #BDBE6E 0.44%, #F3BD1D 51.22%, #BAD9C9 95.23%);
+}
+.barra{
+    position: absolute;
+    width: 1920px;
+    height: 82.36px;
+    left: 0px;
+    top: 0px;
+    
+    background: #F3BD1D;}
+.logonav{
+    position: absolute;
+    width: 109.23px;
+    height: 53.76px;
+    left: 880.83px;
+    top: 16.8px;
+    
+}
+.imgp{
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    left: 1799.99px;
+    top: 6px;
+    border-radius: 50%;
+    border-color: #f3bd1d00;
+}
+.imgm{
+    position: absolute;
+    width: 231.44px;
+    height: 231.44px;
+    left: 1126.28px;
+    top: 155.28px;
+    }
+.cs{
+    position: absolute;
+    width: 52.83px;
+    height: 49px;
+    left: 27.09px;
+    top: 16px;
+
+}
+.branco{
+    position: absolute;
+    width: 350px;
+    height: 890px;
+    left: 1px;
+    top: 78px;
+    
+    background: #ffffff;
+
+}
