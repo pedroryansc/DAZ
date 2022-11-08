@@ -101,12 +101,16 @@
             }
             Professor::excluir($id);
 
-            /*
-            unlink("../img/".$vetorIdProfessor[0]["idprofessor"]); // Exclui a foto de perfil anterior
-            array_map("unlink", glob("*.png"));
+            // Exclui todos os arquivos de uma pasta
+            $diretorio = "../img/".$id;
+            $di = new RecursiveDirectoryIterator($diretorio, FilesystemIterator::SKIP_DOTS);
+            $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
+            foreach ($ri as $file){
+                $file->isDir() ? rmdir($file) : unlink($file);
+            }
 
-            Continua...
-            */
+            // Exclui uma pasta
+            rmdir($diretorio);
             
             Professor::finalizarLogin();
             // session_destroy();
