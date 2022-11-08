@@ -49,7 +49,81 @@ body{
     height: 890px;
     left: 1px;
     top: 78px;
+    padding: 5px;
     
     background: #ffffff;
 
+}
+.conj{
+    position: absolute;
+    width: 1024px;
+    height: 387px;
+    left: 543px;
+    top: 103px;
+    
+    background: #EFF0F3;
+    border-radius: 10px;
+}
+.apoio{
+    position: absolute;
+    width: 1024px;
+    height: 392px;
+    left: 543px;
+    top: 531px;
+    
+    background: #FFFFFF;
+    border-radius: 10px;
+    align-items: center;
+}
+.apoiotit{
+    width: 328px;
+    height: 34px;
+    margin-left: 350px;
+    font-family: 'nunito';
+    font-size: x-large;
+}
+.apoiotot{
+    width: 328px;
+    height: 34px;
+    margin-left: 400px;
+    font-family: 'nunito';
+    font-size: x-large;}
+
+.bola{
+    position: absolute;
+    width: 154px;
+    height: 155px;
+    border-radius: 50%;
+    margin-left: 70px;
+    margin-top: 0px;
+    border-color: #f3bd1d00;
+    background: #BDBE6E;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+   
+}
+.aviso{
+    height: 34px;
+    font-family: 'nunito';
+    font-size: large;
+    border-left: 10px;
+}
+iframe{
+    border-left: 20%;
+    border-right: 20%;
+}
+.barralat{
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: white;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
+    /* Continuar a aba lateral do professor... */
 }

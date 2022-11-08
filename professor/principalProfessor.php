@@ -21,58 +21,77 @@
 </head>
 <body>
     <div class="barra">
-    <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
-   <img class="logonav" src="../img/logo.png">
-   <img class="imgp" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
+        <img class="logonav" src="../img/logo.png">
+        <a href="javascript:abrirPerfil()">
+            <img class="imgp" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        </a>
     </div>
-   <!-- Se o <aside> for retirado, a página desconfigura (penso que seja melhor encontrar outro metodo de organizar) --> 
-   
-   <aside class="branco">
+    
+    <div id="principal">
+        <!-- Se o <aside> for retirado, a página desconfigura (penso que seja melhor encontrar outro metodo de organizar) --> 
+    
+        <aside class="branco">
             <?php
                 if($vetorTurmas){
                     foreach($vetorTurmas as $turma){
-                        echo "<a href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["nome"]."</a><br><br>";
+                        echo "<a  class='nomet'href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["idturma"]."</a><br><p>".$turma["nome"]."</p></<br>";
                     }
                 } else
-                    echo "Clique no botão para criar uma turma <br><br>";
+                    echo "<p class='aviso'>Clique no botão para criar uma turma</p> <br><br>";
             ?>
-            <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p>
-    </aside>
-    <aside>
-                <h3>Conjuntos de Questões</h3>
-                <?php
-                    if($vetorConjuntos){
-                        foreach($vetorConjuntos as $conjunto){
-                            echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".$conjunto["nome"]."</a> ";
-                        }
-                    } else
-                        echo "Clique no botão para criar um conjunto de questões <br><br>";
-                ?>
-                <p><a href="cadastroConjunto.php">(Botão para criar conjunto)</a></p>
-                <h3>Materiais de apoio</h3>>
-                </aside>
-                <!--
-     <img class="imgm"src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
-     
-
-
-         <p class="nome"><?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"];  ?></p>
-    <p ><b>Área de atuação</b></p>
-    <p ><?php echo $_SESSION["areaAtuacao"]; ?></p>
-    <p><b>Formação</b></p>
-    <p ><?php echo $_SESSION["formacao"]; ?></p>
-    <p ><b>E-mail</b></p>
-    <p ><?php echo $_SESSION["email"]; ?></p>
-    <p>
-        <b>
-            <a class="editar" href="cadastroProfessor.php?acao=editar">Editar</a> 
-            <a class="excluir" href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $_SESSION["idprofessor"]; ?>')">Excluir</a>
-        </b>
-    </p>
-   <p><b><a class="sair" href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar')"><p class="nome">Sair</p></a></b></p>-->
+            <a class="bola"href="cadastroTurma.php">+</a>
+        </aside>
+        <aside class="conj">
+                    <h3 class="apoiotot">Conjuntos de Questões</h3>
+                    <?php
+                        if($vetorConjuntos){
+                            foreach($vetorConjuntos as $conjunto){
+                                echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".$conjunto["nome"]."</a> ";
+                            }
+                        } else
+                            echo "<p class='aviso'>Clique no botão para criar um conjunto de questões</p> <br><br>";
+                    ?>
+                    <p class="cria"><a class="link" href="cadastroConjunto.php">+</a></p></aside>
+        <div class="apoio">
+            <h3 class="apoiotit">Materiais de apoio</h3>
+            <iframe width="399" height="225"  src="https://www.youtube.com/embed/tw53UNb8FCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <iframe width="399" height="225" src="https://www.youtube.com/embed/3EmTmGF3ZqY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <div id="barralat" class="barralat"> <!-- Continuar: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+        <span style="cursor:pointer" onclick="fecharPerfil()">&times;</span>
+        <img class="imgm"src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        <p class="nome"><?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"];  ?></p>
+        <p><b>Área de atuação</b></p>
+        <p><?php echo $_SESSION["areaAtuacao"]; ?></p>
+        <p><b>Formação</b></p>
+        <p><?php echo $_SESSION["formacao"]; ?></p>
+        <p><b>E-mail</b></p>
+        <p><?php echo $_SESSION["email"]; ?></p>
+        <p>
+            <b>
+                <a class="editar" href="cadastroProfessor.php?acao=editar">Editar</a> 
+                <a class="excluir" href="javascript:excluirRegistro('../control/ctrl_professor.php?acao=excluir&id=<?php echo $_SESSION["idprofessor"]; ?>')">Excluir</a>
+            </b>
+        </p>
+        <p><b><a class="sair" href="javascript:sairSistema('../control/ctrl_professor.php?acao=deslogar')">
+            <p class="nome">Sair</p>
+        </a></b></p>
+    </div>
 </body>
 </html>
 <script>
+    function abrirPerfil(){
+        document.getElementById("barralat").style.width = "450px";
+        document.getElementById("principal").style.marginRight = "450px";
+        document.body.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+    }
+    function fecharPerfil(){
+        document.getElementById("barralat").style.width = "0";
+    }
+    
     function excluirRegistro(url){
         if(confirm("Excluir perfil: Esta ação não pode ser desfeita. Tem certeza?"))
             location.href = url;
@@ -83,4 +102,3 @@
             location.href = url;
     }
 </script>
-

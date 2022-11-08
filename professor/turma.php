@@ -23,11 +23,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style5.css">
     <title>Turma <?php echo $vetorTurma[0]["nome"]; ?> | DAZ</title>
 </head>
 <body>
-    <a href="principalProfessor.php">(Home)</a><br>
-    <br><br>
+<div class="barra">
+        <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
+        <img class="logonav" src="../img/logo.png">
+        <a href="javascript:abrirPerfil()">
+            <img class="imgp" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        </a>
+    </div>
     <?php
         foreach($vetorTurmas as $turma){
             echo "<a href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["nome"]."</a><br><br>";
