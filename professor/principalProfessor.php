@@ -47,7 +47,7 @@
                     <?php
                         if($vetorConjuntos){
                             foreach($vetorConjuntos as $conjunto){
-                                echo "<a href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'>".$conjunto["nome"]."</a> ";
+                                echo "<a class='nomeconj' href='conjunto.php?id=".$conjunto["idconjuntoQuestoes"]."'><div class='bolconj'></div>".$conjunto["nome"]."</a> ";
                             }
                         } else
                             echo "<p class='aviso'>Clique no botão para criar um conjunto de questões</p> <br><br>";
@@ -60,9 +60,9 @@
         </div>
     </div>
     
-    <div id="barralat" class="barralat"> <!-- Continuar: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+    <div id="barralat" class="barralat">
         <span style="cursor:pointer" onclick="fecharPerfil()">&times;</span>
-        <img class="imgm"src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        <img class="imgm" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
         <p class="nome"><?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"];  ?></p>
         <p><b>Área de atuação</b></p>
         <p><?php echo $_SESSION["areaAtuacao"]; ?></p>
@@ -84,9 +84,7 @@
 </html>
 <script>
     function abrirPerfil(){
-        document.getElementById("barralat").style.width = "450px";
-        document.getElementById("principal").style.marginRight = "450px";
-        document.body.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+        document.getElementById("barralat").style.width = "400px";
     }
     function fecharPerfil(){
         document.getElementById("barralat").style.width = "0";

@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style5.css">
+    <link rel="stylesheet" href="../css/style4.css">
     <title>Turma <?php echo $vetorTurma[0]["nome"]; ?> | DAZ</title>
 </head>
 <body>
@@ -41,6 +41,7 @@
     ?>
     <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p>
     <br>
+    <div class="infot">
     <h2>Turma <?php echo $vetorTurma[0]["nome"]; ?></h2>
     <p><?php echo $vetorTurma[0]["instituicao"] ?></p>
     <p>
@@ -56,9 +57,11 @@
                                     else
                                         echo $vetorTurma[0]["mediaGeral"];
                                 ?></b></p>
-    <br>
-    <p><a href="cadastroAluno.php?idTurma=<?php echo $id; ?>">(Botão para cadastrar aluno)</a></p>
-    <table>
+    <br></div>
+    <div class="tab">
+    <table >
+    <a href="cadastroAluno.php?idTurma=<?php echo $id; ?>" class="newal"><img src="../img/cadalu.png" alt="" class="addalu"></a>
+    
         <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -88,20 +91,24 @@
         <?php
             }
         ?>
-    </table>
-    <p>*NA = Número de Acertos; QQ = Quantidade de Questões</p>
+       
+    </table> 
+    <p class="legenda">*NA = Número de Acertos; QQ = Quantidade de Questões</p>
+</div>
+    
     <!-- Sugestão: ao invés de QQ, colocar "NQ = Número de Questões" para ficar com a mesma letra inicial de NA -->
     <br>
+    <div class="tconj">
     <p><b>Conjunto de Questões</b></p>
     <?php
         if($vetorConjuntos){
             foreach($vetorConjuntos as $conjunto){
-                echo "<a href='conjunto.php?id=".$conjunto[0]["idconjuntoQuestoes"]."&idTurma=".$id."'>".$conjunto[0]["nome"]."</a> ";
+                echo "<a class='nomeconj' href='conjunto.php?id=".$conjunto[0]["idconjuntoQuestoes"]."&idTurma=".$id."'><div class='bolconj'></div>".$conjunto[0]["nome"]."</a> ";
             }
             echo "<br>";
         }
         echo "<br><a href='adicionaConjunto.php?idTurma=".$id."'>Adicionar conjunto à turma</a>";
-    ?>
+    ?></div>
 </body>
 </html>
 <script>

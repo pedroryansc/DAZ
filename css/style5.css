@@ -4,3 +4,39 @@ body{
     background: linear-gradient(270deg, #BDBE6E 0.44%, #F3BD1D 51.22%, #BAD9C9 95.23%);
     font-family: 'nunito';
 }
+.barra{
+    position: absolute;
+    width: 1920px;
+    height: 82.36px;
+    left: 0px;
+    top: 0px;
+    
+    background: #F3BD1D;}
+.logonav{
+    position: absolute;
+    width: 109.23px;
+    height: 53.76px;
+    left: 880.83px;
+    top: 16.8px;
+    
+}
+.imgp{
+    position: absolute;
+    width: 68px;
+    height: 68px;
+    left: 1799.99px;
+    top: 6px;
+    border-radius: 50%;
+    border-color: #f3bd1d00;
+}
+.tab{
+    width: 604px;
+    height: 828px;
+    left: 429px;
+    top: 149px;
+    
+    background: #FFFFFF;
+    border-color: #f3bd1d00;
+    border-radius: 10px;
+
+}
