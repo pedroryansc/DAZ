@@ -24,7 +24,9 @@
 <body>
     <br>
     <center>
-        <form action="../control/ctrl_aluno.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post">
+        <form action="../control/ctrl_aluno.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post" enctype="multipart/form-data">
+            <input type="file" name="fotoPerfil"><br>
+            <br>
             Nome <br>
             <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["nome"]; ?>"><br>
             <br>

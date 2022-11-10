@@ -2,6 +2,7 @@
  
 body{
     background: linear-gradient(270deg, #BDBE6E 0.44%, #F3BD1D 51.22%, #BAD9C9 95.23%);
+    font-family: Nunito;
 }
 .barra{
     position: absolute;
@@ -46,7 +47,7 @@ body{
 .branco{
     position: absolute;
     width: 350px;
-    height: 890px;
+    height: 879px;
     left: 1px;
     top: 78px;
     padding: 5px;
@@ -125,11 +126,15 @@ iframe{
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    font-family: 'nunito';
+    color: #000000;
 }
 
 a{
     text-decoration: none;
     font-family: 'nunito';
+    color: #000000;
+    font-weight: bolder;
 }
 .tab{
     position: absolute;
@@ -140,6 +145,10 @@ a{
     padding-left: 30px;
     padding-right: 30px;
     
+    
+    font-family: 'nunito';
+    color: #000000;
+    
     background: #FFFFFF;
     border-color: #f3bd1d00;
     border-radius: 10px;
@@ -147,11 +156,11 @@ a{
 }
 .tconj{
     position: absolute;
-    width: 376px;
-    height: 420px;
+    width: 336px;
+    height: 380px;
     left: 1300px;
     top: 530px;
-    
+    padding: 1%;
     background: #FFFFFF;
     border-radius: 10px;
 
@@ -193,17 +202,94 @@ td{
     border-left: 1;
 }
 .bolconj{
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     border-color: #f3bd1d00;
+    float: left;
+    margin: 5%;
+    background: conic-gradient(from 180deg at 50% 50%, #F3BD1D 0deg, #BAD9C9 176.25deg, #F3BD1D 328.12deg, #F3BD1D 360deg);
     
-
-    background: conic-gradient(from 180deg at 50% 50%, #F3BD1D 0deg, #BAD9C9 176.25deg, #F3BD1D 328.12deg, #F3BD1D 360deg);}
+}
+    
 .nomeconj{
     text-decoration: none;
+   
+    color: #F3BD1D;
+   
+}
+h2{
     font-family: 'Nunito';
-    color: #F3BD1D;}
-.addconj{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 49px;
+    
+    color: #000000;
+    
+}
 
+a.baixo{
+    text-align: center;
+    color: #F3BD1D;
+}
+div.margin{
+    margin-left: 23%;
+    margin-top: 15%;
+}
+.nome{
+    align-items: center;
+    width: 201px;
+    margin-left: 100px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 44px;
+    
+    color: #000000;
+
+}
+.area{
+    margin-left: 100px;
+
+}
+.forma{
+    margin-left: 100px;
+
+}
+.email{
+    margin-left: 100px;
+
+}
+.edita{
+
+}
+.exclui{
+
+}
+.sair{
+
+}
+
+hr{
+    margin-top:70%;
+    margin-bottom: 5%;
+}
+
+a.left{
+    float:left;
+    color: #F3BD1D;
+    margin-left: 5%;
+}
+
+a.right{
+    float:right;
+    color: red;
+    margin-right: 5%;
+}
+
+p.nota{
+    font-size: 600%;
+    margin:0;
 }

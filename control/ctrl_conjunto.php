@@ -14,7 +14,20 @@
     if($acao == "salvar"){
         $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
         $tags = isset($_POST["tags"]) ? $_POST["tags"] : "";
+        $imagem = isset($_FILES["imagem"]) ? $_FILES["imagem"] : NULL;
+
+        if($imagem["name"] <> "")
+            $nomeImagem = $imagem["name"];
+        else{
+            if($id == 0)
+                $nomeImagem = "";
+            else{
+                // Continua...
+            }
+        }
+
         $conjunto = new Conjunto($id, $nome, $tags, $_SESSION["idprofessor"]);
+        
         if($id == 0){
             try{
                 $conjunto->insere();

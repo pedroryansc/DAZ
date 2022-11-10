@@ -25,6 +25,8 @@
     <br>
     <center>
         <form action="../control/ctrl_conjunto.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post">
+            <input type="file" name="imagem"><br>
+            <br>
             Nome do Conjunto <br>
             <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorConjunto[0]["nome"]; ?>"><br>
             <br>

@@ -9,10 +9,10 @@
         private $numAcertos;
         private $media;
         private $ultimaQuestao;
-        // private $fotoPerfil;
+        private $fotoPerfil;
         private $idProfessor;
         private $idTurma;
-        public function __construct($id, $nome, $sobrenome, $genero, $etapa, $numQuestResp, $numAcertos, $media, $ultimaQuestao, $idProfessor, $idTurma){
+        public function __construct($id, $nome, $sobrenome, $genero, $etapa, $numQuestResp, $numAcertos, $media, $ultimaQuestao, $fotoPerfil, $idProfessor, $idTurma){
             parent::__construct($id, $nome);
             $this->setSobrenome($sobrenome);
             $this->setGenero($genero);
@@ -21,6 +21,7 @@
             $this->setNumAcertos($numAcertos);
             $this->setMedia($media);
             $this->setUltQuestao($ultimaQuestao);
+            $this->setFotoPerfil($fotoPerfil);
             $this->setIdProfessor($idProfessor);
             $this->setIdTurma($idTurma);
         }
@@ -55,6 +56,12 @@
         public function setUltQuestao($ultimaQuestao){
             $this->ultimaQuestao = $ultimaQuestao;
         }
+        public function setFotoPerfil($fotoPerfil){
+            if($fotoPerfil <> "")
+                $this->fotoPerfil = $fotoPerfil;
+            else
+                throw new Exception("Por favor, insira uma foto de perfil.");
+        }
         public function setIdProfessor($idProfessor){
             if($idProfessor <> 0)
                 $this->idProfessor = $idProfessor;
@@ -75,15 +82,18 @@
         public function getNumAcertos(){ return $this->numAcertos; }
         public function getMedia(){ return $this->media; }
         public function getUltQuestao(){ return $this->ultimaQuestao; }
+        public function getFotoPerfil(){ return $this->fotoPerfil; }
         public function getIdProfessor(){ return $this->idProfessor; }
         public function getIdTurma(){ return $this->idTurma; }
 
         public function insere(){
-            $sql = "INSERT INTO aluno (nome, sobrenome, genero, etapa, numQuestResp, numAcertos, media, professor_idprofessor, turma_idturma)
-                    VALUES(:nome, :sobrenome, :genero, :etapa, :numQuestResp, :numAcertos, :media, :idProfessor, :idTurma)";
+            $sql = "INSERT INTO aluno (nome, sobrenome, genero, etapa, numQuestResp, numAcertos,
+                                        media, fotoPerfil, professor_idprofessor, turma_idturma)
+                    VALUES(:nome, :sobrenome, :genero, :etapa, :numQuestResp, :numAcertos, :media, :fotoPerfil, :idProfessor, :idTurma)";
             $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":genero"=>$this->getGenero(),
                         ":etapa"=>$this->getEtapa(), ":numQuestResp"=>$this->getNumQuestResp(), ":numAcertos"=>$this->getNumAcertos(),
-                        ":media"=>$this->getMedia(), ":idProfessor"=>$this->getIdProfessor(), ":idTurma"=>$this->getIdTurma());
+                        ":fotoPerfil"=>$this->getFotoPerfil(), ":media"=>$this->getMedia(), ":idProfessor"=>$this->getIdProfessor(),
+                        ":idTurma"=>$this->getIdTurma());
             return Database::executaComando($sql, $par);
         }
 
@@ -99,10 +109,10 @@
 
         public function editar(){
             $sql = "UPDATE aluno
-                    SET nome = :nome, sobrenome = :sobrenome, genero = :genero, etapa = :etapa
+                    SET nome = :nome, sobrenome = :sobrenome, genero = :genero, etapa = :etapa, fotoPerfil = :fotoPerfil
                     WHERE idaluno = :id";
-            $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(),
-                        ":genero"=>$this->getGenero(), ":etapa"=>$this->getEtapa(), ":id"=>$this->getId());
+            $par = array(":nome"=>$this->getNome(), ":sobrenome"=>$this->getSobrenome(), ":genero"=>$this->getGenero(),
+                        ":etapa"=>$this->getEtapa(), ":fotoPerfil"=>$this->getFotoPerfil(), ":id"=>$this->getId());
             return Database::executaComando($sql, $par);
         }
 

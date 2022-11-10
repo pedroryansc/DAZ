@@ -24,7 +24,7 @@
         <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
         <img class="logonav" src="../img/logo.png">
         <a href="javascript:abrirPerfil()">
-            <img class="imgp" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+            <img class="imgp" src="../img/professor/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
         </a>
     </div>
     
@@ -62,14 +62,14 @@
     
     <div id="barralat" class="barralat">
         <span style="cursor:pointer" onclick="fecharPerfil()">&times;</span>
-        <img class="imgm" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        <img class="imgm" src="../img/professor/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
         <p class="nome"><?php echo $_SESSION["nome"]." ".$_SESSION["sobrenome"];  ?></p>
-        <p><b>Área de atuação</b></p>
-        <p><?php echo $_SESSION["areaAtuacao"]; ?></p>
-        <p><b>Formação</b></p>
-        <p><?php echo $_SESSION["formacao"]; ?></p>
-        <p><b>E-mail</b></p>
-        <p><?php echo $_SESSION["email"]; ?></p>
+        <p class="area"><b>Área de atuação</b></p>
+        <p class=""><?php echo $_SESSION["areaAtuacao"]; ?></p>
+        <p class="forma"><b>Formação</b></p>
+        <p class=""><?php echo $_SESSION["formacao"]; ?></p>
+        <p class="email"><b>E-mail</b></p>
+        <p class=""><?php echo $_SESSION["email"]; ?></p>
         <p>
             <b>
                 <a class="editar" href="cadastroProfessor.php?acao=editar">Editar</a> 
@@ -84,19 +84,19 @@
 </html>
 <script>
     function abrirPerfil(){
-        document.getElementById("barralat").style.width = "400px";
-    }
-    function fecharPerfil(){
-        document.getElementById("barralat").style.width = "0";
-    }
-    
-    function excluirRegistro(url){
-        if(confirm("Excluir perfil: Esta ação não pode ser desfeita. Tem certeza?"))
-            location.href = url;
-    }
+    document.getElementById("barralat").style.width = "400px";
+}
+function fecharPerfil(){
+    document.getElementById("barralat").style.width = "0";
+}
 
-    function sairSistema(url){
-        if(confirm("Sair do Sistema: Tem certeza?"))
-            location.href = url;
-    }
+function excluirRegistro(url){
+    if(confirm("Excluir perfil: Esta ação não pode ser desfeita. Tem certeza?"))
+        location.href = url;
+}
+
+function sairSistema(url){
+    if(confirm("Sair do Sistema: Tem certeza?"))
+        location.href = url;
+}
 </script>

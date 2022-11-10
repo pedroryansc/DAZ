@@ -17,7 +17,7 @@
         $sobrenome = isset($_POST["sobrenome"]) ? $_POST["sobrenome"] : "";
         $areaAtuacao = isset($_POST["areaAtuacao"]) ? $_POST["areaAtuacao"] : "";
         $formacao = isset($_POST["formacao"]) ? $_POST["formacao"] : "";
-        $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : null;
+        $fotoPerfil = isset($_FILES["fotoPerfil"]) ? $_FILES["fotoPerfil"] : NULL;
         $confirmarSenha = isset($_POST["confirmarSenha"]) ? $_POST["confirmarSenha"] : "";
 
         if($senha == $confirmarSenha){
@@ -34,17 +34,13 @@
 
             if($id == 0){
                 try{
+                    // Verifica se o e-mail inserido já foi cadastrado
                     $vetorEmail = Professor::listar($email);
                     if(!$vetorEmail){
                         $prof->insere();
 
-                        $vetorIdProfessor = Professor::listar($email);
-
                         // Armazenamento da foto de perfil do usuário
-                        $tmpName = $fotoPerfil["tmp_name"]; // Recebe o arquivo (com nome temporário)
-                        mkdir("../img/".$vetorIdProfessor[0]["idprofessor"]); // Cria a pasta/diretório do usuário
-                        $destino = "../img/".$vetorIdProfessor[0]["idprofessor"]."/".$fotoPerfil["name"]; // Define o destino do arquivo (com nome a ser utilizado)
-                        move_uploaded_file($tmpName, $destino);
+                        Professor::insereImagem($id, "professor", $fotoPerfil);
 
                         header("location:../professor/loginProfessor.php");
                     } else
@@ -57,12 +53,8 @@
             } else{
                 try{
                     $prof->editar();
-                    
-                    $vetorIdProfessor = Professor::listar($email);
 
-                    $tmpName = $fotoPerfil["tmp_name"]; // Recebe o arquivo (com nome temporário)
-                    $destino = "../img/".$vetorIdProfessor[0]["idprofessor"]."/".$fotoPerfil["name"]; // Define o destino do arquivo (com o nome a ser utilizado)
-                    move_uploaded_file($tmpName, $destino);
+                    Professor::insereImagem($id, "professor", $fotoPerfil);
 
                     $prof->efetuaLogin($email, $senha);
                     header("location:../professor/principalProfessor.php");
@@ -101,16 +93,9 @@
             }
             Professor::excluir($id);
 
-            // Exclui todos os arquivos de uma pasta
-            $diretorio = "../img/".$id;
-            $di = new RecursiveDirectoryIterator($diretorio, FilesystemIterator::SKIP_DOTS);
-            $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
-            foreach ($ri as $file){
-                $file->isDir() ? rmdir($file) : unlink($file);
-            }
-
-            // Exclui uma pasta
-            rmdir($diretorio);
+            // Exclui todos os arquivos de uma pasta e ela mesma
+            $diretorio = "../img/professor/".$id;
+            Professor::excluiDiretorio($diretorio);
             
             Professor::finalizarLogin();
             // session_destroy();

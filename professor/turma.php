@@ -31,32 +31,37 @@
         <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
         <img class="logonav" src="../img/logo.png">
         <a href="javascript:abrirPerfil()">
-            <img class="imgp" src="../img/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+            <img class="imgp" src="../img/professor/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
         </a>
     </div>
+    <div class="branco">
     <?php
         foreach($vetorTurmas as $turma){
             echo "<a href='turma.php?id=".$turma["idturma"]."'>Turma ".$turma["nome"]."</a><br><br>";
         }
     ?>
-    <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p>
+    <p><a href="cadastroTurma.php">(Botão para criar turma)</a></p></div>
     <br>
     <div class="infot">
-    <h2>Turma <?php echo $vetorTurma[0]["nome"]; ?></h2>
-    <p><?php echo $vetorTurma[0]["instituicao"] ?></p>
-    <p>
-        <b>
-            <a href="cadastroTurma.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
-            <a href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
-        </b>
-    </p>
-    <br>
-    <p><b>Média geral da turma: <?php
+    <center><h2>Turma <?php echo $vetorTurma[0]["nome"]; ?></h2>
+    <p><?php echo $vetorTurma[0]["instituicao"] ?></p></center>
+
+    <center>
+    <p class="nota"><b><?php
                                     if($vetorTurma[0]["mediaGeral"] == NULL)
                                         echo "-";
                                     else
                                         echo $vetorTurma[0]["mediaGeral"];
                                 ?></b></p>
+    <p>
+    </center>
+        <b>
+            <a class="left" href="cadastroTurma.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
+            <a class="right" href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
+        </b>
+    </p>
+    <br>
+    
     <br></div>
     <div class="tab">
     <table >
@@ -74,7 +79,7 @@
         <tr>
             <th><?php echo $aluno["idaluno"]; ?></th>
             <td>
-                <a href="aluno.php?id=<?php echo $aluno["idaluno"]; ?>">
+                <a class="nomes" href="aluno.php?id=<?php echo $aluno["idaluno"]; ?>">
                     <?php echo $aluno["nome"]." ".$aluno["sobrenome"]; ?>
                 </a>
             </td>
@@ -103,11 +108,13 @@
     <?php
         if($vetorConjuntos){
             foreach($vetorConjuntos as $conjunto){
-                echo "<a class='nomeconj' href='conjunto.php?id=".$conjunto[0]["idconjuntoQuestoes"]."&idTurma=".$id."'><div class='bolconj'></div>".$conjunto[0]["nome"]."</a> ";
+                echo "<div class='bolconj'><br><br><br>
+                      <div class='margin'>
+                      <a class='nomeconj' href='conjunto.php?id=".$conjunto[0]["idconjuntoQuestoes"]."&idTurma=".$id."'>".$conjunto[0]["nome"]."</a></div> </div>";
             }
             echo "<br>";
         }
-        echo "<br><a href='adicionaConjunto.php?idTurma=".$id."'>Adicionar conjunto à turma</a>";
+        echo "<br><hr><center><a class='baixo' href='adicionaConjunto.php?idTurma=".$id."'>Adicionar conjunto à turma</a></center>";
     ?></div>
 </body>
 </html>
