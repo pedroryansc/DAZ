@@ -207,4 +207,47 @@ a.prox{
     color: #F3BD1D;
 
 }
+.barra{
+    position: absolute;
+    width: 1920px;
+    height: 82.36px;
+    left: 0px;
+    top: 0px;
+    
+    background: #F3BD1D;}
+.logonav{
+    position: absolute;
+    width: 109.23px;
+    height: 53.76px;
+    left: 880.83px;
+    top: 16.8px;
+    
+}
+.cs{
+    position: absolute;
+    width: 52.83px;
+    height: 49px;
+    left: 27.09px;
+    top: 16px;
+
+}
+.tab{
+    position: absolute;
+    width: 645px;
+    height: 810px;
+    left: 200px;
+    top: 120px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+.bra{
+    position: absolute;
+    width: 982px;
+    height: 772px;
+    left: 1090px;
+    top: 79px;
+    background: #FFFFFF;
+
+}
 z-index sobrepor

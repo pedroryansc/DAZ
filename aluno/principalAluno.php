@@ -32,6 +32,7 @@
 </head>
 <body>
     <p>
+        <!-- <img src="../img/aluno/<?php echo $vetorAluno[0]["idaluno"]; ?>/<?php echo $vetorAluno[0]["fotoPerfil"]; ?>" width="50"> -->
         Alun<?php
                 switch($vetorAluno[0]["genero"]){
                     case(1): echo "a"; break;

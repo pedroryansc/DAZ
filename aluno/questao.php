@@ -73,7 +73,15 @@
         }
     ?></div>
     <br><br>
-    <p>(Mídia)</p>
+    <p>
+        (Mídia)
+        <?php
+            if(file_exists("../img/questao/".$vetorQuestao[0]["idquestao"])){
+                echo "<img src='../img/questao/".$vetorQuestao[0]["idquestao"]."/".$vetorQuestao[0]["midia"];
+            }
+            // Continua...
+        ?>    
+    </p>
     <br>
     <div class="disbra">
     <div class="enum">
@@ -88,7 +96,7 @@
             for($i = 1; $i <= 4; $i ++){
                 if($vetorAlternativas[0]["alternativa".$i] <> NULL){
     ?>
-            <input type="radio" name="resposta" value="<?php echo $i; ?>" <?php
+            <input class="op" type="radio" name="resposta" value="<?php echo $i; ?>" <?php
                                                                             if($vetorQuestaoAluno){
                                                                                 if($vetorQuestaoAluno[0]["resultado"] == "O"){
                                                                                     if($vetorQuestaoAluno[0]["resposta"] == $i)
@@ -111,7 +119,7 @@
                                                                                 
                                                                                 <br>
         
-        <input type="hiden" id="alunoid" name="alunoid" value="<?php echo $_SESSION["idaluno"] ?>">                                                                        <br>
+        <input type="hidden" id="alunoid" name="alunoid" value="<?php echo $_SESSION["idaluno"] ?>">                                                                        <br>
     <?php
         }
         

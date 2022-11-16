@@ -4,6 +4,7 @@ body{
     background: linear-gradient(270deg, #BDBE6E 0.44%, #F3BD1D 51.22%, #BAD9C9 95.23%);
     font-family: Nunito;
 }
+
 .barra{
     position: absolute;
     width: 1920px;
@@ -62,7 +63,7 @@ body{
     left: 543px;
     top: 103px;
     
-    background: #EFF0F3;
+    background: #FFFFFF;
     border-radius: 10px;
 }
 .apoio{
@@ -79,7 +80,7 @@ body{
 .apoiotit{
     width: 328px;
     height: 34px;
-    margin-left: 350px;
+  
     font-family: 'nunito';
     font-size: x-large;
 }

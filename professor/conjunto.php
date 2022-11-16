@@ -18,21 +18,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Conjunto <?php echo $vetorConjunto[0]["nome"]; ?> | DAZ</title>
 </head>
 <body>
-    <a href="principalProfessor.php">(Home)</a><br>
-    <br>
-    <a href="
-        <?php
-            if($idTurma == 0)
-                echo "principalProfessor.php";
-            else
-                echo "turma.php?id=".$idTurma;
-        ?>
-    ">(Voltar)</a>
+<div class="barra">
+        <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
+        <img class="logonav" src="../img/logo.png">
+        <a href="javascript:abrirPerfil()">
+            <img class="imgp" src="../img/professor/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+        </a>
     <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
     <p><a href="cadastroObjetiva.php?idConjunto=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">(Botão para cadastrar questão)</a></p>
+    <div class="tab">
     <table>
         <tr>
             <th>Título da Questão</th>
@@ -62,8 +60,10 @@
         <?php
             }
         ?>
-    </table>
+    </table></div>
+    <div class="bra">
     <br>
+    <img src="../img/conjunto/<?php echo $vetorConjunto[0]["idconjuntoQuestoes"]; ?>/<?php echo $vetorConjunto[0]["imagem"]; ?>">
     <p><b>Nome do Conjunto</b></p>
     <p><?php echo $vetorConjunto[0]["nome"]; ?></p>
     <p><b>Tags</b></p>
@@ -79,7 +79,7 @@
             <a href="cadastroConjunto.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">Editar</a>
             <a href="javascript:excluirRegistro('conjunto', '../control/ctrl_conjunto.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>')">Excluir</a>
         </b>
-    </p>
+    </p></div>
 </body>
 </html>
 <script>

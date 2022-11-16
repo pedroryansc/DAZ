@@ -24,7 +24,7 @@
 <body>
     <br>
     <center>
-        <form action="../control/ctrl_conjunto.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post">
+        <form action="../control/ctrl_conjunto.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post" enctype="multipart/form-data">
             <input type="file" name="imagem"><br>
             <br>
             Nome do Conjunto <br>

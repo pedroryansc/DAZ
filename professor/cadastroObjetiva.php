@@ -33,12 +33,14 @@
     <br>
     <a href="conjunto.php?id=<?php echo $idConjunto; ?>">(Voltar)</a>
     <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
-    <form action="../control/ctrl_questao.php?id=<?php echo $id; ?>&idConjunto=<?php echo $idConjunto; ?>" method="post">
+    <form action="../control/ctrl_questao.php?id=<?php echo $id; ?>&idConjunto=<?php echo $idConjunto; ?>" method="post" enctype="multipart/form-data">
         <input type="text" name="titulo" value='<?php if($acao == "editar") echo $vetorQuestao[0]["titulo"]; ?>' placeholder="Digite o título da questão">
         <button type="submit" name="acao" value="salvar">Salvar</button><br>
         <br>
         Objetiva <input type="radio" name="tipo" value="1" <?php echo "checked"; ?>><br>
         Dissertativa <input type="radio" onclick="location.href='cadastroDissertativa.php?<?php if($acao == 'editar') echo 'acao=editar&id='.$id.'&'; ?>idConjunto=<?php echo $idConjunto; ?>'"><br>
+        <br>
+        <input type="file" name="midia"><br>
         <br>
         <input type="text" name="enunciado" size="40" value='<?php if($acao == "editar") echo $vetorQuestao[0]["enunciado"]; ?>' placeholder="Digite o enunciado"><br>
         <br>

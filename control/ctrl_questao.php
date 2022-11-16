@@ -17,8 +17,10 @@
         $titulo = isset($_POST["titulo"]) ? $_POST["titulo"] : "";
         $tipo = isset($_POST["tipo"]) ? $_POST["tipo"] : 0;
         $enunciado = isset($_POST["enunciado"]) ? $_POST["enunciado"] : "";
+        $midia = isset($_FILES["midia"]) ? $_FILES["midia"] : NULL;
         $tags = isset($_POST["tags"]) ? $_POST["tags"] : NULL;
         $maximoCaracteres = NULL;
+
         if($tipo == 1){
             $cont = 0;
             for($i = 0; $i < 4; $i ++){
@@ -41,7 +43,18 @@
         } else
             $maximoCaracteres = isset($_POST["maximoCaracteres"]) ? $_POST["maximoCaracteres"] : -1;
 
-        $questao = new Questao($id, $titulo, $tipo, $enunciado, $maximoCaracteres, $tags, $_SESSION["idprofessor"], $idConjunto);
+        if($midia["name"] <> "")
+            $nomeMidia = $midia["name"];
+        else{
+            if($id == 0)
+                $nomeMidia = "";
+            else{
+                $vetorMidiaQuestao = Questao::listar(2, $id);
+                $nomeMidia = $vetorMidiaQuestao[0]["midia"];
+            }
+        }
+
+        $questao = new Questao($id, $titulo, $tipo, $enunciado, $maximoCaracteres, $nomeMidia, $tags, $_SESSION["idprofessor"], $idConjunto);
 
         if($idTurma <> 0)
             $idConjunto .= "&idTurma=".$idTurma;
@@ -49,11 +62,17 @@
         if($id == 0){
             try{
                 $questao->insere();
+
+                if($midia["name"] <> "")
+                    Questao::insereImagem($id, "questao", $midia);
+                // Continua... (Verificar se a estrutura acima funciona)
+
                 if($tipo == 1){
                     $vetorQuestao = Questao::listar(3, $enunciado);
                     $alternativas = new Alternativas($alt[0], $exp[0], $alt[1], $exp[1], $alt[2], $exp[2], $alt[3], $exp[3], $altCorreta, $vetorQuestao[0]["idquestao"]);
                     $alternativas->insere();
                 }
+
                 header("location:../professor/conjunto.php?id=".$idConjunto);
             } catch(Exception $e){
                 echo "Erro ao cadastrar a questão <br>".
@@ -63,6 +82,9 @@
         } else{
             try{
                 $questao->editar();
+
+                Questao::insereImagem($id, "questao", $midia);
+
                 if($tipo == 1){
                     $alternativas = new Alternativas($alt[0], $exp[0], $alt[1], $exp[1], $alt[2], $exp[2], $alt[3], $exp[3], $altCorreta, $id);
                     if(Alternativas::listar(0, $id))
@@ -96,6 +118,10 @@
             if($vetorQuestao[0]["tipo"] == 1)
                 Alternativas::excluir($id);
             Questao::excluir($id);
+
+            $diretorio = "../img/questao/".$id;
+            Questao::excluiDiretorio($diretorio);
+
             if($idTurma <> 0)
                 $idConjunto .= "&idTurma=".$idTurma;
             header("location:../professor/conjunto.php?id=".$idConjunto);

@@ -54,9 +54,11 @@
                     ?>
                     <p class="cria"><a class="link" href="cadastroConjunto.php">+</a></p></aside>
         <div class="apoio">
+            <center>
             <h3 class="apoiotit">Materiais de apoio</h3>
-            <iframe width="399" height="225"  src="https://www.youtube.com/embed/tw53UNb8FCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <iframe width="399" height="225" style="margin-right: 20px;"  src="https://www.youtube.com/embed/tw53UNb8FCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
             <iframe width="399" height="225" src="https://www.youtube.com/embed/3EmTmGF3ZqY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </center>
         </div>
     </div>
     

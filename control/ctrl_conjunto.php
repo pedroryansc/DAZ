@@ -22,15 +22,19 @@
             if($id == 0)
                 $nomeImagem = "";
             else{
-                // Continua...
+                $vetorImagemConjunto = Conjunto::listar(2, $id);
+                $nomeImagem = $vetorImagemConjunto[0]["imagem"];
             }
         }
 
-        $conjunto = new Conjunto($id, $nome, $tags, $_SESSION["idprofessor"]);
+        $conjunto = new Conjunto($id, $nome, $tags, $nomeImagem, $_SESSION["idprofessor"]);
         
         if($id == 0){
             try{
                 $conjunto->insere();
+
+                Conjunto::insereImagem($id, "conjunto", $imagem);
+
                 if($idTurma == 0)
                     header("location:../professor/principalProfessor.php");
                 else
@@ -43,6 +47,9 @@
         } else{
             try{
                 $conjunto->editar();
+
+                Conjunto::insereImagem($id, "conjunto", $imagem);
+
                 if($idTurma <> 0)
                    $id .= "&idTurma=".$idTurma;
                 header("location:../professor/conjunto.php?id=".$id);
@@ -62,6 +69,10 @@
             }
             ConjuntoTurma::excluir(1, $id);
             Conjunto::excluir($id);
+
+            $diretorio = "../img/conjunto/".$id;
+            Conjunto::excluiDiretorio($diretorio);
+
             if($idTurma == 0)
                 header("location:../professor/principalProfessor.php");
             else
