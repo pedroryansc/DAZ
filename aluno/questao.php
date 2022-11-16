@@ -33,7 +33,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="script" href="">
+    <script src="../script/sinc.js"></script>
     <title>Questão '<?php echo $vetorQuestao[0]["titulo"]; ?>' | DAZ</title>
 </head>
 <body>
@@ -107,8 +107,11 @@
         <textarea id="resposta" name="resposta" rows="7" cols="50" placeholder="Sua resposta..."><?php
                                                                                     if($vetorQuestaoAluno)
                                                                                         echo $vetorQuestaoAluno[0]["resposta"];
-                                                                                ?></textarea><br>
-        <br>
+                                                                                ?></textarea>
+                                                                                
+                                                                                <br>
+        
+        <input type="hiden" id="alunoid" name="alunoid" value="<?php echo $_SESSION["idaluno"] ?>">                                                                        <br>
     <?php
         }
         

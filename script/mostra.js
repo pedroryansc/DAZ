@@ -1,13 +1,4 @@
 window.onload = (function (){
-    document.getElementById('resposta').addEventListener('keyup',function(ev){ // pega o evento de submit do formulário
-        // ev.preventDefault(); // não envia o formulário
-        carregaDados(document.getElementById('resposta').value, document.getElementById('alunoid').value );
-        console.log(this);
-    })
-
-});
-
-function carregaDados(resposta, alunoid){
     const xhttp = new XMLHttpRequest();  // cria o objeto que fará a conexão assíncrona
     xhttp.onload = function() {  // executa essa função quando receber resposta do servidor
         resposta = JSON.parse(this.responseText); // os dados são convertidos para objeto javascript
