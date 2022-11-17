@@ -77,9 +77,8 @@
         (Mídia)
         <?php
             if(file_exists("../img/questao/".$vetorQuestao[0]["idquestao"])){
-                echo "<img src='../img/questao/".$vetorQuestao[0]["idquestao"]."/".$vetorQuestao[0]["midia"];
+                echo "<img src='../img/questao/".$vetorQuestao[0]["idquestao"]."/".$vetorQuestao[0]["midia"]."'>";
             }
-            // Continua...
         ?>    
     </p>
     <br>

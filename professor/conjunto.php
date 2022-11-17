@@ -24,11 +24,11 @@
 <body>
 <div class="barra">
         <a href="principalProfessor.php"><img class="cs" src="../img/casa.png"></a>
-        <img class="logonav" src="../img/logo.png">
+        <center><h1>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h1></center>
         <a href="javascript:abrirPerfil()">
-            <img class="imgp" src="../img/professor/<?php echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
+            <img class="imgp" src="../img/professor/<?php //echo $_SESSION["idprofessor"]."/".$_SESSION["fotoPerfil"]; ?>">
         </a>
-    <h2>Conjunto de Questões <?php echo $vetorConjunto[0]["nome"]; ?></h2>
+    
     <p><a href="cadastroObjetiva.php?idConjunto=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>">(Botão para cadastrar questão)</a></p>
     <div class="tab">
     <table>
@@ -63,7 +63,7 @@
     </table></div>
     <div class="bra">
     <br>
-    <img src="../img/conjunto/<?php echo $vetorConjunto[0]["idconjuntoQuestoes"]; ?>/<?php echo $vetorConjunto[0]["imagem"]; ?>">
+    <img src="../img/conjunto/<?php //echo $vetorConjunto[0]["idconjuntoQuestoes"]; ?>/<?php echo $vetorConjunto[0]["imagem"]; ?>">
     <p><b>Nome do Conjunto</b></p>
     <p><?php echo $vetorConjunto[0]["nome"]; ?></p>
     <p><b>Tags</b></p>

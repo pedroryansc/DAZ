@@ -19,32 +19,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style6.css">
     <title>Cadastro de Aluno | DAZ</title>
 </head>
 <body>
     <br>
-    <center>
+        <div class="branco">
         <form action="../control/ctrl_aluno.php?id=<?php echo $id; ?>&idTurma=<?php echo $idTurma; ?>" method="post" enctype="multipart/form-data">
-            <input type="file" name="fotoPerfil"><br>
+            <input type="file" name="fotoPerfil" placeholder="Foto" class="file"><br>
             <br>
-            Nome <br>
-            <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["nome"]; ?>"><br>
+            <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["nome"]; ?>" placeholder="Nome" class="txt"><br>
             <br>
-            Sobrenome <br>
-            <input type="text" name="sobrenome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["sobrenome"]; ?>"><br>
+            <input type="text" name="sobrenome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["sobrenome"]; ?>"placeholder="Sobrenome" class="txt"><br>
             <br>
-            Gênero <br>
             <select name="genero">
-                <option value="">Selecione</option>
+                <option value="">Genero</option>
                 <option value="1" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "1") echo "selected"; ?>>Feminino</option>
                 <option value="2" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "2") echo "selected"; ?>>Masculino</option>
                 <option value="3" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "3") echo "selected"; ?>>Não-Binário</option>
                 <option value="4" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "4") echo "selected"; ?>>Prefiro não dizer</option>
-            </select><br>
+            </select>
             <br>
-            Etapa <br>
+            <br>
             <select name="etapa">
-                <option value="">Selecione</option>
+                <option value="">Etapa</option>
                 <option value="Ensino Fundamental" <?php if($acao == "editar" && $vetorAluno[0]["etapa"] == "Ensino Fundamental") echo "selected"; ?>>
                     Ensino Fundamental
                 </option>
@@ -60,8 +58,6 @@
                     else
                         echo "Salvar";
                 ?>
-            </button>
-        </form>
-    </center>
+            </button></form></div>
 </body>
 </html>

@@ -9,8 +9,6 @@
         $idConjunto[] = isset($_POST["idConjunto".$i]) ? $_POST["idConjunto".$i] : 0;
     }
 
-    var_dump($idConjunto);
-
     $idTurma = isset($_GET["idTurma"]) ? $_GET["idTurma"] : 0;
 
     for($i = 0; $i < $cont; $i ++){

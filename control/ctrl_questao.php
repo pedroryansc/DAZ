@@ -65,7 +65,6 @@
 
                 if($midia["name"] <> "")
                     Questao::insereImagem($id, "questao", $midia);
-                // Continua... (Verificar se a estrutura acima funciona)
 
                 if($tipo == 1){
                     $vetorQuestao = Questao::listar(3, $enunciado);
@@ -119,8 +118,10 @@
                 Alternativas::excluir($id);
             Questao::excluir($id);
 
-            $diretorio = "../img/questao/".$id;
-            Questao::excluiDiretorio($diretorio);
+            if(file_exists("../img/questao/".$id)){
+                $diretorio = "../img/questao/".$id;
+                Questao::excluiDiretorio($diretorio);
+            }
 
             if($idTurma <> 0)
                 $idConjunto .= "&idTurma=".$idTurma;

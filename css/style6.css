@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+ 
+body{
+    font-family: 'nunito';
+    width: 1720px;
+    height: 900px;
+    background: radial-gradient(85.01% 89.26% at 50% 50%, #BAD9C9 19.68%, #F3BD1D 66.37%, #BDBF6F 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+}
+.branco{
+    position: absolute;
+    width: 400px;
+    height: 547px;
+    left: 750px;
+    top: 150px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+
+}
+button{
+    position: absolute;
+    width: 220px;
+    height: 36px;
+    left: 80px;
+    background: linear-gradient(90deg, #BDBE6E 0%, #EDBF2B 51.94%, #BAD9C9 98.07%);
+    border-color: #ffffff00;
+    border-radius: 60px;
+}
+.file{
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    bottom: 70px;
+}
+.txt{
+    font-family: 'nunito';
+    font-size: large;
+    width: 260px;
+    height: 28px;
+    margin-left: 68px;
+    margin-top: 15px;
+
+    background: #EFF0F3;
+    border-color: #ffffff00;
+    border-radius: 60px;
+}
+select{
+    margin-top: 35px;
+    font-family: 'nunito';
+    width: 260px;
+    height: 28px;
+    margin-left: 68px;
+    margin-top: 15px;
+
+    background: #EFF0F3;
+    border-color: #ffffff00;
+    border-radius: 68px;
+
+}

@@ -58,6 +58,27 @@
         <b>
             <a class="left" href="cadastroTurma.php?acao=editar&id=<?php echo $id; ?>">Editar</a>
             <a class="right" href="javascript:excluirRegistro('../control/ctrl_turma.php?acao=excluir&id=<?php echo $id; ?>')">Excluir</a>
+            <br>
+            <br>
+            <center>
+                <?php
+                    $vetorQuestao = array();
+
+                    foreach($vetorConjuntosTurma as $conjuntoTurma){
+                        $vetorQuestao = lista("Questao", 1, $conjuntoTurma["conjuntoQuestoes_idconjuntoQuestoes"]);
+                        if($vetorQuestao){
+                            echo "<a href='visualizarQuestao.php?idQuestao=".$vetorQuestao[0]["idquestao"]."&idTurma=".$id."'>Iniciar a Aula</a>";
+                            break;
+                        }
+                    }
+                    
+                    if(!$vetorConjuntos)
+                        echo "Adicione conjuntos com questões à turma para <br> Iniciar a Aula";
+
+                    if($vetorConjuntos && !$vetorQuestao)
+                        echo "Adicione questões à turma para <br> Iniciar a Aula";
+                ?>   
+            </center>
         </b>
     </p>
     <br>

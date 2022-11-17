@@ -12,4 +12,5 @@
     define('NOME_DO_PROJETO','DAZ');
     define('DESCRICAO_DO_PROJETO','Plataforma para educação de jovens e adultos (Trabalho de Conclusão de Curso)');
 
+    define('JSON','teste.json');
 ?>

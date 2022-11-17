@@ -64,7 +64,10 @@
         }
 
         public static function atualizaMediaGeral($id, $soma, $qntAlunos){
-            $mediaGeral = $soma / $qntAlunos;
+            if($qntAlunos > 0)
+                $mediaGeral = $soma / $qntAlunos;
+            else
+                $mediaGeral = 0;
             $sql = "UPDATE turma
                     SET mediaGeral = :mediaGeral
                     WHERE idturma = :id";
