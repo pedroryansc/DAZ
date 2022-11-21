@@ -27,6 +27,25 @@
         <?php
             echo $vetorQuestao[0]["enunciado"];
         ?>
+        <br>
+        <br>
+        <?php
+            $vetorQuestaoAlunos = lista("QuestaoAluno", $idQuestao, 0);
+            foreach($vetorQuestaoAlunos as $questaoAluno){
+                $vetorAluno = lista("Aluno", 2, $questaoAluno["aluno_idaluno"]);
+                echo "<img src='../img/aluno/".$vetorAluno[0]["idaluno"]."/".$vetorAluno[0]["fotoPerfil"]."' width='50'> ".$vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"].
+                    "<br><br>";
+                if($vetorQuestao[0]["tipo"] == 1){
+                    $vetorAlternativas = lista("Alternativas", 0, $idQuestao);
+                    for($i = 1; $i <= 4; $i ++){
+                        if($questaoAluno["resposta"] == $i)
+                            echo $vetorAlternativas[0]["alternativa".$i]."<br><br>";
+                    }
+                } else
+                    echo $questaoAluno["resposta"]."<br><br>";
+            }
+        ?>
+        <br>
     </center>
 </body>
 </html>
