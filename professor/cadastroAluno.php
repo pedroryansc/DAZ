@@ -40,7 +40,7 @@
             <input type="text" name="sobrenome" size="40" value="<?php if($acao == "editar") echo $vetorAluno[0]["sobrenome"]; ?>"placeholder="Sobrenome" class="txt"><br>
             <br>
             <select name="genero">
-                <option value="">Genero</option>
+                <option value="">Gênero</option>
                 <option value="1" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "1") echo "selected"; ?>>Feminino</option>
                 <option value="2" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "2") echo "selected"; ?>>Masculino</option>
                 <option value="3" <?php if($acao == "editar" && $vetorAluno[0]["genero"] == "3") echo "selected"; ?>>Não-Binário</option>

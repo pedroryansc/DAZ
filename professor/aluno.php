@@ -70,7 +70,7 @@
             ?>
         <?php echo $vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"]; ?> - Turma <?php echo $vetorTurma[0]["nome"]; ?>
     </h2>
-    <table>
+    <table class="tabelaQuestao">
         <tr>
             <th>Nome do Conjunto</th>
             <th>Título da Questão</th>
@@ -118,7 +118,7 @@
         
         <p>
             <b>
-                <a classhref="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>
+                <a href="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>
                 <a href="javascript:excluirRegistro('../control/ctrl_aluno.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>')">
                     Excluir
                 </a>
