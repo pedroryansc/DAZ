@@ -17,17 +17,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style6.css">
     <title>Cadastro de Turma | DAZ</title>
 </head>
 <body>
     <br>
-    <center>
+    <div class="branco2">
+        <center>
+            <br>
+            <br>
+            <br>
         <form action="../control/ctrl_turma.php?id=<?php echo $id; ?>" method="post">
             Nome da Turma <br>
-            <input type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["nome"]; ?>"><br>
+            <input class="txt1" type="text" name="nome" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["nome"]; ?>"><br>
             <br>
             Nome da Instituição <br>
-            <input type="text" name="instituicao" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["instituicao"]; ?>"><br>
+            <input class="txt1" type="text" name="instituicao" size="40" value="<?php if($acao == "editar") echo $vetorTurma[0]["instituicao"]; ?>"><br>
             <br>
             <button type="submit" name="acao" value="salvar">
                 <?php
@@ -37,7 +42,8 @@
                         echo "Salvar";
                 ?>
             </button>
+            </center>
         </form>
-    </center>
+    </div>
 </body>
 </html>

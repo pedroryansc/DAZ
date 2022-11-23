@@ -294,3 +294,82 @@ p.nota{
     font-size: 600%;
     margin:0;
 }
+.alunoperf{
+    position: absolute;
+    width: 697px;
+    height: 880px;
+    left: 1218px;
+    top: 80px;
+    
+    background: rgba(255, 255, 255, 0.42);
+}
+.corperf{
+    width: 400px;
+    height: 672px;
+    margin: 15%;
+    margin-left: 25%;
+
+    background: linear-gradient(90deg, #BAD9C9 0%, #F3BD1D 68.75%, #BDBE6E 100%);
+    border-radius: 10px;
+}
+.fotoalu{
+    width: 124px;
+    height: 124px;
+    left: 1205px;
+    top: 263px;
+
+    border-radius: 50%;
+    border-color: #FFFFFE;
+}
+.info{
+    width: 260px;
+    height: 28px;
+    
+    background: #FFFFFE;
+    border-radius: 60px;
+    font-family: 'nunito';
+    color: #000000;    
+}
+.media{
+    width: 260px;
+    height: 153px;
+    left: 1140px;
+    top: 594px;
+    
+    background: #FFFFFF;
+    border-radius: 60px;
+    font-family: 'nunito';
+    color: #000000;  
+}
+.nomealu{
+    position: absolute;
+    width: 700px;
+    height: 29px;
+    left: 118px;
+    top: 100px;
+    
+    color: #FFFFFF;
+}
+table{
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    left: 97px;
+    top: 230px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+
+}
+th{
+    top: 244px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+
+    color: #000000;
+}

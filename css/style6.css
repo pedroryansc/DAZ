@@ -17,8 +17,17 @@ body{
     border-radius: 10px;
 
 }
-button{
+.branco2{
     position: absolute;
+    width: 547px;
+    height: 400px;
+    left: 730px;
+    top: 180px;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+button{
     width: 220px;
     height: 36px;
     left: 80px;
@@ -26,18 +35,22 @@ button{
     border-color: #ffffff00;
     border-radius: 60px;
 }
-.file{
-    position: absolute;
-    top: 30px;
-    left: 50px;
-    bottom: 70px;
-}
 .txt{
     font-family: 'nunito';
     font-size: large;
     width: 260px;
     height: 28px;
-    margin-left: 68px;
+    margin-top: 15px;
+
+    background: #EFF0F3;
+    border-color: #ffffff00;
+    border-radius: 60px;
+}
+.txt1{
+    font-family: 'nunito';
+    font-size: large;
+    width: 260px;
+    height: 28px;
     margin-top: 15px;
 
     background: #EFF0F3;
@@ -49,7 +62,6 @@ select{
     font-family: 'nunito';
     width: 260px;
     height: 28px;
-    margin-left: 68px;
     margin-top: 15px;
 
     background: #EFF0F3;

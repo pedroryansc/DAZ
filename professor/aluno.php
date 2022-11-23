@@ -59,7 +59,7 @@
         </a></b></p>
     </div>
     <a href="turma.php?id=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">(Voltar)</a><br>
-    <h2>
+    <h2 class="nomealu">
         Alun<?php
                 switch($vetorAluno[0]["genero"]){
                     case(1): echo "a"; break;
@@ -103,25 +103,29 @@
     </table>
     <p>*O = Certo; X = Errado</p>
     <div class="alunoperf">
-        <img src="../img/aluno/<?php echo $vetorAluno[0]["idaluno"]."/".$vetorAluno[0]["fotoPerfil"]; ?>">
-
-        <p><b>Nome Completo</b></p>
-        <p><?php echo $vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"]; ?></p>
-        <p><b>Etapa</b></p>
-        <p><?php echo $vetorAluno[0]["etapa"]; ?></p>
-        <p><b>Número de Acertos/Quantidade de Questões (NA/QQ)</b></p>
-        <p><?php echo $vetorAluno[0]["numAcertos"]."/".$vetorAluno[0]["numQuestResp"]; ?></p>
-        <p><b>Média</b></p>
-        <h2><?php echo $vetorAluno[0]["media"]; ?></h2>
+        <div class="corperf">
+            <center>
+                <br>
+                <br>
+        <img class="fotoalu" src="../img/aluno/<?php echo $vetorAluno[0]["idaluno"]."/".$vetorAluno[0]["fotoPerfil"]; ?>">
+                <br>
+                <br>
+                <br>
+        <p class="info"><?php echo $vetorAluno[0]["nome"]." ".$vetorAluno[0]["sobrenome"]; ?></p>
+        <p class="info"><?php echo $vetorAluno[0]["etapa"]; ?></p>
+        <p class="info"><?php echo $vetorAluno[0]["numAcertos"]."/".$vetorAluno[0]["numQuestResp"]; ?></p>
+        <h2 class="media">Media <br><?php echo $vetorAluno[0]["media"]; ?></h2>
         
         <p>
             <b>
-                <a href="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>
+                <a classhref="cadastroAluno.php?acao=editar&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>">Editar</a>
                 <a href="javascript:excluirRegistro('../control/ctrl_aluno.php?acao=excluir&id=<?php echo $id; ?>&idTurma=<?php echo $vetorAluno[0]["turma_idturma"]; ?>')">
                     Excluir
                 </a>
             </b>
         </p>
+        </center>
+    </div>
 </div>
 </body>
 </html>
